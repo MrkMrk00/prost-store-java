@@ -1,14 +1,14 @@
 package de.unibamberg.dsam.group6.prost.entity;
 
+import java.util.List;
+import java.util.Objects;
+import javax.persistence.*;
+import javax.validation.constraints.Min;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.Hibernate;
-
-import javax.persistence.*;
-import javax.validation.constraints.Min;
-import java.util.Objects;
 
 @Entity(name = "order")
 @Getter
@@ -24,6 +24,16 @@ public class Order {
     @Column(name = "price")
     @Min(1)
     private double price;
+
+    // region Relations
+
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> orderItems;
+    // endregion
 
     @Override
     public boolean equals(Object o) {

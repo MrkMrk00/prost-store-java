@@ -1,15 +1,14 @@
 package de.unibamberg.dsam.group6.prost.entity;
 
+import java.util.Objects;
+import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.Hibernate;
-
-import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Pattern;
-import java.util.Objects;
 
 @Entity(name = "order_item")
 @Getter
@@ -29,6 +28,13 @@ public class OrderItem {
     @Column(name = "price")
     @Min(1)
     private double price;
+
+    // region Relations
+    @ManyToOne(targetEntity = Order.class)
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    // endregion
 
     @Override
     public boolean equals(Object o) {

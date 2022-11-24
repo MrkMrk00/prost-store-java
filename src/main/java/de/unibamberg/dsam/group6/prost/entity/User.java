@@ -2,10 +2,9 @@ package de.unibamberg.dsam.group6.prost.entity;
 
 import de.unibamberg.dsam.group6.prost.util.annotation.IsAfter;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -30,6 +29,21 @@ public class User {
     @Past
     @IsAfter(year = 1900)
     private LocalDate birthday;
+
+    // region Relations
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
+
+    @ManyToOne
+    @JoinColumn(name = "billing_address_id")
+    private Address billingAddress;
+
+    @ManyToOne
+    @JoinColumn(name = "delivery_address_id")
+    private Address deliveryAddress;
+
+    // endregion
 
     @Override
     public boolean equals(Object o) {
