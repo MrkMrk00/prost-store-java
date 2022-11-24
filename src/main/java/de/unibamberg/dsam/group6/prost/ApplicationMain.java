@@ -1,11 +1,11 @@
-package de.unibamberg.dsam.group6.assignment;
+package de.unibamberg.dsam.group6.prost;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AssignmentApplication {
+public class ApplicationMain {
     public static void main(String[] args) {
-        SpringApplication.run(AssignmentApplication.class, args);
+        SpringApplication.run(ApplicationMain.class, args);
     }
 }
