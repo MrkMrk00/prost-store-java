@@ -10,7 +10,7 @@ import lombok.Setter;
 import org.hibernate.Hibernate;
 import org.hibernate.validator.constraints.Length;
 
-@Entity(name = "address")
+@Entity(name = "addresses")
 @Getter
 @Setter
 @NoArgsConstructor

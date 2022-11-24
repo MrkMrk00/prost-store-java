@@ -13,7 +13,7 @@ import lombok.Setter;
 import org.hibernate.Hibernate;
 import org.hibernate.validator.constraints.URL;
 
-@Entity(name = "bottle")
+@Entity(name = "bottles")
 @Getter
 @Setter
 @NoArgsConstructor

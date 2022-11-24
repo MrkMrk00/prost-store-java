@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.Hibernate;
 
-@Entity(name = "order_item")
+@Entity(name = "order_items")
 @Getter
 @Setter
 @NoArgsConstructor
