@@ -1,4 +1,4 @@
-package de.unibamberg.assignment;
+package de.unibamberg.dsam.group6.assignment;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
