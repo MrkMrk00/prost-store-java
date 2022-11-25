@@ -13,6 +13,7 @@ import org.hibernate.Hibernate;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class User {
     @Id
     @NotEmpty

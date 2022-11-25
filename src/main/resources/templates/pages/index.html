@@ -10,6 +10,12 @@
         <h1 class="text-6xl mb-3">Prost!</h1>
         <button class="btn-success" onclick="window.location.reload()">Tvoje mama <i class="fa-solid fa-person-dress"></i></button>
     </div>
+    <ul>
+        <li th:each="user : ${users}">
+            <span th:text="${user.username}"></span>
+            <span th:text="${user.birthday}"></span>
+        </li>
+    </ul>
 </main>
 </body>
 </html>

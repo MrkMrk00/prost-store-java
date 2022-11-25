@@ -6,7 +6,7 @@ this app, the database starts with it.
 
 If you want to look directly into the database tables, you have 2 options:
 + Database toolbar of IntelliJ IDEA
-+ The H2-Console (available once the app is running on the endpoint 
++ The H2-Console (available once the app is running on the endpoint
 [/h2-console](http://localhost:8080/h2-console))
 
 Login credentials (set up in resources/application.yml):
@@ -20,7 +20,7 @@ url: jdbc:h2:mem:prost
 You don't have to care about migrations and changes to the database schema.
 On every restart of the application the JPA models are loaded and the DDL is created
 and executed. **That means you can add, modify or delete anything from the *entity* package
-without worrying about the changes you make impacting other people working on the project.** 
+without worrying about the changes you make impacting other people working on the project.**
 Data import is not yet implemented, but most likely will be via
 Spring Data JDBC database scripts.
 
@@ -28,7 +28,7 @@ Spring Data JDBC database scripts.
 I have used the [*pnpm*](https://pnpm.io/) package manager, because it is slightly faster
 than the alternatives (*npm* & *yarn*). It is possible to use them instead.
 
-A CSS library [TailwindCSS](https://tailwindcss.com/) is installed and prepared for use. 
+A CSS library [TailwindCSS](https://tailwindcss.com/) is installed and prepared for use.
 The bundle is optimized - only the classes used in the project will be compiled into a bundle.
 
 Everything (Javascript and CSS) is being bundled with [Webpack](https://webpack.js.org/).
@@ -47,7 +47,7 @@ Linting of the code is enabled via the *spotless* Gradle plugin.
 In order to use it in IntelliJ IDEA, just open your Gradle toolbar
 and navigate to verification -> spotlessApply.
 
-Or you can execute the task via the command line. 
+Or you can execute the task via the command line.
 
 Windows:
 ```batch
