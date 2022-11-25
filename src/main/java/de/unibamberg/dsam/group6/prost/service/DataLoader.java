@@ -22,14 +22,7 @@ public class DataLoader implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         var userlist = List.of(
-                new User("exampleUser",
-                        "asdasd",
-                        LocalDate.of(1969, 6, 9),
-                        Collections.emptyList(),
-                        null,
-                        null
-                )
-        );
+                new User("exampleUser", "asdasd", LocalDate.of(1969, 6, 9), Collections.emptyList(), null, null));
         this.repo.saveAll(userlist);
     }
 }
