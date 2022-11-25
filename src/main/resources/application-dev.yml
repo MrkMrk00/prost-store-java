@@ -1,0 +1,19 @@
+spring:
+    h2:
+        console:
+            enabled: true
+    datasource:
+        username: prostadmin
+        password: strongpassword
+        url: jdbc:h2:mem:prost
+        driverClassName: org.h2.Driver
+    jpa:
+        generate-ddl: true
+        hibernate:
+            ddl-auto: create
+    thymeleaf:
+        cache: false
+    web:
+        resources:
+            cache:
+                period: 0

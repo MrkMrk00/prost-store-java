@@ -5,9 +5,8 @@ The database is included in the runtime of this application, that means once you
 this app, the database starts with it.
 
 If you want to look directly into the database tables, you have 2 options:
-
-- Database toolbar of IntelliJ IDEA
-- The H2-Console (available once the app is running on the endpoint 
++ Database toolbar of IntelliJ IDEA
++ The H2-Console (available once the app is running on the endpoint 
 [/h2-console](http://localhost:8080/h2-console))
 
 Login credentials (set up in resources/application.yml):
@@ -25,6 +24,23 @@ without worrying about the changes you make impacting other people working on th
 Data import is not yet implemented, but most likely will be via
 Spring Data JDBC database scripts.
 
+## Frontend
+I have used the [*pnpm*](https://pnpm.io/) package manager, because it is slightly faster
+than the alternatives (*npm* & *yarn*). It is possible to use them instead.
+
+A CSS library [TailwindCSS](https://tailwindcss.com/) is installed and prepared for use. 
+The bundle is optimized - only the classes used in the project will be compiled into a bundle.
+
+Everything (Javascript and CSS) is being bundled with [Webpack](https://webpack.js.org/).
+While CSS is extended with [PostCSS](https://postcss.org/) and a couple of plugins.
+
+Development mode can be activated with the following command:
+```bash
+pnpm dev
+```
+This runs a watcher, that looks for changes in the *frontend* directory and also for
+changes in Thymeleaf templates. Upon change the static assets are recompiled.
+
 ## Linting
 #### Java
 Linting of the code is enabled via the *spotless* Gradle plugin.
@@ -38,10 +54,13 @@ Windows:
 gradlew.bat spotlessApply
 ```
 UN*X:
-```sh
+```bash
 ./gradlew spotlessApply
 ```
 
-
 #### Other
-Prettier
+Linting of config files (yml/json/...) and frontend assets (js/css/...) is provided by Prettier
+(and ESLint for JS). Linting of those files can be run with a command in *package.json*.
+```bash
+pnpm lint
+```
