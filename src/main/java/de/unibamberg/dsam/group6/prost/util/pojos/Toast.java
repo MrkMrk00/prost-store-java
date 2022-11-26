@@ -11,6 +11,8 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Toast implements Serializable {
+    public static final String TEMPLATE_ATTRIBUTE_NAME = "__toasts";
+
     public enum ToastLevel {
         INFO,
         SUCCESS,

@@ -2,6 +2,7 @@ package de.unibamberg.dsam.group6.prost.controller;
 
 import de.unibamberg.dsam.group6.prost.repository.UserRepository;
 import de.unibamberg.dsam.group6.prost.service.UserErrorManager;
+import de.unibamberg.dsam.group6.prost.util.pojos.Toast;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +18,7 @@ public class IndexController {
     public String index(Model model) {
         var users = this.repository.findAll();
         model.addAttribute("users", users);
-        model.addAttribute("toasts", this.errors.getToastsAndRemove());
+        model.addAttribute(Toast.TEMPLATE_ATTRIBUTE_NAME, this.errors.getToastsAndRemove());
         return "pages/index";
     }
 }
