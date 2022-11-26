@@ -1,17 +1,16 @@
 package de.unibamberg.dsam.group6.prost.service;
 
 import de.unibamberg.dsam.group6.prost.util.pojos.Toast;
-import org.springframework.stereotype.Service;
-
-import javax.servlet.http.HttpSession;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpSession;
+import javax.validation.constraints.NotNull;
+import org.springframework.stereotype.Service;
 
 @Service
 public class UserErrorManager {
-    private final static String TOAST_SESSION_KEY = "__errors";
-    private final static String ERROR_MAP_SESSION_KEY = "__map_errors";
+    private static final String TOAST_SESSION_KEY = "__errors";
+    private static final String ERROR_MAP_SESSION_KEY = "__map_errors";
 
     private final HttpSession session;
 
@@ -26,7 +25,7 @@ public class UserErrorManager {
             this.session.setAttribute(TOAST_SESSION_KEY, newToasts);
             return newToasts;
         }
-        return (List<Toast>)errors;
+        return (List<Toast>) errors;
     }
 
     public List<Toast> getToastsAndRemove() {

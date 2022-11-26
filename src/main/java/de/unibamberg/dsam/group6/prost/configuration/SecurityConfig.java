@@ -1,8 +1,7 @@
 package de.unibamberg.dsam.group6.prost.configuration;
 
-import java.util.List;
-
 import de.unibamberg.dsam.group6.prost.service.UserDetailSecurityService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +20,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final UserDetailSecurityService detailsService;
+
     @Value("${spring.profiles.active}")
     private final List<String> activeProfiles;
 

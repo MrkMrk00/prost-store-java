@@ -1,10 +1,9 @@
 package de.unibamberg.dsam.group6.prost.util.pojos;
 
+import java.io.Serializable;
+import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 
 /**
  * Class provides functionality for informing user about practically anything.
@@ -13,7 +12,10 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class Toast implements Serializable {
     public enum ToastLevel {
-        INFO, SUCCESS, NOTICE, ERROR
+        INFO,
+        SUCCESS,
+        NOTICE,
+        ERROR
     }
 
     private ToastLevel level;

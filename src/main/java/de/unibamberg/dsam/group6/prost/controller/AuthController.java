@@ -4,22 +4,17 @@ import de.unibamberg.dsam.group6.prost.entity.User;
 import de.unibamberg.dsam.group6.prost.repository.UserRepository;
 import de.unibamberg.dsam.group6.prost.service.UserErrorManager;
 import de.unibamberg.dsam.group6.prost.util.pojos.Toast;
+import java.security.Principal;
+import java.time.LocalDate;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Validator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpRequest;
-import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-import javax.validation.Validator;
-import java.security.Principal;
-import java.time.LocalDate;
 
 @Controller
 @RequiredArgsConstructor
@@ -56,8 +51,7 @@ public class AuthController {
             @RequestParam String username,
             @RequestParam String password,
             @RequestParam String passwordCheck,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate birthday
-    ) {
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate birthday) {
         // Check if passwords match
         if (!password.equals(passwordCheck)) {
             this.errors.addToast(Toast.error("Passwords didn't match!"));
