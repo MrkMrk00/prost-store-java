@@ -10,7 +10,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = DateValidator.class)
 @Documented
 public @interface IsAfter {
-    String message() default "{message.key}";
+    String message() default "";
 
     Class<?>[] groups() default {};
 

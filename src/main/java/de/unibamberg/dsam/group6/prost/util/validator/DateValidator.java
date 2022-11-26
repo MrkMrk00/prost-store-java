@@ -19,6 +19,9 @@ public class DateValidator implements ConstraintValidator<IsAfter, LocalDate> {
 
     @Override
     public boolean isValid(LocalDate value, ConstraintValidatorContext context) {
+        if (value == null) {
+            return false;
+        }
         return value.isAfter(LocalDate.of(this.year, this.month, this.day));
     }
 }

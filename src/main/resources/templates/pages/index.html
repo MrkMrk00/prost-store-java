@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <div th:replace="include/head"></div>
+    <meta th:replace="include/head">
     <title>Prost!</title>
 </head>
 <body>
@@ -17,5 +17,6 @@
         </li>
     </ul>
 </main>
+<div th:replace="include/toasts"></div>
 </body>
 </html>

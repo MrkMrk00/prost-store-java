@@ -4,6 +4,10 @@ spring:
     jpa:
         database-platform: org.hibernate.dialect.H2Dialect
         open-in-view: false
+        properties:
+            hibernate:
+                validator:
+                    apply_to_ddl: true
     thymeleaf:
         cache: true
         mode: HTML
