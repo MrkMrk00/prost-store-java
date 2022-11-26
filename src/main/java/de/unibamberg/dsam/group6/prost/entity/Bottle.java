@@ -5,18 +5,20 @@ import javax.persistence.*;
 import javax.validation.ValidationException;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.validator.constraints.URL;
+import org.springframework.lang.Nullable;
 
 @Entity(name = "bottles")
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Bottle {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -58,7 +60,11 @@ public class Bottle {
     private int inStock;
 
     // region Relation
-    @ManyToOne(targetEntity = Crate.class, optional = false)
+
+    @OneToOne(optional = false)
+    private Beverage beverage;
+
+    @ManyToOne(targetEntity = Crate.class)
     @JoinColumn(name = "crate_id")
     private Crate crate;
 
