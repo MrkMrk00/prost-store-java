@@ -57,6 +57,13 @@ public class Bottle {
     @Min(0)
     private int inStock;
 
+    // region Relation
+    @ManyToOne(targetEntity = Crate.class, optional = false)
+    @JoinColumn(name = "crate_id")
+    private Crate crate;
+
+    // endregion
+
     public void setVolumePercent(double volumePercent) {
         if (volumePercent < 0) {
             throw new ValidationException();

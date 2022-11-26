@@ -1,13 +1,13 @@
 {
     "users": [
         {
-            "username": "esloane0",
-            "password": "koLo8op0",
+            "username": "admin",
+            "password": "admin123",
             "birthday": "2020-06-15"
         },
         {
-            "username": "jwinchcomb1",
-            "password": "J1uvwGUwLr",
+            "username": "marek",
+            "password": "tvojeMama",
             "birthday": "2017-07-10"
         },
         {

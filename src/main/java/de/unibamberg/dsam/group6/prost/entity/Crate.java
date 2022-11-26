@@ -1,5 +1,6 @@
 package de.unibamberg.dsam.group6.prost.entity;
 
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -43,6 +44,9 @@ public class Crate {
     @Column(name = "crates_in_stock")
     @Min(0)
     private int cratesInStock;
+
+    @OneToMany(mappedBy = "crate")
+    private List<Bottle> bottles;
 
     @Override
     public boolean equals(Object o) {
