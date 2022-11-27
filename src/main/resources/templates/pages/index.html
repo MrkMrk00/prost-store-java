@@ -1,10 +1,11 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta th:replace="include/head">
     <title>Prost!</title>
 </head>
 <body>
+<div class="page_container">
 <div th:replace="include/navbar"></div>
 <main class="container">
     <div class="flex flex-col center">
@@ -20,5 +21,8 @@
     </ul>
 </main>
 <div th:replace="include/toasts"></div>
+
+</div>
+<footer th:replace="include/footer"></footer>
 </body>
 </html>

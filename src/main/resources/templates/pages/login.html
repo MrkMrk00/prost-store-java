@@ -5,17 +5,29 @@
     <title>Login</title>
 </head>
 <body>
-<form th:action="@{/login}" method="post">
-    <label>
-        Username:
-        <input name="username" type="text">
-    </label><br />
-    <label>
-        Password:
-        <input name="password" type="text">
-    </label><br />
-    <input type="submit">
-</form>
+    <div class="page_container">
+        <div th:replace="include/navbar"></div>
+        <div class="mx-auto max-w-lg px-5">
+            <form th:action="@{/login}" method="post">
+                <div class="mb-3">
+                    <label for="loginform__username">Username</label>
+                    <input class="form-control"
+                           id="loginform__username" name="username" type="text" placeholder="Enter your username">
+                </div>
+                <div class="mb-5">
+                    <label for="loginform__password">Password</label>
+                    <input class="form-control"
+                           id="loginform__password" name="password" type="password" placeholder="Enter password">
+                </div>
+                <div class="mb-3 flex justify-end">
+                    <button class="btn-success w-1/3" type="submit">Log in <i class="fa-solid fa-key"></i></button>
+                </div>
 
+                <input name="next" th:if="${next != null && next.length() > 0}" type="hidden" th:value="next">
+            </form>
+        </div>
+        <div th:replace="include/toasts"></div>
+    </div>
+    <footer th:replace="include/footer"></footer>
 </body>
 </html>

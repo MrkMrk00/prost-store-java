@@ -1,9 +1,13 @@
-<nav>
+<nav xmlns:sec="http://www.w3.org/1999/xhtml">
     <div class="nav__navlinks">
         <a th:href="@{/}"><i class="fa-solid fa-house"></i> Home</a>
         <a th:href="@{/votestuj}"><i class="fa-solid fa-gear"></i> Test Toasts</a>
     </div>
     <div>
-        <a class="btn-success" th:href="@{/login}">Login</a>
+        <span sec:authorize="isAuthenticated()">
+            <i class="fa-solid fa-user"></i> <span sec:authentication="principal.username"></span>
+            <a class="mx-3 underline hover:text-gray-200 text-shadow-lg" th:href="@{/logout}">Logout</a>
+        </span>
+        <a sec:authorize="isAnonymous()" class="btn-success" th:href="@{/login}">Login</a>
     </div>
 </nav>

@@ -33,6 +33,7 @@ dependencies {
     implementation 'org.springframework.security:spring-security-test'
     implementation 'org.hibernate.validator:hibernate-validator'
     implementation 'com.fasterxml.jackson.core:jackson-core'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'

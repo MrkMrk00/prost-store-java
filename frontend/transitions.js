@@ -1,4 +1,4 @@
-export function slideOfScreen(selector) {
+export function slideOffScreen(selector) {
     const elem = document.querySelector(selector);
     elem.animate([
             { transform: `translateX(${screen.width}px)` },

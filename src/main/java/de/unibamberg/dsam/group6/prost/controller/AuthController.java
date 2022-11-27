@@ -31,7 +31,9 @@ public class AuthController {
     }
 
     @GetMapping("/login")
-    public String login() {
+    public String loginPage(@RequestParam(required = false) String next, Model model) {
+        this.errors.injectToasts(model);
+        model.addAttribute("next", next);
         return "pages/login";
     }
 

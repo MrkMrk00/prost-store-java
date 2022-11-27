@@ -24,11 +24,10 @@ public class IndexController {
     }
 
     @GetMapping("/votestuj")
-    public String meVotestujNe(Model model) {
+    public String meVotestujNe() {
         this.errors.addAllToasts(List.of(
-                Toast.info("INFO: Tvoje mama"), Toast.notice("NOTICE: Tvojemama"), Toast.error("ERROR: Tvojemama")));
+                Toast.success("Tvoje máma je skvělá!"), Toast.info("INFO: Tvoje mama"), Toast.notice("NOTICE: Tvojemama"), Toast.error("ERROR: Tvojemama")));
 
-        this.errors.injectToasts(model);
-        return "pages/index";
+        return "redirect:/";
     }
 }
