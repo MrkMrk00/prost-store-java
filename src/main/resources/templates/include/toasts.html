@@ -1,5 +1,17 @@
 <div id="toast_container">
-    <ul>
-        <li th:each="toast : ${__toasts}" th:text="${toast.getMessage()}"></li>
-    </ul>
+    <div class="toast_container__toast flex flex-row justify-between"
+         th:each="toast : ${__toasts}"
+         th:classappend="
+         ${toast.getLevel().name() == 'INFO' ? 'bg-primary' :
+            (toast.getLevel().name() == 'SUCCESS' ? 'bg-success' :
+                (toast.getLevel().name() == 'NOTICE' ? 'bg-warning' :
+                    (toast.getLevel().name() == 'ERROR' ? 'bg-danger' : '')
+                )
+            )
+         }"
+         th:id="'toast_message-' + ${toastStat.index}"
+    >
+        <span th:text="${toast.getMessage()}"></span>
+        <button th:onclick="document.querySelector('#toast_message-[[${toastStat.index}]]').style.display = 'none';"><i class="fa-solid fa-x"></i></button>
+    </div>
 </div>

@@ -1,4 +1,4 @@
-package de.unibamberg.dsam.group6.prost.util.pojos;
+package de.unibamberg.dsam.group6.prost.util;
 
 import java.io.Serializable;
 import javax.validation.constraints.NotNull;
@@ -17,7 +17,7 @@ public class Toast implements Serializable {
         INFO,
         SUCCESS,
         NOTICE,
-        ERROR
+        ERROR;
     }
 
     private ToastLevel level;

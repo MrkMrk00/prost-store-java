@@ -1,6 +1,6 @@
 package de.unibamberg.dsam.group6.prost.service;
 
-import de.unibamberg.dsam.group6.prost.util.pojos.Toast;
+import de.unibamberg.dsam.group6.prost.util.Toast;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
