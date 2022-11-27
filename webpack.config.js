@@ -24,9 +24,7 @@ module.exports = {
     },
     plugins: [
         new WatchExternalFilesPlugin({
-            files: [
-                'src/main/resources/templates/**/*.html',
-            ],
+            files: ['src/main/resources/templates/**/*.html'],
         }),
     ],
 };
