@@ -25,6 +25,10 @@ Data import is not yet implemented, but most likely will be via
 Spring Data JDBC database scripts.
 
 ## Frontend
+If you've never gotten into contact with either [TailwindCSS](https://tailwindcss.com/) 
+or [FontAwesome](https://fontawesome.com/), then I strongly recommend at least looking at
+their homepages. These are very cool libraries, that make your life easier.
+
 I have used the [*pnpm*](https://pnpm.io/) package manager, because it is slightly faster
 than the alternatives (*npm* & *yarn*). It is possible to use them instead.
 

@@ -5,11 +5,13 @@
     <title>Prost!</title>
 </head>
 <body>
+<div th:replace="include/navbar"></div>
 <main class="container">
     <div class="flex flex-col center">
         <h1 class="text-6xl mb-3">Prost!</h1>
         <button class="btn-success" onclick="window.location.reload()">Tvoje mama <i class="fa-solid fa-person-dress"></i></button>
     </div>
+    <h1 class="text-xl font-bold">These are users in the database:</h1>
     <ul>
         <li th:each="user : ${users}">
             <span th:text="${user.username}"></span>
