@@ -37,7 +37,7 @@ public class AuthController {
 
     @GetMapping("/register")
     public String registerPage(Principal principal, Model model) {
-        model.addAttribute(Toast.TEMPLATE_ATTRIBUTE_NAME, this.errors.getToastsAndRemove());
+        this.errors.injectToasts(model);
 
         if (principal != null) {
             return "redirect:/";

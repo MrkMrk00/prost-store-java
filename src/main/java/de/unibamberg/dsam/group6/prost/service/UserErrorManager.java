@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 @Service
 public class UserErrorManager {
@@ -38,5 +39,13 @@ public class UserErrorManager {
         var currentToasts = this.getToasts();
         currentToasts.add(toast);
         this.session.setAttribute(TOAST_SESSION_KEY, currentToasts);
+    }
+
+    public void addAllToasts(Iterable<Toast> toasts) {
+        toasts.forEach(this::addToast);
+    }
+
+    public void injectToasts(Model model) {
+        model.addAttribute(Toast.TEMPLATE_ATTRIBUTE_NAME, this.getToastsAndRemove());
     }
 }

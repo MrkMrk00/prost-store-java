@@ -8,6 +8,10 @@ module.exports = {
     output: {
         path: resolve(__dirname, assets),
         filename: 'bundle.js',
+        library: {
+            name: 'prostLib',
+            type: 'var',
+        },
     },
     module: {
         rules: [

@@ -11,7 +11,7 @@
          }"
          th:id="'toast_message-' + ${toastStat.index}"
     >
-        <span th:text="${toast.getMessage()}"></span>
-        <button th:onclick="document.querySelector('#toast_message-[[${toastStat.index}]]').style.display = 'none';"><i class="fa-solid fa-x"></i></button>
+        <div th:text="${toast.getMessage()}"></div>
+        <button class="toast_container__toast-close-button" th:onclick="prostLib.slideOfScreen('#toast_message-[[${toastStat.index}]]')"><i class="fa-solid fa-x"></i></button>
     </div>
 </div>
