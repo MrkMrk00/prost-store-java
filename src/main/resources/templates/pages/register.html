@@ -17,14 +17,14 @@
                        id="register__username" name="username" type="text" placeholder="Enter your username">
             </div>
             <div class="mb-3">
-                <label for="loginform__password">Password</label>
+                <label for="register__password">Password</label>
                 <input class="form-control"
-                       id="loginform__password" name="password" type="password" placeholder="Enter password">
+                       id="register__password" name="password" type="password" placeholder="Enter password">
             </div>
             <div class="mb-5">
-                <label for="loginform__password_check">Password check</label>
+                <label for="register__password_check">Password check</label>
                 <input class="form-control"
-                       id="loginform__password_check" name="passwordCheck" type="password" placeholder="Repeat password">
+                       id="register__password_check" name="passwordCheck" type="password" placeholder="Repeat password">
             </div>
             <input name="next" th:if="${next != null && next.length() > 0}" type="hidden" th:value="next">
 
