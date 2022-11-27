@@ -6,23 +6,23 @@
 </head>
 <body>
 <div class="page_container">
-<div th:replace="include/navbar"></div>
-<main class="container">
-    <div class="flex flex-col center">
-        <h1 class="text-6xl mb-3">Prost!</h1>
-        <button class="btn-success" onclick="window.location.reload()">Tvoje mama <i class="fa-solid fa-person-dress"></i></button>
-    </div>
-    <h1 class="text-xl font-bold">These are users in the database:</h1>
-    <ul>
-        <li th:each="user : ${users}">
-            <span th:text="${user.username}"></span>
-            <span th:text="${user.birthday}"></span>
-        </li>
-    </ul>
-</main>
-<div th:replace="include/toasts"></div>
-
+    <div th:replace="include/navbar"></div>
+    <main class="mx-auto container">
+        <div class="flex flex-col center h-100">
+            <h1 class="text-6xl mb-3">Prost!</h1>
+            <button class="btn-success" onclick="window.location.reload()">Tvoje mama <i
+                class="fa-solid fa-person-dress"></i></button>
+        </div>
+        <h1 class="text-xl font-bold">These are users in the database:</h1>
+            <ul>
+                <li th:each="user : ${users}">
+                    <span th:text="${user.username}"></span>
+                    <span th:text="${user.birthday}"></span>
+                </li>
+            </ul>
+    </main>
+    <div th:replace="include/toasts"></div>
+    <footer th:replace="include/footer"></footer>
 </div>
-<footer th:replace="include/footer"></footer>
 </body>
 </html>

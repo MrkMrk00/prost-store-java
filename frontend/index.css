@@ -113,6 +113,22 @@ a {
         color: black;
     }
 
+    .color-success {
+        color: var(--success-color);
+    }
+
+    .color-primary {
+        color: var(--primary-color);
+    }
+
+    .color-danger {
+        color: var(--danger-color);
+    }
+
+    .color-warning {
+        color: var(--warning-color);
+    }
+
     .bg-success-dark {
         background-color: var(--success-color-dark);
         color: white;
@@ -148,29 +164,4 @@ a {
     .text-shadow-none {
         text-shadow: none;
     }
-}
-
-nav .nav__navlinks a {
-    @apply text-shadow-lg hover:text-gray-200;
-    margin-right: 3em;
-}
-
-nav {
-    @apply shadow-md;
-    position: sticky;
-    width: 100%;
-    margin-bottom: 1em;
-    padding: 1rem 2rem;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    background-color: var(--primary-color);
-    color: white;
-}
-
-
-nav a:last-child {
-    margin-right: 0;
 }
