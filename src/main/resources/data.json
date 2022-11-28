@@ -500,5 +500,214 @@
             "password": "JyfmaVXIhg",
             "birthday": "2022-11-23"
         }
+    ],
+    "bottles": [
+        {
+            "name": "Vigus",
+            "bottlePic": "http://dummyimage.com/127x100.png/dddddd/000000",
+            "volume": 10.83,
+            "volumePercent": 7.09,
+            "price": 73,
+            "supplier": "Nlounge",
+            "inStock": 618
+        },
+        {
+            "name": "Cleverly",
+            "bottlePic": "http://dummyimage.com/137x100.png/dddddd/000000",
+            "volume": 10.79,
+            "volumePercent": 4.34,
+            "price": 84,
+            "supplier": "Thoughtstorm",
+            "inStock": 355
+        },
+        {
+            "name": "Vizor",
+            "bottlePic": "http://dummyimage.com/190x100.png/dddddd/000000",
+            "volume": 14.39,
+            "volumePercent": 3.19,
+            "price": 8,
+            "supplier": "Quamba",
+            "inStock": 378
+        },
+        {
+            "name": "Bedingfield",
+            "bottlePic": "http://dummyimage.com/170x100.png/ff4444/ffffff",
+            "volume": 1.49,
+            "volumePercent": 1.72,
+            "price": 93,
+            "supplier": "Camimbo",
+            "inStock": 632
+        },
+        {
+            "name": "Sends",
+            "bottlePic": "http://dummyimage.com/117x100.png/cc0000/ffffff",
+            "volume": 14.24,
+            "volumePercent": 7.69,
+            "price": 55,
+            "supplier": "Edgepulse",
+            "inStock": 368
+        },
+        {
+            "name": "McGoon",
+            "bottlePic": "http://dummyimage.com/242x100.png/5fa2dd/ffffff",
+            "volume": 10.42,
+            "volumePercent": 3.68,
+            "price": 51,
+            "supplier": "Babbleopia",
+            "inStock": 582
+        },
+        {
+            "name": "Deverick",
+            "bottlePic": "http://dummyimage.com/161x100.png/dddddd/000000",
+            "volume": 3.96,
+            "volumePercent": 3.18,
+            "price": 85,
+            "supplier": "Aimbo",
+            "inStock": 595
+        },
+        {
+            "name": "Grebert",
+            "bottlePic": "http://dummyimage.com/213x100.png/5fa2dd/ffffff",
+            "volume": 1.58,
+            "volumePercent": 2.55,
+            "price": 91,
+            "supplier": "Devbug",
+            "inStock": 43
+        },
+        {
+            "name": "Ruddiforth",
+            "bottlePic": "http://dummyimage.com/128x100.png/cc0000/ffffff",
+            "volume": 8.18,
+            "volumePercent": 6.61,
+            "price": 92,
+            "supplier": "Meejo",
+            "inStock": 483
+        },
+        {
+            "name": "Raimbauld",
+            "bottlePic": "http://dummyimage.com/164x100.png/cc0000/ffffff",
+            "volume": 13.88,
+            "volumePercent": 4.95,
+            "price": 85,
+            "supplier": "Quire",
+            "inStock": 279
+        },
+        {
+            "name": "Charnick",
+            "bottlePic": "http://dummyimage.com/175x100.png/ff4444/ffffff",
+            "volume": 10.09,
+            "volumePercent": 4.39,
+            "price": 44,
+            "supplier": "Camido",
+            "inStock": 229
+        },
+        {
+            "name": "Fihelly",
+            "bottlePic": "http://dummyimage.com/231x100.png/5fa2dd/ffffff",
+            "volume": 9.58,
+            "volumePercent": 5.5,
+            "price": 69,
+            "supplier": "Ozu",
+            "inStock": 199
+        },
+        {
+            "name": "DeFew",
+            "bottlePic": "http://dummyimage.com/138x100.png/dddddd/000000",
+            "volume": 5.35,
+            "volumePercent": 4.81,
+            "price": 28,
+            "supplier": "Gigazoom",
+            "inStock": 328
+        },
+        {
+            "name": "Aughton",
+            "bottlePic": "http://dummyimage.com/180x100.png/dddddd/000000",
+            "volume": 9.1,
+            "volumePercent": 4.76,
+            "price": 40,
+            "supplier": "Jabberbean",
+            "inStock": 316
+        },
+        {
+            "name": "Ainscough",
+            "bottlePic": "http://dummyimage.com/102x100.png/5fa2dd/ffffff",
+            "volume": 2.76,
+            "volumePercent": 7.19,
+            "price": 5,
+            "supplier": "Babbleset",
+            "inStock": 443
+        },
+        {
+            "name": "Akett",
+            "bottlePic": "http://dummyimage.com/222x100.png/dddddd/000000",
+            "volume": 5.13,
+            "volumePercent": 6.86,
+            "price": 25,
+            "supplier": "Chatterbridge",
+            "inStock": 462
+        },
+        {
+            "name": "Calvey",
+            "bottlePic": "http://dummyimage.com/155x100.png/cc0000/ffffff",
+            "volume": 3.43,
+            "volumePercent": 3.17,
+            "price": 85,
+            "supplier": "Mybuzz",
+            "inStock": 554
+        },
+        {
+            "name": "Waycot",
+            "bottlePic": "http://dummyimage.com/118x100.png/5fa2dd/ffffff",
+            "volume": 6.03,
+            "volumePercent": 5.47,
+            "price": 56,
+            "supplier": "Yodoo",
+            "inStock": 734
+        },
+        {
+            "name": "Pool",
+            "bottlePic": "http://dummyimage.com/220x100.png/cc0000/ffffff",
+            "volume": 11.29,
+            "volumePercent": 1.21,
+            "price": 95,
+            "supplier": "Aivee",
+            "inStock": 363
+        },
+        {
+            "name": "Denk",
+            "bottlePic": "http://dummyimage.com/210x100.png/5fa2dd/ffffff",
+            "volume": 3.18,
+            "volumePercent": 3.42,
+            "price": 13,
+            "supplier": "Agivu",
+            "inStock": 626
+        },
+        {
+            "name": "Simion",
+            "bottlePic": "http://dummyimage.com/204x100.png/cc0000/ffffff",
+            "volume": 8.47,
+            "volumePercent": 7.4,
+            "price": 47,
+            "supplier": "Oodoo",
+            "inStock": 109
+        },
+        {
+            "name": "Fortin",
+            "bottlePic": "http://dummyimage.com/250x100.png/5fa2dd/ffffff",
+            "volume": 14.14,
+            "volumePercent": 3.42,
+            "price": 82,
+            "supplier": "Youtags",
+            "inStock": 311
+        },
+        {
+            "name": "Oliveira",
+            "bottlePic": "http://dummyimage.com/205x100.png/ff4444/ffffff",
+            "volume": 2.79,
+            "volumePercent": 7.66,
+            "price": 6,
+            "supplier": "Riffpedia",
+            "inStock": 550
+        }
     ]
 }

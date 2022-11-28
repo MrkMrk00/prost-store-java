@@ -6,10 +6,7 @@ import javax.validation.ValidationException;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.validator.constraints.URL;
 
@@ -17,11 +14,16 @@ import org.hibernate.validator.constraints.URL;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Bottle {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
     private Long id;
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "id")
+    private Beverage beverage;
 
     @Column(name = "name")
     @NotEmpty
@@ -58,7 +60,8 @@ public class Bottle {
     private int inStock;
 
     // region Relation
-    @ManyToOne(targetEntity = Crate.class, optional = false)
+
+    @ManyToOne(targetEntity = Crate.class)
     @JoinColumn(name = "crate_id")
     private Crate crate;
 
