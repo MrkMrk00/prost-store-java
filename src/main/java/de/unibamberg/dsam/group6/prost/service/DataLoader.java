@@ -7,7 +7,6 @@ import de.unibamberg.dsam.group6.prost.entity.User;
 import de.unibamberg.dsam.group6.prost.repository.BottlesRepository;
 import de.unibamberg.dsam.group6.prost.repository.UserRepository;
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
@@ -43,18 +42,16 @@ public class DataLoader implements ApplicationRunner {
         var bottles = (List<Map<String, Object>>) data.get("bottles");
 
         bottles.forEach(b -> {
-            this.bottlesRepository.save(
-                    Bottle.builder()
-                            .name((String)b.get("name"))
-                            .bottlePic((String)b.get("bottlePic"))
-                            .volume((Double)b.get("volume"))
-                            .volumePercent((Double)b.get("volumePercent"))
-                            .price((Integer)b.get("price"))
-                            .supplier((String)b.get("supplier"))
-                            .inStock((Integer)b.get("inStock"))
-                            .beverage(new Beverage())
-                            .build()
-            );
+            this.bottlesRepository.save(Bottle.builder()
+                    .name((String) b.get("name"))
+                    .bottlePic((String) b.get("bottlePic"))
+                    .volume((Double) b.get("volume"))
+                    .volumePercent((Double) b.get("volumePercent"))
+                    .price((Integer) b.get("price"))
+                    .supplier((String) b.get("supplier"))
+                    .inStock((Integer) b.get("inStock"))
+                    .beverage(new Beverage())
+                    .build());
         });
     }
 

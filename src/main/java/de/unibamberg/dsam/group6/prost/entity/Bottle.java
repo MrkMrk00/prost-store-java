@@ -5,13 +5,10 @@ import javax.persistence.*;
 import javax.validation.ValidationException;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.validator.constraints.URL;
-import org.springframework.lang.Nullable;
 
 @Entity(name = "bottles")
 @Getter
@@ -21,9 +18,12 @@ import org.springframework.lang.Nullable;
 @Builder
 public class Bottle {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
     private Long id;
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "id")
+    private Beverage beverage;
 
     @Column(name = "name")
     @NotEmpty
@@ -60,9 +60,6 @@ public class Bottle {
     private int inStock;
 
     // region Relation
-
-    @OneToOne(optional = false)
-    private Beverage beverage;
 
     @ManyToOne(targetEntity = Crate.class)
     @JoinColumn(name = "crate_id")

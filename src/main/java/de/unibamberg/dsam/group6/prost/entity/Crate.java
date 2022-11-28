@@ -6,7 +6,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
-
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.validator.constraints.URL;
@@ -18,10 +17,12 @@ import org.hibernate.validator.constraints.URL;
 @AllArgsConstructor
 public class Crate {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Setter(AccessLevel.NONE)
-    @Column(name = "id", nullable = false)
     private Long id;
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "id")
+    private Beverage beverage;
 
     @Column(name = "name", nullable = false)
     @NotEmpty
@@ -45,9 +46,6 @@ public class Crate {
     private int cratesInStock;
 
     // region Relations
-
-    @OneToOne(optional = false)
-    private Beverage beverage;
 
     @OneToMany(mappedBy = "crate")
     private List<Bottle> bottles;
