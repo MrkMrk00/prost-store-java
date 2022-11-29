@@ -8,25 +8,28 @@
 <div class="page_container">
     <div th:replace="include/navbar"></div>
     <main class="mx-auto container">
-        <h1 class="text-6xl">tvoje_mama_je_thicc</h1>
-        <table class="table-auto">
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Nudes?</th>
-                <th>Pic</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="bottle : ${bottles}">
-                <td align="center" th:text="${bottle.name}"></td>
-                <td align="center">
-                    <img th:src="${bottle.bottlePic}" th:alt="${bottle.name}">
-                </td>
-                <td align="center" th:text="${bottle.price}"></td>
-            </tr>
-            </tbody>
-        </table>
+        <h1 class="text-6xl pb-5">tvoje_mama_je_thicc</h1>
+        <div class="beverage-card-container">
+            <div class="bottle-wrapper" th:each="bottle : ${bottles}">
+                <div class="bottle-content">
+                    <img class="bottle-image"
+                         th:src="${bottle.bottlePic}" th:alt="${bottle.name}">
+                </div>
+                <div class="bottle-content">
+                    <div class="bottle-descr">
+                        <h2><strong th:text="${bottle.name}"></strong></h2>
+                        <hr />
+                        <p th:text="'€ ' + ${bottle.price}"></p>
+                        <hr />
+                        <p th:text="${bottle.inStock} + ' pcs.'"></p>
+                    </div>
+                    <div class="flex flex-row justify-end">
+                        <button class="btn-success p-3"><i class="fa-solid fa-cart-shopping"></i></button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </main>
     <div th:replace="include/toasts"></div>
     <footer th:replace="include/footer"></footer>

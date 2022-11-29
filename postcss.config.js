@@ -1,5 +1,7 @@
 const tailwindcss = require('tailwindcss');
 
 module.exports = {
-    plugins: ['postcss-preset-env', tailwindcss],
+    plugins: {
+        'tailwindcss/nesting': {}, 'postcss-preset-env': {features: { 'nesting-rules': false }}, tailwindcss: {}
+    },
 };
