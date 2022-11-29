@@ -25,9 +25,11 @@ Data import is not yet implemented, but most likely will be via
 Spring Data JDBC database scripts.
 
 ## Frontend
-If you've never gotten into contact with either [TailwindCSS](https://tailwindcss.com/)
-or [FontAwesome](https://fontawesome.com/), then I strongly recommend at least looking at
-their homepages. These are very cool libraries, that make your life easier.
+Just write your code anywhere in the *frontend* directory, then (if you created separate files) 
+import them in *frontend/index.js* and the code will be automatically compiled and injected into HTML.
+(You will need to either run in [development mode](#Development mode) or compile the assets with the 
+*build* command.) You don't have to use any of the "fancy" stuff, I've included. But it just
+makes it a bit easier to write the code.
 
 I have used the [*pnpm*](https://pnpm.io/) package manager, because it is slightly faster
 than the alternatives (*npm* & *yarn*). It is possible to use them instead.
@@ -38,7 +40,14 @@ The bundle is optimized - only the classes used in the project will be compiled 
 Everything (Javascript and CSS) is being bundled with [Webpack](https://webpack.js.org/).
 While CSS is extended with [PostCSS](https://postcss.org/) and a couple of plugins.
 
-Development mode can be activated with the following command:
+### How to set up PostCSS
+Download the [PostCSS](https://plugins.jetbrains.com/plugin/8578-postcss) and 
+[TailwindCSS](https://plugins.jetbrains.com/plugin/15321-tailwind-css) plugins into IntelliJ IDEA. 
+Then go to *File -> Settings -> Languages & Frameworks -> Style Sheets -> Dialects* 
+and select PostCSS. Then you should be able to use nested selectors in CSS and use 
+@apply rules on Tailwind classes with code completion.
+
+### Development mode
 ```bash
 pnpm dev
 ```
