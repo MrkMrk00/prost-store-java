@@ -40,6 +40,7 @@ public class IndexController {
     public String bottleh(Model model) {
         var bottles = this.bottlesRepository.findAll();
         model.addAttribute("bottles", bottles);
+        this.errors.injectToasts(model);
         return "pages/bottles";
     }
 }

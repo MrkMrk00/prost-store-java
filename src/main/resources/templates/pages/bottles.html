@@ -24,7 +24,11 @@
                         <p th:text="${bottle.inStock} + ' pcs.'"></p>
                     </div>
                     <div class="flex flex-row justify-end">
-                        <button class="btn-success p-3"><i class="fa-solid fa-cart-shopping"></i></button>
+                        <form th:action="@{/cart}" method="post">
+                            <input name="bottleId" th:value="${bottle.id}" type="hidden">
+                            <input name="next" value="/bottles" type="hidden">
+                            <button type="submit" class="btn-success p-3"><i class="fa-solid fa-cart-shopping"></i></button>
+                        </form>
                     </div>
 
                 </div>
