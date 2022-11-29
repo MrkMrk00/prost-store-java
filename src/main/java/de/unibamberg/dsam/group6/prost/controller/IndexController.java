@@ -1,5 +1,6 @@
 package de.unibamberg.dsam.group6.prost.controller;
 
+import de.unibamberg.dsam.group6.prost.repository.BottlesRepository;
 import de.unibamberg.dsam.group6.prost.repository.UserRepository;
 import de.unibamberg.dsam.group6.prost.service.UserErrorManager;
 import de.unibamberg.dsam.group6.prost.util.Toast;
@@ -12,12 +13,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 @RequiredArgsConstructor
 public class IndexController {
-    private final UserRepository repository;
+    private final UserRepository userRepository;
+    private final BottlesRepository bottlesRepository;
     private final UserErrorManager errors;
 
     @GetMapping("/")
     public String index(Model model) {
-        var users = this.repository.findAll();
+        var users = this.userRepository.findAll();
         model.addAttribute("users", users);
         this.errors.injectToasts(model);
         return "pages/index";
@@ -35,7 +37,9 @@ public class IndexController {
     }
 
     @GetMapping("/bottles")
-    public String bottleh() {
+    public String bottleh(Model model) {
+        var bottles = this.bottlesRepository.findAll();
+        model.addAttribute("bottles", bottles);
         return "pages/bottles";
     }
 }

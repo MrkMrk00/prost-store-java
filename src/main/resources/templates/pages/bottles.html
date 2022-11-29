@@ -1,10 +1,35 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-  <meta th:replace="include/head">
-  <title>Prost!</title>
+    <meta th:replace="include/head">
+    <title>Prost!</title>
 </head>
 <body>
-tvojemama
+<div class="page_container">
+    <div th:replace="include/navbar"></div>
+    <main class="mx-auto container">
+        <h1 class="text-6xl">tvoje_mama_je_thicc</h1>
+        <table class="table-auto">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Nudes?</th>
+                <th>Pic</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="bottle : ${bottles}">
+                <td align="center" th:text="${bottle.name}"></td>
+                <td align="center">
+                    <img th:src="${bottle.bottlePic}" th:alt="${bottle.name}">
+                </td>
+                <td align="center" th:text="${bottle.price}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+    <div th:replace="include/toasts"></div>
+    <footer th:replace="include/footer"></footer>
+</div>
 </body>
 </html>
