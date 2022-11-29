@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.beverage-card-container{
+.beverage-card-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

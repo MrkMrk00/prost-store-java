@@ -5,7 +5,7 @@
     "main": "frontend/index.js",
     "scripts": {
         "build": "webpack",
-        "lint": "eslint --fix ./frontend && prettier --write './*.{yml,yaml,js,json}' '{frontend,src}/**/*.{yml,yaml,js,json}'",
+        "lint": "eslint --fix ./frontend && prettier --write './*.{yml,yaml,js,json}' './{frontend,src}/**/*.{yml,yaml,js,json}'",
         "dev": "webpack --watch"
     },
     "keywords": [],
