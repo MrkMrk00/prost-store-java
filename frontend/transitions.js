@@ -6,3 +6,7 @@ export function slideOffScreen(selector) {
     });
     setTimeout(() => (elem.style.display = 'none'), 500);
 }
+
+export function registerToast(selector) {
+    setTimeout(() => slideOffScreen(selector), 5000);
+}

@@ -15,6 +15,7 @@
     padding: 2em 0;
     margin-bottom: 3em;
     @apply border rounded-3xl shadow-lg;
+    background: white;
 
     .bottle-content {
         display: flex;
@@ -39,3 +40,14 @@
         }
     }
 }
+
+.p-orange {
+    background-color: #F99336;
+    color:white;
+}
+
+.p-btn {
+    @apply rounded-3xl;
+    padding: 0.5em;
+}
+

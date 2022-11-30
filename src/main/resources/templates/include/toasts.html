@@ -12,6 +12,9 @@
          th:id="'toast_message-' + ${toastStat.index}"
     >
         <div th:text="${toast.getMessage()}"></div>
-        <button class="toast_container__toast-close-button" th:onclick="prostLib.slideOffScreen('#toast_message-[[${toastStat.index}]]')"><i class="fa-solid fa-x"></i></button>
+        <button class="toast_container__toast-close-button"
+                th:onclick="prostLib.slideOffScreen('#toast_message-[[${toastStat.index}]]')"><i
+            class="fa-solid fa-x"></i></button>
+        <script type="application/javascript">prostLib.registerToast('#toast_message-[[${toastStat.index}]]');</script>
     </div>
 </div>
