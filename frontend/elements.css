@@ -42,12 +42,15 @@
 }
 
 .p-orange {
-    background-color: #F99336;
+    background-color: var(--primary-color);
     color:white;
 }
 
 .p-btn {
     @apply rounded-3xl;
     padding: 0.5em;
+    &:hover{
+        background-color: var(--primary-color-dark);
+    }
 }
 
