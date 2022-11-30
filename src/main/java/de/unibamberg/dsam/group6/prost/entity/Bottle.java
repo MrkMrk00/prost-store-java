@@ -16,15 +16,7 @@ import org.hibernate.validator.constraints.URL;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Bottle {
-    @Id
-    private Long id;
-
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
-    private Beverage beverage;
-
+public class Bottle extends Beverage {
     @Column(name = "name")
     @NotEmpty
     @Pattern(regexp = "\\w+")
@@ -80,7 +72,7 @@ public class Bottle {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Bottle bottle = (Bottle) o;
-        return id != null && Objects.equals(id, bottle.id);
+        return getId() != null && Objects.equals(getId(), bottle.getId());
     }
 
     @Override

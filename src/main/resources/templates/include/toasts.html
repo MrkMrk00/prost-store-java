@@ -1,5 +1,5 @@
 <div id="toast_container">
-    <div class="toast_container__toast flex flex-row justify-between transition ease-in-out duration-150"
+    <div class="toast"
          th:each="toast : ${__toasts}"
          th:classappend="
          ${toast.getLevel().name() == 'INFO' ? 'bg-primary hover:bg-primary-dark' :

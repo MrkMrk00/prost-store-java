@@ -15,15 +15,7 @@ import org.hibernate.validator.constraints.URL;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Crate {
-    @Id
-    private Long id;
-
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
-    private Beverage beverage;
-
+public class Crate extends Beverage {
     @Column(name = "name", nullable = false)
     @NotEmpty
     @Pattern(regexp = "\\w+")
@@ -57,7 +49,7 @@ public class Crate {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Crate crate = (Crate) o;
-        return id != null && Objects.equals(id, crate.id);
+        return getId() != null && Objects.equals(getId(), crate.getId());
     }
 
     @Override
