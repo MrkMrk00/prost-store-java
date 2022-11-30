@@ -25,9 +25,9 @@ Data import is not yet implemented, but most likely will be via
 Spring Data JDBC database scripts.
 
 ## Frontend
-Just write your code anywhere in the *frontend* directory, then (if you created separate files) 
+Just write your code anywhere in the *frontend* directory, then (if you created separate files)
 import them in *frontend/index.js* and the code will be automatically compiled and injected into HTML.
-(You will need to either run in [development mode](#Development mode) or compile the assets with the 
+(You will need to either run in [development mode](#Development mode) or compile the assets with the
 *build* command.) You don't have to use any of the "fancy" stuff, I've included. But it just
 makes it a bit easier to write the code.
 
@@ -41,10 +41,10 @@ Everything (Javascript and CSS) is being bundled with [Webpack](https://webpack.
 While CSS is extended with [PostCSS](https://postcss.org/) and a couple of plugins.
 
 ### How to set up PostCSS
-Download the [PostCSS](https://plugins.jetbrains.com/plugin/8578-postcss) and 
-[TailwindCSS](https://plugins.jetbrains.com/plugin/15321-tailwind-css) plugins into IntelliJ IDEA. 
-Then go to *File -> Settings -> Languages & Frameworks -> Style Sheets -> Dialects* 
-and select PostCSS. Then you should be able to use nested selectors in CSS and use 
+Download the [PostCSS](https://plugins.jetbrains.com/plugin/8578-postcss) and
+[TailwindCSS](https://plugins.jetbrains.com/plugin/15321-tailwind-css) plugins into IntelliJ IDEA.
+Then go to *File -> Settings -> Languages & Frameworks -> Style Sheets -> Dialects*
+and select PostCSS. Then you should be able to use nested selectors in CSS and use
 @apply rules on Tailwind classes with code completion.
 
 ### Development mode
