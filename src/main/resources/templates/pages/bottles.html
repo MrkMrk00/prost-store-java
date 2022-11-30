@@ -5,14 +5,15 @@
     <title>Prost!</title>
 </head>
 <body>
-<div class="page_container">
+<div>
     <div th:replace="include/navbar"></div>
     <main class="mx-auto container">
         <div class="flex flex-row justify-between pb-5">
             <h1 class="text-6xl">Bottles</h1>
             <div class="pagination">
-                <a th:href="'/bottles' + '?page=' + ${current_page - 1}" th:classappend="${current_page < 1} ? 'disabled' : ''"><i class="fa-solid fa-arrow-left"></i></a>
-                <a th:href="'/bottles' + '?page=' + ${current_page + 1}" th:classappend="${current_page >= max_page} ? 'disabled' : ''"><i class="fa-solid fa-arrow-right"></i></a>
+                <a th:href="'/bottles?page=' + ${current_page - 1}" th:classappend="${current_page < 1} ? 'disabled' : ''"><i class="fa-solid fa-arrow-left"></i></a>
+                <a th:href="'/bottles?page=' + ${current_page + 1}" th:classappend="${current_page >= max_page} ? 'disabled' : ''"><i class="fa-solid fa-arrow-right"></i></a>
+                <a th:href="'/bottles?page=' + ${max_page}">Last</a>
             </div>
         </div>
         <div class="beverage-card-container">

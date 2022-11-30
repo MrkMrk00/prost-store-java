@@ -1,12 +1,18 @@
 <div th:replace="include/toasts"></div>
 <footer>
-    <p class="flex items-center">
-        <a href="https://www.uni-bamberg.de/wiai/" target="_blank">
-            <img style="height: 3em; vertical-align: middle;" src="/uni-bamberg.png" alt="Otto-Friedrich Universität Bamberg">
-        </a>
-        <span>Prost team 2022</span>
-    </p>
-    <a class="flex items-center align-top text-sm" th:href="@{/}" title="Prost">
-        <img class="footer-logo" th:src="@{/logo.png}" alt="Prost icon">
-    </a>
+    <div class="footer-container">
+        <div>
+            <p class="flex flex-row">
+                <a href="https://www.uni-bamberg.de/wiai/" target="_blank">
+                    <img class="footer-logo" src="/uni-bamberg.png" alt="Otto-Friedrich Universität Bamberg">
+                </a>
+                <span>&emsp;Prost team 2022</span>
+            </p>
+        </div>
+        <p class="flex flex-col justify-center">
+            <a th:href="@{/}" title="Prost">
+                <img class="footer-logo" th:src="@{/logo.png}" alt="Prost icon">
+            </a>
+        </p>
+    </div>
 </footer>
