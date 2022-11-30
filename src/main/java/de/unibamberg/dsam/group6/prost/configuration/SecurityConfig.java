@@ -27,6 +27,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(req -> {
+                    req.antMatchers("/cart").authenticated();
                     req.antMatchers("/**").permitAll();
                 })
                 .formLogin(form -> {
