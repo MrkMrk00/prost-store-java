@@ -8,7 +8,13 @@
 <div class="page_container">
     <div th:replace="include/navbar"></div>
     <main class="mx-auto container">
-        <h1 class="text-6xl pb-5">tvoje_mama_je_thicc</h1>
+        <div class="flex flex-row justify-between pb-5">
+            <h1 class="text-6xl">Bottles</h1>
+            <div class="pagination">
+                <a th:href="'/bottles' + '?page=' + ${current_page - 1}" th:classappend="${current_page < 1} ? 'disabled' : ''"><i class="fa-solid fa-arrow-left"></i></a>
+                <a th:href="'/bottles' + '?page=' + ${current_page + 1}" th:classappend="${current_page >= max_page} ? 'disabled' : ''"><i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
         <div class="beverage-card-container">
             <div class="bottle-wrapper" th:each="bottle : ${bottles}">
                 <div class="bottle-content">
@@ -27,11 +33,24 @@
                         <form th:action="@{/cart}" method="post">
                             <input name="bottleId" th:value="${bottle.id}" type="hidden">
                             <input name="next" value="/bottles" type="hidden">
-                            <button type="submit" class="btn-success">
-                                <span class="p-3">
-                                    <i class="fa-solid fa-lg fa-cart-shopping"></i>
-                                </span>
-                            </button>
+                            <div class="flex flex-row justify-end">
+                                <div class="beverage-to-cart py-3">
+                                    <div class="flex flex-col justify-center px-3">
+                                        <input
+                                            type="number"
+                                            name="count"
+                                            class="number-input"
+                                            value="1" min="1" th:max="${bottle.inStock}"
+                                            aria-label="Bottle count"
+                                        >
+                                    </div>
+                                    <div class="flex flex-col justify-center px-3">
+                                        <button type="submit" class="to-cart-btn">
+                                            <i class="fa-solid fa-lg fa-cart-shopping"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
 
