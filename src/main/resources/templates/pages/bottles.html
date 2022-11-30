@@ -27,7 +27,11 @@
                         <form th:action="@{/cart}" method="post">
                             <input name="bottleId" th:value="${bottle.id}" type="hidden">
                             <input name="next" value="/bottles" type="hidden">
-                            <button type="submit" class="btn-success p-3"><i class="fa-solid fa-cart-shopping"></i></button>
+                            <button type="submit" class="btn-success">
+                                <span class="p-3">
+                                    <i class="fa-solid fa-lg fa-cart-shopping"></i>
+                                </span>
+                            </button>
                         </form>
                     </div>
 

@@ -4,17 +4,17 @@
 
 .beverage-card-container {
     display: flex;
-    flex-direction: row;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 
 .bottle-wrapper {
+    @apply border rounded-3xl shadow-lg;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     padding: 2em 0;
-    margin-bottom: 3em;
-    @apply border rounded-3xl shadow-lg;
+    margin: 0 0 2em 2em;
     background: white;
 
     .bottle-content {
@@ -41,16 +41,28 @@
     }
 }
 
-.p-orange {
-    background-color: var(--primary-color);
-    color:white;
-}
-
-.p-btn {
-    @apply rounded-3xl;
+.btn {
+    @apply rounded-3xl shadow-lg;
     padding: 0.5em;
-    &:hover{
-        background-color: var(--primary-color-dark);
+    transition: background-color ease-in-out 200ms;
+
+    &-primary {
+        @apply btn;
+        background-color: var(--primary-color);
+        color: white;
+
+        &:hover {
+            background-color: var(--primary-color-dark);
+        }
+    }
+
+    &-success {
+        @apply btn;
+        background-color: var(--success-color);
+        color: white;
+
+        &:hover {
+            background-color: var(--success-color-dark);
+        }
     }
 }
-

@@ -1,13 +1,15 @@
 <nav xmlns:sec="http://www.w3.org/1999/xhtml">
-    <div class="nav__navlinks">
-        <a th:href="@{/}"><i class="fa-solid fa-house"></i> Home</a>
-        <a th:href="@{/votestuj}"><i class="fa-solid fa-gear"></i> Test Toasts</a>
-    </div>
-    <div>
-        <span sec:authorize="isAuthenticated()">
-            <i class="fa-solid fa-user"></i> <span sec:authentication="principal.username"></span>
-            <a class="mx-3 underline hover:text-gray-200 text-shadow-lg" th:href="@{/logout}">Logout</a>
+    <div class="navbar-container">
+        <div></div>
+        <div class="nav-menu">
+            <div class="navlinks">
+                <a th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}" th:href="@{/}">Home</a>
+                <a th:classappend="${#httpServletRequest.getRequestURI() == '/bottles' ? 'active':''}" th:href="@{/bottles}">Bottles</a>
+            </div>
+            <span sec:authorize="isAuthenticated()">
+            <a th:href="@{/logout}"><i class="fa-regular fa-lg fa-circle-user"></i></a>
         </span>
-        <a sec:authorize="isAnonymous()" class="btn-success" th:href="@{/login}">Login</a>
+            <a sec:authorize="isAnonymous()" class="btn-primary px-3" th:href="@{/login}">Sign up</a>
+        </div>
     </div>
 </nav>
