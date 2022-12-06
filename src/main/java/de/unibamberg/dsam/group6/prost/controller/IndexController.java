@@ -2,15 +2,13 @@ package de.unibamberg.dsam.group6.prost.controller;
 
 import de.unibamberg.dsam.group6.prost.repository.BottlesRepository;
 import de.unibamberg.dsam.group6.prost.repository.UserRepository;
-import de.unibamberg.dsam.group6.prost.service.UserErrorManager;
 import de.unibamberg.dsam.group6.prost.util.OffsetBasedPageRequest;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -36,7 +34,7 @@ public class IndexController {
         var bottles = this.bottlesRepository.findAll(pagable);
 
         model.addAttribute("bottles", bottles.getContent());
-        model.addAttribute("max_page", this.bottlesRepository.count()/9);
+        model.addAttribute("max_page", this.bottlesRepository.count() / 9);
         model.addAttribute("current_page", currentPage);
         return "pages/bottles";
     }

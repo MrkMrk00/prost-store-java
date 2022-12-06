@@ -1,9 +1,8 @@
 package de.unibamberg.dsam.group6.prost.util;
 
+import java.io.Serializable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-
-import java.io.Serializable;
 
 /**
  * Created by <a href="https://stackoverflow.com/users/1222865/codingmonkey">Ergin</a>
@@ -58,7 +57,7 @@ public class OffsetBasedPageRequest implements Pageable, Serializable {
 
     @Override
     public int getPageNumber() {
-        return (int)offset / limit;
+        return (int) offset / limit;
     }
 
     @Override
@@ -84,7 +83,6 @@ public class OffsetBasedPageRequest implements Pageable, Serializable {
     public OffsetBasedPageRequest previous() {
         return hasPrevious() ? new OffsetBasedPageRequest(getOffset() - getPageSize(), getPageSize(), getSort()) : this;
     }
-
 
     @Override
     public Pageable previousOrFirst() {

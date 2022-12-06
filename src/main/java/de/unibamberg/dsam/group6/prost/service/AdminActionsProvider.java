@@ -1,20 +1,19 @@
 package de.unibamberg.dsam.group6.prost.service;
 
+import static java.lang.String.format;
+
 import de.unibamberg.dsam.group6.prost.util.annotation.AdminAction;
 import de.unibamberg.dsam.group6.prost.util.exception.CallFailedException;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Service;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Future;
-
-import static java.lang.String.format;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +26,8 @@ public class AdminActionsProvider {
 
         public List<String> getMethodNames() {
             return Arrays.stream(this.instance.getClass().getMethods())
-                    .filter(m -> Modifier.isPublic(m.getModifiers()) && m.getName().startsWith("action__"))
+                    .filter(m ->
+                            Modifier.isPublic(m.getModifiers()) && m.getName().startsWith("action__"))
                     .map(m -> format("%s::%s", this.instanceName, m.getName().replace("action__", "")))
                     .toList();
         }
@@ -36,7 +36,9 @@ public class AdminActionsProvider {
             Method method;
             try {
                 method = this.instance.getClass().getMethod(format("action__%s", methodName));
-                if (Modifier.isPublic(method.getModifiers()) && (method.getReturnType().equals(Future.class) || method.getReturnType().equals(void.class))) {
+                if (Modifier.isPublic(method.getModifiers())
+                        && (method.getReturnType().equals(Future.class)
+                                || method.getReturnType().equals(void.class))) {
                     method.invoke(this.instance);
                 } else {
                     throw new NoSuchMethodException();
@@ -50,7 +52,8 @@ public class AdminActionsProvider {
             Method method;
             try {
                 method = this.instance.getClass().getMethod(format("action__%s", methodName));
-                if (Modifier.isPublic(method.getModifiers()) && (method.getReturnType().equals(Future.class))) {
+                if (Modifier.isPublic(method.getModifiers())
+                        && (method.getReturnType().equals(Future.class))) {
                     return (Future<Object>) method.invoke(this.instance);
                 } else {
                     throw new NoSuchMethodException();
@@ -65,6 +68,8 @@ public class AdminActionsProvider {
 
     public List<AdminActionInstance> getAnnotatedInstances() {
         var beans = this.ctx.getBeansWithAnnotation(AdminAction.class);
-        return beans.keySet().stream().map(k -> new AdminActionInstance(k, beans.get(k))).toList();
+        return beans.keySet().stream()
+                .map(k -> new AdminActionInstance(k, beans.get(k)))
+                .toList();
     }
 }
