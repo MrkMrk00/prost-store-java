@@ -1,4 +1,4 @@
-package de.unibamberg.dsam.group6.prost.service;
+package de.unibamberg.dsam.group6.prost.service.admin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.unibamberg.dsam.group6.prost.entity.Bottle;
@@ -10,9 +10,12 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.function.Consumer;
+
+import de.unibamberg.dsam.group6.prost.util.annotation.AdminAction;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
@@ -22,6 +25,7 @@ import org.springframework.util.ResourceUtils;
 
 @Service
 @RequiredArgsConstructor
+@AdminAction
 public class DatabaseLoader {
     private final UserRepository userRepository;
     private final BottlesRepository bottlesRepository;
@@ -29,13 +33,13 @@ public class DatabaseLoader {
 
     private Map<String, Object> data = null;
 
-    private boolean tryCallback(Consumer<Map<String, Object>> callback) {
+    private Optional<String> tryCallback(Consumer<Map<String, Object>> callback) {
         try {
             callback.accept(this.getData());
         } catch (Exception e) {
-            return false;
+            return Optional.of(e.getMessage());
         }
-        return true;
+        return Optional.empty();
     }
 
     private Map<String, Object> getData() throws IOException {
@@ -47,18 +51,18 @@ public class DatabaseLoader {
     }
 
     @Async
-    public Future<Boolean> importAll() {
-        var users = this.importUsers();
-        var bottles = this.importBottles();
+    public Future<String> action__importAll() {
+        var users = this.action__importUsers();
+        var bottles = this.action__importBottles();
         try {
-            return new AsyncResult<>(users.get() && bottles.get());
+            return new AsyncResult<>(users.get() + "\n" + bottles.get());
         } catch (ExecutionException | InterruptedException e) {
-            return new AsyncResult<>(false);
+            return new AsyncResult<>(e.getMessage());
         }
     }
 
     @Async
-    public Future<Boolean> importUsers() {
+    public Future<String> action__importUsers() {
         var res = this.tryCallback(data -> {
             var users = (List<Map<String, String>>) data.get("users");
             users.forEach(u -> {
@@ -71,11 +75,11 @@ public class DatabaseLoader {
                         .build());
             });
         });
-        return new AsyncResult<>(res);
+        return new AsyncResult<>(res.orElse("Users imported successfully!"));
     }
 
     @Async
-    public Future<Boolean> importBottles() {
+    public Future<String> action__importBottles() {
         var res = this.tryCallback(data -> {
             var bottles = (List<Map<String, Object>>) data.get("bottles");
 
@@ -91,6 +95,6 @@ public class DatabaseLoader {
                         .build());
             });
         });
-        return new AsyncResult<>(res);
+        return new AsyncResult<>(res.orElse("Bottles imported successfully!"));
     }
 }

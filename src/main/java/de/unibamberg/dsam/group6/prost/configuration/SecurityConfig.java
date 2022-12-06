@@ -28,6 +28,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(req -> {
                     req.antMatchers("/cart").authenticated();
+                    if (!this.activeProfiles.contains("dev")) {
+                        req.antMatchers("/admin").hasRole("ADMIN");
+                    }
                     req.antMatchers("/**").permitAll();
                 })
                 .formLogin(form -> {

@@ -7,19 +7,22 @@ const assets = 'src/main/resources/static/build';
 module.exports = {
     mode: 'development',
     entry: {
-        bundle: './frontend/index.js',
+        bundle: {
+            import: './frontend/index.js',
+            library: {
+                name: 'prostLib',
+                type: 'var',
+            },
+        },
+        admin: './frontend/admin/index.js',
     },
     output: {
         path: resolve(__dirname, assets),
         filename: '[name].js',
-        library: {
-            name: 'prostLib',
-            type: 'var',
-        },
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'bundle.css',
+            filename: '[name].css',
         }),
         new WatchExternalFilesPlugin({
             files: ['src/main/resources/templates/**/*.html'],

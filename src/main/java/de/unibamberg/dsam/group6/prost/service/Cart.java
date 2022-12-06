@@ -17,7 +17,6 @@ public class Cart {
 
     private final HttpSession session;
     private final UserErrorManager errors;
-
     private final BottlesRepository bottlesRepository;
     private final CratesRepository cratesRepository;
 
@@ -80,15 +79,15 @@ public class Cart {
     }
 
     public Map<Long, Integer> getCartItems() {
-        var cart = (Map<Long, Integer>) this.session.getAttribute(CART_SESSION_KEY);
-        if (cart == null) {
-            cart = new HashMap<>();
+        var cart = this.session.getAttribute(CART_SESSION_KEY);
+        if (!(cart instanceof Map)) {
+            cart = new HashMap<Long, Integer>();
             this.session.setAttribute(CART_SESSION_KEY, cart);
         }
-        return cart;
+        return (Map<Long, Integer>) cart;
     }
 
-    public void setCartItems(Map<Long, Integer> cart) {
+    public void setCartItems(@NotNull Map<Long, Integer> cart) {
         this.session.setAttribute(CART_SESSION_KEY, cart);
     }
 }

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta th:replace="include/admin_head">
+    <title>Prost admin</title>
+</head>
+<body>
+<div class="flex flex-row w-100">
+    <div class="admin-widget-container">
+        <div class="admin-widget">
+            <h2 class="widget-title">Actions</h2>
+            <div class="flex flex-col" th:each="actionInstance : ${actions}">
+                <hr class="mb-3">
+                <div th:each="method : ${actionInstance.getMethodNames()}" class="flex flex-row justify-between mb-3">
+                    <h3 style="margin-right: 1em;" th:text="${method}"></h3>
+                    <div>
+                        <a class="btn-success" th:href="'/admin/action?a=' + ${method}">Call</a>
+                        <a class="btn-success" th:href="'/admin/action?a=' + ${method} + '&await=1'">Await</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-widget" th:if="${admin_message != null}">
+            <h2 class="widget-title">Message</h2>
+            <textarea aria-label="Admin message" th:text="${admin_message}"></textarea>
+        </div>
+    </div>
+</div>
+<div th:replace="include/toasts"></div>
+</body>
+</html>

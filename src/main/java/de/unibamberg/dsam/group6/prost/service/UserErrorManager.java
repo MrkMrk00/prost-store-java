@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserErrorManager {
     private static final String TOAST_SESSION_KEY = "__errors";
-    private static final String ERROR_MAP_SESSION_KEY = "__map_errors";
+    private static final String ADMIN_ERROR_KEY = "__admin_error";
     public static final String TOAST_TEMPLATE_KEY = "__toasts";
     private final HttpSession session;
 
@@ -36,6 +36,16 @@ public class UserErrorManager {
         var currentToasts = this.getToasts();
         currentToasts.add(toast);
         this.session.setAttribute(TOAST_SESSION_KEY, currentToasts);
+    }
+
+    public void setAdminMessage(String errorText) {
+        this.session.setAttribute(ADMIN_ERROR_KEY, errorText);
+    }
+
+    public String getAdminMessageAndRemove() {
+        var message = (String) this.session.getAttribute(ADMIN_ERROR_KEY);
+        this.session.setAttribute(ADMIN_ERROR_KEY, null);
+        return message;
     }
 
     public void addAllToasts(Iterable<Toast> toasts) {
