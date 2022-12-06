@@ -61,7 +61,7 @@ public class AdminController {
         }
 
         try {
-            if (await.isPresent()) {
+            if (await.orElse(false)) {
                 this.errors.addToast(Toast.info(instance.get(0).callAndReturn(a[1]).get().toString()));
             } else {
                 instance.get(0).call(a[1]);
