@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.jaxb.SpringDataJaxb;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,7 +24,7 @@ public class Cart {
 
     // TODO: 16 / 18 years for alcoholic drinks
     public void addToCart(@NotNull Long beverageId, int count) {
-        var initialCart = this.getCartItems();
+        var initialCart = this.getCartItemIds();
         var bottleOpt = this.bottlesRepository.findById(beverageId);
         var crateOpt = this.cratesRepository.findById(beverageId);
 
@@ -59,7 +58,7 @@ public class Cart {
     }
 
     public void removeOneFromCart(Long beverageId) {
-        var initialCart = this.getCartItems();
+        var initialCart = this.getCartItemIds();
         var count = initialCart.getOrDefault(beverageId, -1);
         if (count == -1) {
             return;
@@ -77,13 +76,13 @@ public class Cart {
     }
 
     public void removeAllFromCart(Long beverageId) {
-        var initialCart = this.getCartItems();
+        var initialCart = this.getCartItemIds();
         initialCart.remove(beverageId);
         this.setCartItems(initialCart);
         this.errors.addToast(Toast.success("Successfully removed from cart."));
     }
 
-    public Map<Long, Integer> getCartItems() {
+    public Map<Long, Integer> getCartItemIds() {
         var cart = this.session.getAttribute(CART_SESSION_KEY);
         if (!(cart instanceof Map)) {
             cart = new HashMap<Long, Integer>();
@@ -94,7 +93,7 @@ public class Cart {
 
     public CartDTO getOrderState() {
         var itemsForDisplay = new CartDTO();
-        var cartItems = this.getCartItems();
+        var cartItems = this.getCartItemIds();
 
         cartItems.forEach((id, count) -> {
             var bottle = this.bottlesRepository.findById(id);
