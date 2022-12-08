@@ -79,4 +79,4 @@ pnpm lint
 ```
 ## Design
 We have designed our application in Figma.<br />
-[view link]("https://www.figma.com/file/I4aZpS6sFbZJMen8TIfHuz/Prost?node-id=1%3A11&t=i8l64rdQqd3vDe68-1")
+[view link](https://www.figma.com/file/I4aZpS6sFbZJMen8TIfHuz/Prost?node-id=1%3A11&t=i8l64rdQqd3vDe68-1)

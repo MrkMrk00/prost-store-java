@@ -1,17 +1,16 @@
 package de.unibamberg.dsam.group6.prost.service;
 
-import de.unibamberg.dsam.group6.prost.entity.Bottle;
-import de.unibamberg.dsam.group6.prost.entity.Crate;
 import de.unibamberg.dsam.group6.prost.repository.BottlesRepository;
 import de.unibamberg.dsam.group6.prost.repository.CratesRepository;
+import de.unibamberg.dsam.group6.prost.util.CartDTO;
 import de.unibamberg.dsam.group6.prost.util.Toast;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.jaxb.SpringDataJaxb;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,11 +23,6 @@ public class Cart {
     private final BottlesRepository bottlesRepository;
     private final CratesRepository cratesRepository;
 
-    public static class CartHydratedState {
-        public final Map<Bottle, Integer> bottles = new HashMap<>();
-        public final Map<Crate, Integer> crates = new HashMap<>();
-    }
-
     // TODO: 16 / 18 years for alcoholic drinks
     public void addToCart(@NotNull Long beverageId, int count) {
         var initialCart = this.getCartItems();
@@ -39,13 +33,13 @@ public class Cart {
             var bottle = bottleOpt.get();
 
             if (count > bottle.getInStock()) {
-                this.errors.addToast(Toast.error("There isn't enough bottles in stock!"));
+                this.errors.addToast(Toast.error("There isn't enough bottles left in stock!"));
                 return;
             }
 
             initialCart.put(beverageId, initialCart.getOrDefault(beverageId, 0) + count);
             this.setCartItems(initialCart);
-            this.errors.addToast(Toast.success("Bottle %s added to cart!", bottle.getName()));
+            this.errors.addToast(Toast.success("%d %s %s added to cart!", count, (count > 1 ? "bottles": "bottle"), bottle.getName()));
 
         } else if (crateOpt.isPresent()) {
             var crate = crateOpt.get();
@@ -57,7 +51,7 @@ public class Cart {
 
             initialCart.put(beverageId, initialCart.getOrDefault(beverageId, 0) + count);
             this.setCartItems(initialCart);
-            this.errors.addToast(Toast.success("Crate %s added to cart!", crate.getName()));
+            this.errors.addToast(Toast.success("%d %s %s added to cart!", count, (count > 1 ? "crates": "crate"), crate.getName()));
 
         } else {
             this.errors.addToast(Toast.error("This beverage does not exist!"));
@@ -79,12 +73,14 @@ public class Cart {
         }
 
         this.setCartItems(initialCart);
+        this.errors.addToast(Toast.success("Successfully removed from cart."));
     }
 
     public void removeAllFromCart(Long beverageId) {
         var initialCart = this.getCartItems();
         initialCart.remove(beverageId);
         this.setCartItems(initialCart);
+        this.errors.addToast(Toast.success("Successfully removed from cart."));
     }
 
     public Map<Long, Integer> getCartItems() {
@@ -96,8 +92,8 @@ public class Cart {
         return (Map<Long, Integer>) cart;
     }
 
-    public CartHydratedState getCartItemsForDisplay() {
-        var itemsForDisplay = new CartHydratedState();
+    public CartDTO getOrderState() {
+        var itemsForDisplay = new CartDTO();
         var cartItems = this.getCartItems();
 
         cartItems.forEach((id, count) -> {

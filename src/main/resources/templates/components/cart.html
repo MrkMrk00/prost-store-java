@@ -6,6 +6,6 @@
 </head>
 <body>
 <h1>Košík tvojí mámy</h1>
-<p th:each="item:${cartItems.bottles}" th:text="${item.key.name}"></p>
+<div th:replace="include/cart"></div>
 </body>
 </html>

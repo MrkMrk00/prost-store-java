@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta th:replace="include/head">
+    <title>Cart</title>
+</head>
+<body class="prost-bg">
+<div>
+    <div th:replace="include/navbar"></div>
+    <main class="mx-auto container">
+        <h1 class="text-xl font-semibold mb-3">Your cart</h1>
+        <div class="cart-items-container">
+            <div th:replace="include/cart"></div>
+        </div>
+    </main>
+    <footer th:replace="include/footer"></footer>
+</div>
+</body>
+</html>

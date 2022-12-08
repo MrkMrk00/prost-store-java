@@ -5,13 +5,11 @@ import de.unibamberg.dsam.group6.prost.service.Cart;
 import de.unibamberg.dsam.group6.prost.util.exception.BadRequestException;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequiredArgsConstructor
@@ -20,9 +18,14 @@ public class CartController {
     private final BottlesRepository bottlesRepository;
 
     @GetMapping("/cart")
-    public String showCart(Model model, @RequestParam Optional<Boolean> embedded){
-        model.addAttribute("cartItems",cart.getCartItemsForDisplay());
-        return "components/cart";
+    public String showCart(Model model, @RequestParam Optional<Boolean> embedded) {
+        model.addAttribute("order", cart.getOrderState());
+
+        if (embedded.orElse(false)) {
+            return "components/cart";
+        } else {
+            return "pages/cart";
+        }
     }
 
     @PostMapping("/cart/add")
@@ -38,6 +41,23 @@ public class CartController {
 
         if (bottle.isPresent()) {
             this.cart.addToCart(bottleId.get(), count.orElse(1));
+        }
+        return "redirect:" + next.orElse("/");
+    }
+
+    @PostMapping("/cart/remove")
+    public String removeFromCart(
+            @RequestParam Optional<Long> bottleId,
+            @RequestParam Optional<Boolean> all,
+            @RequestParam Optional<String> next)
+            throws BadRequestException {
+        if (bottleId.isEmpty()) {
+            throw new BadRequestException();
+        }
+        if (all.orElse(false)) {
+            this.cart.removeAllFromCart(bottleId.get());
+        } else {
+            this.cart.removeOneFromCart(bottleId.get());
         }
         return "redirect:" + next.orElse("/");
     }

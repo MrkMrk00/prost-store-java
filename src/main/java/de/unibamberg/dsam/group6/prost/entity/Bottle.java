@@ -79,4 +79,19 @@ public class Bottle extends Beverage {
     public int hashCode() {
         return getClass().hashCode();
     }
+
+    @Override
+    public String getPicture() {
+        return this.bottlePic;
+    }
+
+    @Override
+    public double getInStock() {
+        return this.inStock;
+    }
+
+    @Override
+    public double getPrice() {
+        return this.price;
+    }
 }
