@@ -4,7 +4,6 @@ import static java.lang.String.format;
 
 import de.unibamberg.dsam.group6.prost.util.annotation.AdminAction;
 import de.unibamberg.dsam.group6.prost.util.exception.CallFailedException;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
@@ -43,7 +42,7 @@ public class AdminActionsProvider {
                 } else {
                     throw new NoSuchMethodException();
                 }
-            } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+            } catch (Exception e) {
                 throw new CallFailedException(e);
             }
         }
@@ -58,7 +57,7 @@ public class AdminActionsProvider {
                 } else {
                     throw new NoSuchMethodException();
                 }
-            } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+            } catch (Exception e) {
                 throw new CallFailedException(e);
             }
         }

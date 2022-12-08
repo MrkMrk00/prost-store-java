@@ -32,15 +32,6 @@ public class DatabaseLoader {
 
     private Map<String, Object> data = null;
 
-    private Optional<String> tryCallback(Consumer<Map<String, Object>> callback) {
-        try {
-            callback.accept(this.getData());
-        } catch (Exception e) {
-            return Optional.of(e.getMessage());
-        }
-        return Optional.empty();
-    }
-
     private Map<String, Object> getData() throws IOException {
         if (this.data == null) {
             var file = ResourceUtils.getFile("classpath:data.json");
@@ -50,50 +41,44 @@ public class DatabaseLoader {
     }
 
     @Async
-    public Future<String> action__importAll() {
+    public Future<String> action__importAll() throws ExecutionException, InterruptedException, IOException {
         var users = this.action__importUsers();
         var bottles = this.action__importBottles();
-        try {
-            return new AsyncResult<>(users.get() + "\n" + bottles.get());
-        } catch (ExecutionException | InterruptedException e) {
-            return new AsyncResult<>(e.getMessage());
-        }
+        return new AsyncResult<>(users.get() + "\n" + bottles.get());
     }
 
     @Async
-    public Future<String> action__importUsers() {
-        var res = this.tryCallback(data -> {
-            var users = (List<Map<String, String>>) data.get("users");
-            users.forEach(u -> {
-                var b = u.get("birthday").split("-");
+    public Future<String> action__importUsers() throws IOException {
+        var users = (List<Map<String, String>>) this.getData().get("users");
+        users.forEach(u -> {
+            var b = u.get("birthday").split("-");
 
-                this.userRepository.save(User.builder()
-                        .username(u.get("username"))
-                        .password(this.encoder.encode(u.get("password")))
-                        .birthday(LocalDate.of(Integer.parseInt(b[0]), Integer.parseInt(b[1]), Integer.parseInt(b[2])))
-                        .build());
-            });
+            this.userRepository.save(User.builder()
+                    .username(u.get("username"))
+                    .password(this.encoder.encode(u.get("password")))
+                    .birthday(LocalDate.of(Integer.parseInt(b[0]), Integer.parseInt(b[1]), Integer.parseInt(b[2])))
+                    .build());
         });
-        return new AsyncResult<>(res.orElse("Users imported successfully!"));
+
+        return new AsyncResult<>("Users imported successfully.");
     }
 
     @Async
-    public Future<String> action__importBottles() {
-        var res = this.tryCallback(data -> {
-            var bottles = (List<Map<String, Object>>) data.get("bottles");
+    public Future<String> action__importBottles() throws IOException {
+        var bottles = (List<Map<String, Object>>) this.getData().get("bottles");
 
-            bottles.forEach(b -> {
-                this.bottlesRepository.save(Bottle.builder()
-                        .name((String) b.get("name"))
-                        .bottlePic((String) b.get("bottlePic"))
-                        .volume((Double) b.get("volume"))
-                        .volumePercent((Double) b.get("volumePercent"))
-                        .price((Integer) b.get("price"))
-                        .supplier((String) b.get("supplier"))
-                        .inStock((Integer) b.get("inStock"))
-                        .build());
-            });
+        bottles.forEach(b -> {
+            this.bottlesRepository.save(Bottle.builder()
+                    .name((String) b.get("name"))
+                    .bottlePic((String) b.get("bottlePic"))
+                    .volume((Double) b.get("volume"))
+                    .volumePercent((Double) b.get("volumePercent"))
+                    .price((Integer) b.get("price"))
+                    .supplier((String) b.get("supplier"))
+                    .inStock((Integer) b.get("inStock"))
+                    .build());
         });
-        return new AsyncResult<>(res.orElse("Bottles imported successfully!"));
+
+        return new AsyncResult<>("Bottles imported successfully.");
     }
 }

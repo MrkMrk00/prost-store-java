@@ -5,12 +5,10 @@ import static de.unibamberg.dsam.group6.prost.service.AdminActionsProvider.Admin
 import de.unibamberg.dsam.group6.prost.service.AdminActionsProvider;
 import de.unibamberg.dsam.group6.prost.service.UserErrorManager;
 import de.unibamberg.dsam.group6.prost.util.Toast;
-import de.unibamberg.dsam.group6.prost.util.exception.BadRequestException;
 import de.unibamberg.dsam.group6.prost.util.exception.CallFailedException;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,8 +37,7 @@ public class AdminController {
     public String runAction(
             @RequestParam(name = "a") Optional<String> action,
             @RequestParam Optional<Boolean> await,
-            @RequestParam Optional<String> next)
-            throws BadRequestException {
+            @RequestParam Optional<String> next) {
         if (action.isEmpty()) {
             return "redirect:" + next.orElse("/admin");
         }
@@ -60,14 +57,12 @@ public class AdminController {
         try {
             if (await.orElse(false)) {
                 this.errors.addToast(
-                        Toast.info(instance.get(0).callAndReturn(a[1]).get().toString()));
+                        Toast.success(instance.get(0).callAndReturn(a[1]).get().toString()));
             } else {
                 instance.get(0).call(a[1]);
             }
-        } catch (InterruptedException | ExecutionException e) {
-            this.errors.addToast(Toast.error("Execution failed: ", e.getMessage()));
-        } catch (CallFailedException e) {
-            throw new BadRequestException(e);
+        } catch (CallFailedException | InterruptedException | ExecutionException e) {
+            this.errors.addToast(Toast.error("Action failed: %s", e));
         }
         return "redirect:" + next.orElse("/admin");
     }
