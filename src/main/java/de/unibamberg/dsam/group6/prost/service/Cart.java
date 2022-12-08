@@ -1,5 +1,7 @@
 package de.unibamberg.dsam.group6.prost.service;
 
+import de.unibamberg.dsam.group6.prost.entity.Bottle;
+import de.unibamberg.dsam.group6.prost.entity.Crate;
 import de.unibamberg.dsam.group6.prost.repository.BottlesRepository;
 import de.unibamberg.dsam.group6.prost.repository.CratesRepository;
 import de.unibamberg.dsam.group6.prost.util.Toast;
@@ -7,6 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
+
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +23,11 @@ public class Cart {
     private final UserErrorManager errors;
     private final BottlesRepository bottlesRepository;
     private final CratesRepository cratesRepository;
+
+    public static class CartHydratedState {
+        public final Map<Bottle, Integer> bottles = new HashMap<>();
+        public final Map<Crate, Integer> crates = new HashMap<>();
+    }
 
     // TODO: 16 / 18 years for alcoholic drinks
     public void addToCart(@NotNull Long beverageId, int count) {
@@ -85,6 +94,23 @@ public class Cart {
             this.session.setAttribute(CART_SESSION_KEY, cart);
         }
         return (Map<Long, Integer>) cart;
+    }
+
+    public CartHydratedState getCartItemsForDisplay() {
+        var itemsForDisplay = new CartHydratedState();
+        var cartItems = this.getCartItems();
+
+        cartItems.forEach((id, count) -> {
+            var bottle = this.bottlesRepository.findById(id);
+            if (bottle.isPresent()) {
+                itemsForDisplay.bottles.put(bottle.get(), count);
+            } else {
+                var crate = this.cratesRepository.findById(id);
+                crate.ifPresent(c -> itemsForDisplay.crates.put(c, count));
+            }
+        });
+
+        return itemsForDisplay;
     }
 
     public void setCartItems(@NotNull Map<Long, Integer> cart) {
