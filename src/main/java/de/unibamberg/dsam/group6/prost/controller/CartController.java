@@ -18,14 +18,12 @@ public class CartController {
     private final Cart cart;
     private final BottlesRepository bottlesRepository;
 
-    @GetMapping("/cart/list")
-    @Profile("dev")
-    @ResponseBody
-    public String listCart() {
-        return this.cart.getCartItems().toString();
+    @GetMapping("/cart")
+    public String showCart(@RequestParam Optional<Boolean> embedded){
+        return "components/cart";
     }
 
-    @PostMapping("/cart")
+    @PostMapping("/cart/add")
     public String addToCart(
             @RequestParam Optional<Long> bottleId,
             @RequestParam Optional<Integer> count,
