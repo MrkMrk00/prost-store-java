@@ -7,6 +7,7 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +20,8 @@ public class CartController {
     private final BottlesRepository bottlesRepository;
 
     @GetMapping("/cart")
-    public String showCart(@RequestParam Optional<Boolean> embedded){
+    public String showCart(Model model, @RequestParam Optional<Boolean> embedded){
+        model.addAttribute("cartItems",cart.getCartItemsForDisplay());
         return "components/cart";
     }
 
