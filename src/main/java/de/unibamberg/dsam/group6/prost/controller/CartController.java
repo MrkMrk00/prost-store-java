@@ -1,16 +1,13 @@
 package de.unibamberg.dsam.group6.prost.controller;
 
-import de.unibamberg.dsam.group6.prost.entity.Beverage;
 import de.unibamberg.dsam.group6.prost.entity.Order;
-import de.unibamberg.dsam.group6.prost.entity.User;
 import de.unibamberg.dsam.group6.prost.repository.BottlesRepository;
+import de.unibamberg.dsam.group6.prost.repository.UserRepository;
 import de.unibamberg.dsam.group6.prost.service.Cart;
 import de.unibamberg.dsam.group6.prost.util.exception.BadRequestException;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -23,15 +20,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 public class CartController {
     private final Cart cart;
-    private final BottlesRepository bottlesRepository;
+    private final BottlesRepository bottlesRepo;
+    private final UserRepository userRepo;
 
     @GetMapping("/cart")
     public String showCart(Principal principal, Model model, @RequestParam Optional<Boolean> embedded) {
         var cartState = this.cart.getCartState();
+        var user = this.userRepo.findUserByUsername(principal.getName()).orElseThrow();
 
         var order = new Order();
-        order.setUser((User)principal);
-
+        order.setUser(user);
+        order.setPrice(cartState.getTotalPrice());
 
         model.addAttribute("cart", cart.getCartState());
         model.addAttribute("order", order);
@@ -52,7 +51,7 @@ public class CartController {
         if (bottleId.isEmpty()) {
             throw new BadRequestException();
         }
-        var bottle = this.bottlesRepository.findById(bottleId.get());
+        var bottle = this.bottlesRepo.findById(bottleId.get());
 
         if (bottle.isPresent()) {
             this.cart.addToCart(bottleId.get(), count.orElse(1));
