@@ -1,16 +1,15 @@
 package de.unibamberg.dsam.group6.prost.util;
 
 import de.unibamberg.dsam.group6.prost.entity.Beverage;
-import de.unibamberg.dsam.group6.prost.entity.Bottle;
-import de.unibamberg.dsam.group6.prost.entity.Crate;
-import lombok.Getter;
+import de.unibamberg.dsam.group6.prost.entity.OrderItem;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CartDTO {
-    public final Map<Bottle, Integer> bottles = new HashMap<>();
-    public final Map<Crate, Integer> crates = new HashMap<>();
+    public final Map<Beverage, Integer> beverages = new HashMap<>();
 
     private double totalPrice = -1;
 
@@ -22,13 +21,27 @@ public class CartDTO {
     }
 
     public void recalculatePrice() {
-        var orderItems = new HashMap<Beverage, Integer>();
-        orderItems.putAll(this.bottles);
-        orderItems.putAll(this.crates);
-
-        this.totalPrice = orderItems
+        this.totalPrice = this.beverages
                 .keySet()
                 .stream()
-                .reduce(0.0, (prev, cur) -> prev + orderItems.get(cur) * cur.getPrice(), Double::sum);
+                .reduce(0.0, (prev, cur) -> prev + this.beverages.get(cur) * cur.getPrice(), Double::sum);
+    }
+
+    public List<OrderItem> getOrderItems() {
+        var orderItems = new ArrayList<OrderItem>();
+        var position = 0;
+
+        for (var b : this.beverages.entrySet()) {
+            for (int i = 0; i < b.getValue(); i++) {
+                var beverage = b.getKey();
+                var oi = new OrderItem();
+                oi.setPrice(beverage.getPrice());
+                oi.setBeverage(beverage);
+                oi.setPosition(String.valueOf(position));
+                orderItems.add(oi);
+                position++;
+            }
+        }
+        return orderItems;
     }
 }

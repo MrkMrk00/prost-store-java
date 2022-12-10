@@ -20,6 +20,14 @@ public abstract class Beverage {
     @OneToMany(mappedBy = "beverage")
     private List<OrderItem> orderItem;
 
+    public boolean isBottle() {
+        return this instanceof Bottle;
+    }
+
+    public boolean isCrate() {
+        return this instanceof Crate;
+    }
+
     public abstract String getName();
     public abstract double getPrice();
     public abstract String getPicture();

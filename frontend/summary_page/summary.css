@@ -10,3 +10,15 @@
     height: 100%;
     padding: 2em;
 }
+
+.cart-submit-button {
+    @apply rounded-md;
+    border: 2px solid white;
+    font-size: x-large;
+    background-color: var(--primary-color);
+    min-width: 200px;
+    transition: background-color ease-in-out 200ms;
+    &:hover {
+        background-color: var(--primary-color-dark);
+    }
+}

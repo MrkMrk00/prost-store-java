@@ -20,9 +20,8 @@
                 </div>
                 <div th:with="totalPrice=${cart.getTotalPrice()}">
                     <h2 class="text-4xl mb-3">Total: <strong th:text="'€ ' + ${totalPrice}"></strong></h2>
-                    <form action="/order/submit" method="post" th:object="${order}">
-                        <input type="hidden" th:field="*{price}" th:value="${totalPrice}">
-                        <input type="hidden" th:field="*{user}" th:value="${user}">
+                    <form action="/cart/submit" method="post">
+                        <button class="cart-submit-button" type="submit">Submit</button>
                     </form>
                 </div>
             </div>
