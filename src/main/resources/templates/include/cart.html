@@ -1,7 +1,7 @@
 <div class="cart-items-wrapper" xmlns:th="http://www.w3.org/1999/html">
     <div class="cart-items-wrapper__items">
         <div class="cart-item-row"
-             th:each="item : ${order.bottles}"
+             th:each="item : ${cart.bottles}"
              th:with="bottle=${item.key},count=${item.value}"
         >
             <div class="cart-item">
@@ -56,7 +56,7 @@
 
         <!-- Crates -->
         <div class="cart-item-row"
-             th:each="item : ${order.crates}"
+             th:each="item : ${cart.crates}"
              th:with="crate=${item.key},count=${item.value}"
         >
             <div class="cart-item">

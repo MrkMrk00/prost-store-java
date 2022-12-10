@@ -1,10 +1,15 @@
 package de.unibamberg.dsam.group6.prost.service;
 
+import de.unibamberg.dsam.group6.prost.entity.Order;
+import de.unibamberg.dsam.group6.prost.entity.OrderItem;
 import de.unibamberg.dsam.group6.prost.repository.BottlesRepository;
 import de.unibamberg.dsam.group6.prost.repository.CratesRepository;
 import de.unibamberg.dsam.group6.prost.util.CartDTO;
 import de.unibamberg.dsam.group6.prost.util.Toast;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
@@ -91,7 +96,7 @@ public class Cart {
         return (Map<Long, Integer>) cart;
     }
 
-    public CartDTO getOrderState() {
+    public CartDTO getCartState() {
         var itemsForDisplay = new CartDTO();
         var cartItems = this.getCartItemIds();
 
@@ -106,6 +111,15 @@ public class Cart {
         });
 
         return itemsForDisplay;
+    }
+
+    public List<OrderItem> getOrderItems(Order order, CartDTO cartState) {
+        var orderItems = new ArrayList<OrderItem>();
+        return orderItems;
+    }
+
+    public List<OrderItem> getOrderItems(Order order) {
+        return this.getOrderItems(order, this.getCartState());
     }
 
     public void setCartItems(@NotNull Map<Long, Integer> cart) {

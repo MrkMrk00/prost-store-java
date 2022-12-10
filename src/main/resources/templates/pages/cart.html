@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:nl2br="http://www.w3.org/1999/xhtml">
 <head>
     <meta th:replace="include/head">
     <title>Cart</title>
@@ -7,10 +8,24 @@
 <body class="prost-bg">
 <div>
     <div th:replace="include/navbar"></div>
-    <main class="mx-auto container">
-        <h1 class="text-xl font-semibold mb-3">Your cart</h1>
-        <div class="cart-items-container">
-            <div th:replace="include/cart"></div>
+    <main class="content-container tiled-page">
+        <div class="tiled-page-container--left p-5">
+            <h1 class="text-3xl font-semibold mb-3">Your cart</h1>
+            <div th:with="cart=${cart}" th:replace="include/cart"></div>
+        </div>
+        <div class="tiled-page-container--right">
+            <div class="summary" th:with="user=${#authentication.getPrincipal()}">
+                <div>
+                    <h1 class="text-3xl font-semibold mb-3">Your bill</h1>
+                </div>
+                <div th:with="totalPrice=${cart.getTotalPrice()}">
+                    <h2 class="text-4xl mb-3">Total: <strong th:text="'€ ' + ${totalPrice}"></strong></h2>
+                    <form action="/order/submit" method="post" th:object="${order}">
+                        <input type="hidden" th:field="*{price}" th:value="${totalPrice}">
+                        <input type="hidden" th:field="*{user}" th:value="${user}">
+                    </form>
+                </div>
+            </div>
         </div>
     </main>
     <footer th:replace="include/footer"></footer>

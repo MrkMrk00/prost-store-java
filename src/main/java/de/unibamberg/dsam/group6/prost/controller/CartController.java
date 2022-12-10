@@ -1,9 +1,17 @@
 package de.unibamberg.dsam.group6.prost.controller;
 
+import de.unibamberg.dsam.group6.prost.entity.Beverage;
+import de.unibamberg.dsam.group6.prost.entity.Order;
+import de.unibamberg.dsam.group6.prost.entity.User;
 import de.unibamberg.dsam.group6.prost.repository.BottlesRepository;
 import de.unibamberg.dsam.group6.prost.service.Cart;
 import de.unibamberg.dsam.group6.prost.util.exception.BadRequestException;
+
+import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Optional;
+import java.util.stream.Stream;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,8 +26,15 @@ public class CartController {
     private final BottlesRepository bottlesRepository;
 
     @GetMapping("/cart")
-    public String showCart(Model model, @RequestParam Optional<Boolean> embedded) {
-        model.addAttribute("order", cart.getOrderState());
+    public String showCart(Principal principal, Model model, @RequestParam Optional<Boolean> embedded) {
+        var cartState = this.cart.getCartState();
+
+        var order = new Order();
+        order.setUser((User)principal);
+
+
+        model.addAttribute("cart", cart.getCartState());
+        model.addAttribute("order", order);
 
         if (embedded.orElse(false)) {
             return "components/cart";

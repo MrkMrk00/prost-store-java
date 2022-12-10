@@ -5,9 +5,9 @@
     <title>Login</title>
 </head>
 <body class="prost-bg">
-<div class="page_container">
+<div>
     <div th:replace="include/navbar"></div>
-    <main class="mx-auto max-w-lg px-5">
+    <main class="content-container mx-auto container py-3">
         <form th:action="@{/login}" method="post">
             <div class="mb-3">
                 <label for="loginform__username">Username</label>
