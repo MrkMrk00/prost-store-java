@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title th:text="${#authentication.getName()} + '\'s orders'"></title>
+</head>
+<body>
+<ul>
+    <li th:each="order : ${orders}">
+        <span th:text="'€ ' + ${order.getTotalPrice()}"></span>
+    </li>
+</ul>
+</body>
+</html>

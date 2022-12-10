@@ -1,6 +1,7 @@
 package de.unibamberg.dsam.group6.prost.util;
 
 import de.unibamberg.dsam.group6.prost.entity.Beverage;
+import de.unibamberg.dsam.group6.prost.entity.Order;
 import de.unibamberg.dsam.group6.prost.entity.OrderItem;
 
 import java.util.ArrayList;
@@ -10,6 +11,16 @@ import java.util.Map;
 
 public class CartDTO {
     public final Map<Beverage, Integer> beverages = new HashMap<>();
+
+    public static CartDTO fromOrder(Order order) {
+        var self = new CartDTO();
+        self.totalPrice = order.getPrice();
+        for (var orderItem : order.getOrderItems()) {
+            var currentCount = self.beverages.getOrDefault(orderItem.getBeverage(), 0);
+            self.beverages.put(orderItem.getBeverage(), currentCount + 1);
+        }
+        return self;
+    }
 
     private double totalPrice = -1;
 

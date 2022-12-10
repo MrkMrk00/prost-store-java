@@ -28,6 +28,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(req -> {
                     req.antMatchers("/cart").authenticated();
+                    req.antMatchers("/orders").authenticated();
                     if (!this.activeProfiles.contains("dev")) {
                         req.antMatchers("/admin").hasRole("ADMIN");
                     }
