@@ -10,6 +10,8 @@ import lombok.Setter;
 import org.hibernate.Hibernate;
 import org.hibernate.validator.constraints.Length;
 
+import static java.lang.String.format;
+
 @Entity(name = "addresses")
 @Getter
 @Setter
@@ -45,5 +47,10 @@ public class Address {
     @Override
     public int hashCode() {
         return getClass().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return format("%s\n%s %s", this.postalCode, this.street, this.number);
     }
 }

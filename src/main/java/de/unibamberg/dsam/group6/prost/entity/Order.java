@@ -4,10 +4,8 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import lombok.*;
 import org.hibernate.Hibernate;
 
 @Entity(name = "orders")

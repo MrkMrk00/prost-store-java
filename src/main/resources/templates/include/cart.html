@@ -1,0 +1,109 @@
+<div class="cart-items-wrapper" xmlns:th="http://www.w3.org/1999/html">
+    <div class="cart-items-wrapper__items">
+        <div class="cart-item-row"
+             th:each="item : ${cart.bottles}"
+             th:with="bottle=${item.key},count=${item.value}"
+        >
+            <div class="cart-item">
+                <div class="cart-item__picture">
+                    <img th:src="${bottle.bottlePic}" th:alt="${bottle.name}">
+                </div>
+                <div class="cart-item__details">
+                    <div class="text-left">
+                        <div class="flex flex-row justify-between">
+                            <h2 class="text-xl font-semibold" th:text="${bottle.name}"></h2>
+                            <form action="/cart/remove" method="post">
+                                <input name="bottleId" type="hidden" th:value="${bottle.id}">
+                                <input name="next" type="hidden" value="/cart">
+                                <input name="all" type="hidden" value="1">
+                                <button type="submit" class="cart-item-button text-red-600">
+                                    <i class="fa-solid fa-x"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <small th:text="${bottle.volume} + ' l'"></small>
+                    </div>
+                    <div class="flex flex-row justify-between">
+                        <span th:text="${count} + ' pcs.'"></span>
+                        <div>
+                            <span th:text="'€ ' + ${bottle.price*count}"></span>
+                            <small th:if="${count > 1}" th:text="' à ' + ${bottle.price}"></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cart-item-row__buttons">
+                <div>
+                    <form action="/cart/add" method="post">
+                        <input name="bottleId" type="hidden" th:value="${bottle.id}">
+                        <input name="next" type="hidden" value="/cart">
+                        <button type="submit" class="cart-item-button">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </form>
+                </div>
+                <div>
+                    <form action="/cart/remove" method="post">
+                        <input name="bottleId" type="hidden" th:value="${bottle.id}">
+                        <input name="next" type="hidden" value="/cart">
+                        <button type="submit" class="cart-item-button">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Crates -->
+        <div class="cart-item-row"
+             th:each="item : ${cart.crates}"
+             th:with="crate=${item.key},count=${item.value}"
+        >
+            <div class="cart-item">
+                <div class="cart-item__picture">
+                    <img th:src="${crate.cratePic}" th:alt="${crate.name}">
+                </div>
+                <div class="cart-item__details">
+                    <div class="text-left">
+                        <div class="flex flex-row justify-between">
+                            <h2 class="text-xl font-semibold" th:text="${crate.name}"></h2>
+                            <form action="/cart/remove" method="post">
+                            <input name="bottleId" type="hidden" th:value="${crate.id}">
+                            <input name="next" type="hidden" value="/cart">
+                            <input name="all" type="hidden" value="1">
+                            <button type="submit" class="cart-item-button text-red-600">
+                                <i class="fa-solid fa-x"></i>
+                            </button>
+                        </form>
+                        </div>
+                        <small th:text="${crate.noOfBottles} + ' bottles'"></small>
+                    </div>
+                    <div class="flex flex-row justify-between">
+                        <span th:text="${count} + ' pcs.'"></span>
+                        <span th:text="'€ ' + ${crate.price*count}"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="cart-item-row__buttons">
+                <div>
+                    <form action="/cart/add" method="post">
+                        <input name="bottleId" type="hidden" th:value="${crate.id}">
+                        <input name="next" type="hidden" value="/cart">
+                        <button type="submit" class="cart-item-button">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </form>
+                </div>
+                <div>
+                    <form action="/cart/remove" method="post">
+                        <input name="bottleId" type="hidden" th:value="${crate.id}">
+                        <input name="next" type="hidden" value="/cart">
+                        <button type="submit" class="cart-item-button">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

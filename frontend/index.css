@@ -10,8 +10,11 @@ body {
     margin: 0;
     font-family: Roboto, sans-serif;
     overflow-x: hidden;
-    background-image: url("./images/bg.png");
     height: 100%;
+
+    .prost-bg {
+        background-image: url("./images/bg.png");
+    }
 }
 
 a {

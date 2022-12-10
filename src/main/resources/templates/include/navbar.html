@@ -6,6 +6,7 @@
                 <a th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}" th:href="@{/}">Home</a>
                 <a th:classappend="${#httpServletRequest.getRequestURI() == '/bottles' ? 'active':''}"
                    th:href="@{/bottles}">Bottles</a>
+                <a th:href="@{/cart}"><i class="fa-solid fa-lg fa-cart-shopping"></i></a>
             </div>
             <div sec:authorize="isAuthenticated()">
                 <a th:href="@{/logout}"><i class="fa-regular fa-lg fa-circle-user"></i></a>

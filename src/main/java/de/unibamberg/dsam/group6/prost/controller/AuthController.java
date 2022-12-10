@@ -70,7 +70,6 @@ public class AuthController {
         var res = this.validator.validate(user);
         if (!res.isEmpty()) {
             res.forEach(err -> this.errors.addToast(Toast.error(err.getMessage())));
-            res.forEach(System.out::println);
             return "redirect:/register";
         }
 

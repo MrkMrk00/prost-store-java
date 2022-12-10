@@ -4,10 +4,10 @@
     <meta th:replace="include/head">
     <title>Prost!</title>
 </head>
-<body>
+<body class="prost-bg">
 <div>
     <div th:replace="include/navbar"></div>
-    <main class="mx-auto container">
+    <main class="content-container mx-auto container py-3">
         <div class="flex flex-row justify-between pb-5">
             <h1 class="text-6xl">Bottles</h1>
             <div class="pagination">
@@ -31,7 +31,7 @@
                         <p th:text="${bottle.inStock} + ' pcs.'"></p>
                     </div>
                     <div class="flex flex-row justify-end">
-                        <form th:action="@{/cart}" method="post">
+                        <form th:action="@{/cart/add}" method="post">
                             <input name="bottleId" th:value="${bottle.id}" type="hidden">
                             <input name="next" value="/bottles" type="hidden">
                             <div class="flex flex-row justify-end">

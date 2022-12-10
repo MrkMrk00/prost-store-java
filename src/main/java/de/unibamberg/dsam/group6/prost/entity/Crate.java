@@ -56,4 +56,14 @@ public class Crate extends Beverage {
     public int hashCode() {
         return getClass().hashCode();
     }
+
+    @Override
+    public String getPicture() {
+        return this.cratePic;
+    }
+
+    @Override
+    public double getInStock() {
+        return this.cratesInStock;
+    }
 }
