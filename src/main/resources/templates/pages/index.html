@@ -4,24 +4,24 @@
     <meta th:replace="include/head">
     <title>Prost!</title>
 </head>
-<body class="prost-bg">
-<div>
-    <div th:replace="include/navbar"></div>
-    <main class="content-container mx-auto container py-3">
-        <div class="flex flex-col center h-100">
-            <h1 class="text-6xl mb-3">Prost!</h1>
-            <button class="btn-primary" onclick="window.location.reload()">Tvoje mama <i
-                class="fa-solid fa-person-dress"></i></button>
+<body>
+<div class="page_container">
+    <div th:replace="include/nav1"></div>
+
+        <div th:replace="components/search_section"></div>
+
+        <div class=" w-screen p-5 text-center" style="height: 500px; text-align: center">
+            <p class="text-black text-3xl font-bold">Happiness is a choice, so is getting drunk!</p>
+            <p class="text-black py-2">
+                Choose from our great collection of alcholic and non-alcholic beverages.
+                We got you, whatever your taste!
+            </p>
+
+                <div th:replace="components/beercards"></div>
+
         </div>
-        <h1 class="text-xl font-bold">These are users in the database:</h1>
-            <ul>
-                <li th:each="user : ${users}">
-                    <span th:text="${user.username}"></span>
-                    <span th:text="${user.birthday}"></span>
-                </li>
-            </ul>
-    </main>
-    <footer th:replace="include/footer"></footer>
+
+    <footer th:replace="include/footer1"></footer>
 </div>
 </body>
 </html>

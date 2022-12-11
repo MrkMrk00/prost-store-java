@@ -1,0 +1,59 @@
+
+
+.nav-nv {
+    height: 15vh;
+    width: 100vw;
+    background-color: white;
+    overflow-x: hidden;
+    padding: 16px 32px;
+    display: flex;
+    justify-content: center;
+
+
+}
+.nv-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 92%;
+    height: 100%;
+    background-color: white;
+
+}
+
+.nv-container .logo{
+    background-color: white;
+    width: 30%;
+
+}
+
+.nv-container .logo img{
+    width: 118.79px;
+    height: 49px;
+}
+
+.nv-container .nv-links{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: right;
+    color: black;
+}
+.nv-link{
+    font-family: Roboto, sans-serif;
+    margin: 0px 12px;
+}
+
+.nv-icon{
+    width: 24px;
+}
+.nv-container .nv-links .nv-icon svg{
+    max-height: 24px;
+
+}
+
+.nv-link:hover{
+    cursor: pointer;
+    color: #F99336;
+}
