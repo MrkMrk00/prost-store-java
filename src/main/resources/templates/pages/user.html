@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta th:replace="include/head">
+    <title>[[${user.username}]]'s settings</title>
+</head>
+<body class="prost-bg">
+<div class="page_container">
+    <div th:replace="include/navbar"></div>
+    <main class="content-container mx-auto container py-3">
+        <form action="/user" method="post" th:object="${user}">
+            <div class="userform">
+                <div class="userform__row">
+                    <label>Your username:</label>
+                    <span class="form-control font-bold" th:text="*{username}"></span>
+                </div>
+                <div class="userform__row">
+                    <label for="UserForm__birthday">Birthday: </label>
+                    <input id="UserForm__birthday" class="form-control" type="date" th:field="*{birthday}">
+                </div>
+                <div class="userform__row">
+                    <label for="UserForm__billingAddress">Billing address: </label>
+                    <input id="UserForm__billingAddress" class="form-control" type="text" th:field="*{billingAddress}">
+                </div>
+                <div class="userform__row">
+                    <label for="UserForm__deliveryAddress">Delivery address: </label>
+                    <input id="UserForm__deliveryAddress" class="form-control" type="text" th:field="*{deliveryAddress}">
+                </div>
+                <div class="userform__row">
+                    <span></span>
+                    <button type="submit" class="btn-primary">Apply changes</button>
+                </div>
+            </div>
+        </form>
+    </main>
+    <footer th:replace="include/footer"></footer>
+</div>
+</body>
+</html>

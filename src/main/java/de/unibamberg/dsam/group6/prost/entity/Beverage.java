@@ -1,9 +1,8 @@
 package de.unibamberg.dsam.group6.prost.entity;
 
+import java.util.List;
 import javax.persistence.*;
 import lombok.*;
-
-import java.util.List;
 
 @Entity
 @Getter
@@ -29,7 +28,10 @@ public abstract class Beverage {
     }
 
     public abstract String getName();
+
     public abstract double getPrice();
+
     public abstract String getPicture();
+
     public abstract double getInStock();
 }

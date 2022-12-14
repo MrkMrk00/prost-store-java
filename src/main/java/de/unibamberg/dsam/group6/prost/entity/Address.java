@@ -1,5 +1,7 @@
 package de.unibamberg.dsam.group6.prost.entity;
 
+import static java.lang.String.format;
+
 import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -9,8 +11,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.Hibernate;
 import org.hibernate.validator.constraints.Length;
-
-import static java.lang.String.format;
 
 @Entity(name = "addresses")
 @Getter

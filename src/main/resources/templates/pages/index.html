@@ -7,20 +7,15 @@
 <body>
 <div class="page_container">
     <div th:replace="include/navbar"></div>
-
-        <div th:replace="components/search_section"></div>
-
-        <div class=" w-screen p-5 text-center" style="height: 500px; text-align: center">
-            <p class="text-black text-3xl font-bold">Happiness is a choice, so is getting drunk!</p>
-            <p class="text-black py-2">
-                Choose from our great collection of alcholic and non-alcholic beverages.
-                We got you, whatever your taste!
-            </p>
-
-                <div th:replace="components/beercards"></div>
-
-        </div>
-
+    <div th:replace="components/search_section"></div>
+    <div class=" w-screen p-5 text-center" style="height: 500px; text-align: center">
+        <p class="text-black text-3xl font-bold">Happiness is a choice, so is getting drunk!</p>
+        <p class="text-black py-2">
+            Choose from our great collection of alcholic and non-alcholic beverages.
+            We got you, whatever your taste!
+        </p>
+        <div th:replace="components/beercards"></div>
+    </div>
     <footer th:replace="include/footer"></footer>
 </div>
 </body>

@@ -3,7 +3,6 @@ package de.unibamberg.dsam.group6.prost.util;
 import de.unibamberg.dsam.group6.prost.entity.Beverage;
 import de.unibamberg.dsam.group6.prost.entity.Order;
 import de.unibamberg.dsam.group6.prost.entity.OrderItem;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,9 +31,7 @@ public class CartDTO {
     }
 
     public void recalculatePrice() {
-        this.totalPrice = this.beverages
-                .keySet()
-                .stream()
+        this.totalPrice = this.beverages.keySet().stream()
                 .reduce(0.0, (prev, cur) -> prev + this.beverages.get(cur) * cur.getPrice(), Double::sum);
     }
 

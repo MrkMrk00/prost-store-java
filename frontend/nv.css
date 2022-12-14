@@ -1,5 +1,5 @@
 .nav-nv {
-    height: 15vh;
+    height: var(--navbar-height);
     width: 100vw;
     background-color: white;
     overflow-x: hidden;
@@ -20,7 +20,6 @@
 .nv-container .logo {
     background-color: white;
     width: 30%;
-
 }
 
 .nv-container .logo img {
@@ -58,4 +57,8 @@
 
 .nv-container .nv-links .nv-icon svg {
     max-height: 24px;
+}
+
+.prost-footer {
+    height: var(--footer-height)
 }

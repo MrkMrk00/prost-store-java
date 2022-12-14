@@ -3,12 +3,10 @@ package de.unibamberg.dsam.group6.prost.service;
 import de.unibamberg.dsam.group6.prost.repository.BeveragesRepository;
 import de.unibamberg.dsam.group6.prost.util.CartDTO;
 import de.unibamberg.dsam.group6.prost.util.Toast;
-
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +30,8 @@ public class Cart {
 
         initialCart.put(beverageId, initialCart.getOrDefault(beverageId, 0) + count);
         this.setCartItems(initialCart);
-        this.errors.addToast(Toast.success("%d %s added to cart!", count, beverage.get().getName()));
+        this.errors.addToast(
+                Toast.success("%d %s added to cart!", count, beverage.get().getName()));
     }
 
     public void removeOneFromCart(Long beverageId) {

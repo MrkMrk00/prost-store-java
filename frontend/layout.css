@@ -3,77 +3,12 @@
 @tailwind utilities;
 
 :root {
-    --footer-height: 60px;
+    --footer-height: 175px;
     --navbar-height: 80px;
 }
 
 .content-container {
     min-height: calc(100vh - var(--footer-height) - var(--navbar-height));
-}
-
-footer {
-    @apply shadow-xl;
-    position: relative;
-    height: var(--footer-height);
-    background-color: white;
-
-    .footer-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 0 2em;
-        height: 100%;
-
-        > p, > div {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-    }
-
-    .footer-logo {
-        height: 2em;
-        align-self: center;
-    }
-}
-
-nav {
-    @apply shadow;
-    position: sticky;
-    width: 100%;
-    height: var(--navbar-height);
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    background-color: white;
-    color: black;
-
-    .navbar-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 0 2em;
-    }
-
-    .nav-menu {
-        display: flex;
-        flex-direction: row;
-        margin: 0 2em;
-
-        .navlinks a {
-            margin-right: 2em;
-            &.active {
-                font-weight: bold;
-            }
-        }
-    }
-}
-
-
-nav a:last-child {
-    margin-right: 0;
 }
 
 #toast_container {

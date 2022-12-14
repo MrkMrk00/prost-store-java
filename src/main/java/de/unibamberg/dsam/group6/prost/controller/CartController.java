@@ -8,16 +8,13 @@ import de.unibamberg.dsam.group6.prost.service.Cart;
 import de.unibamberg.dsam.group6.prost.service.UserErrorManager;
 import de.unibamberg.dsam.group6.prost.util.Toast;
 import de.unibamberg.dsam.group6.prost.util.exception.BadRequestException;
-
 import java.security.Principal;
 import java.util.Optional;
-
+import javax.validation.Validator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Validator;
 
 @Controller
 @RequiredArgsConstructor

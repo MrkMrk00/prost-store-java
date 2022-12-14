@@ -8,7 +8,7 @@
     flex-wrap: wrap;
 }
 
-.bottle-wrapper {
+.beverage-wrapper {
     @apply border rounded-3xl shadow-lg;
     display: flex;
     flex-direction: row;
@@ -17,20 +17,20 @@
     margin: 0 0 2em 2em;
     background: white;
 
-    .bottle-content {
+    .beverage-content {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         padding: 0 2em;
 
-        .bottle-image {
+        .beverage-image {
             @apply rounded-3xl;
             height: 250px;
             max-width: 200px;
             object-fit: cover;
         }
 
-        .bottle-descr {
+        .beverage-descr {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -104,6 +104,33 @@
     &:focus {
         outline: none;
         border: 1px var(--primary-color) solid;
+    }
+}
+
+.userform {
+    @apply rounded-lg shadow-lg border;
+    display: flex;
+    flex-direction: column;
+
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 3em;
+
+    background-color: white;
+
+    .userform__row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 2em;
+
+        label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 40%;
+        }
     }
 }
 

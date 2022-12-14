@@ -5,7 +5,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
-
 import lombok.*;
 import org.hibernate.Hibernate;
 

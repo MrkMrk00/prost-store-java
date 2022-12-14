@@ -2,14 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta th:replace="include/head">
-    <title>Bottles</title>
+    <title>Crates</title>
 </head>
 <body class="prost-bg">
 <div>
     <div th:replace="include/navbar"></div>
     <main class="content-container mx-auto container py-3">
         <div class="flex flex-row justify-between pb-5">
-            <h1 class="text-6xl">Bottles</h1>
+            <h1 class="text-6xl">Crates</h1>
             <div th:replace="include/beverage_view/pagination"></div>
         </div>
         <div th:replace="include/beverage_view/beverage_view"></div>
