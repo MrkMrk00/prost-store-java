@@ -14,6 +14,7 @@ module.exports = {
                 type: 'var',
             },
         },
+        summary_page: './frontend/summary_page/index.js',
         admin: './frontend/admin/index.js',
     },
     output: {
