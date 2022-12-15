@@ -73,7 +73,7 @@
 
 .btn {
     @apply rounded-3xl shadow-lg;
-    padding: 0.5em 1em;
+    padding: 0.5em;
     transition: background-color ease-in-out 200ms;
 
     &-primary {
@@ -107,11 +107,18 @@
     }
 }
 
-.form {
+.userform {
+    @apply rounded-lg shadow-lg border;
     display: flex;
     flex-direction: column;
 
-    .form__row {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 3em;
+
+    background-color: white;
+
+    .userform__row {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -119,11 +126,10 @@
 
         label {
             font-weight: bold;
-            margin-right: 1em;
         }
 
         .form-control {
-            min-width: 40%;
+            width: 40%;
         }
     }
 }

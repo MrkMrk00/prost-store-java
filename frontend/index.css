@@ -6,6 +6,7 @@
 
 html,
 body {
+    color : black;
     padding: 0;
     margin: 0;
     font-family: Inter, sans-serif;
@@ -48,6 +49,13 @@ a {
 
     --warning-color: #ffc107;
     --warning-color-dark: #be930a;
+
+
+    --gray: #f1f1f1;
+    --gray-med: #bebebe;
+    --gray-dark:#636363;
+
+
 }
 
 @layer utilities {
@@ -106,6 +114,7 @@ a {
         background-color: var(--warning-color-dark);
         color: black;
     }
+
 }
 
 a.disabled {

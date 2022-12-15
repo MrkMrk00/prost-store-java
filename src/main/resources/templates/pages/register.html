@@ -5,35 +5,43 @@
     <title>Register</title>
 </head>
 <body class="prost-bg">
-<div>
-    <div th:replace="include/navbar"></div>
-    <main class="content-container mx-auto container py-3">
-        <form th:action="@{/register}" method="post">
-            <h1 class="text-3xl">Register</h1>
-            <hr class="mb-5" />
-            <div class="mb-3">
-                <label for="register__username">Username</label>
-                <input class="form-control"
+<div class="flex h-screen w-screen justify-center items-center">
+
+    <main class="content-container w-[30vw] drop-shadow rounded-xl flex flex-col items-start justify-start     py-2 bg-white">
+        <div class="logo self-center">
+            <a href="#" class="no-underline"> <img class="h-16" src="/images/Prost.png" alt="Prost"></a>
+        </div>
+        <p class="text-black mt-5 mb-3 px-[1.8rem]"> We are so excited, only few steps before  join us!!</p>
+        <form th:action="@{/register}" method="post" class="px-[1.8rem]">
+<!--            <h1 class="text-3xl">Register</h1>-->
+<!--            <hr class="mb-5" />-->
+            <div class="mb-3 w-full bg-transparent">
+                <label for="register__username"></label>
+                <input class="form-control w-full bg-transparent"
                        id="register__username" name="username" type="text" placeholder="Enter your username">
             </div>
-            <div class="mb-3">
-                <label for="register__password">Password</label>
-                <input class="form-control"
+            <div class="mb-3 w-full bg-transparent">
+                <label for="register__password"></label>
+                <input class="form-control w-full bg-transparent"
                        id="register__password" name="password" type="password" placeholder="Enter password">
             </div>
-            <div class="mb-5">
-                <label for="register__password_check">Password check</label>
-                <input class="form-control"
+            <div class="mb-5 w-full bg-transparent">
+                <label for="register__password_check"></label>
+                <input class="form-control w-full bg-transparent"
                        id="register__password_check" name="passwordCheck" type="password" placeholder="Repeat password">
             </div>
             <input name="next" th:if="${next != null && next.length() > 0}" type="hidden" th:value="next">
 
-            <div class="mb-3 flex justify-end">
-                <button class="btn-success w-1/3" type="submit">Register</button>
+            <div class="mb-3 flex gap-2 mt-3">
+<!--                <button class="btn-success w-1/3" type="submit">Register</button>-->
+                <button class="btn-primary flex-1 font-bold rounded-1 h-[46px] w-[266px] drop-shadow " type="submit">Register</button>
+
+                <a class="btn-secondary flex-1 font-bold grid place-content-center" th:href="@{'/login' + ${next != null ? '?next='+next : ''}}">Sign In</a>
+
             </div>
         </form>
     </main>
-    <footer th:replace="include/footer"></footer>
+
 </div>
 </body>
 </html>
