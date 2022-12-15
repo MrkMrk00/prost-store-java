@@ -27,10 +27,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(req -> {
-                    req.antMatchers("/cart").authenticated();
-                    req.antMatchers("/orders").authenticated();
+                    req.antMatchers("/cart**").authenticated();
+                    req.antMatchers("/orders**").authenticated();
+                    req.antMatchers("/user**").authenticated();
                     if (!this.activeProfiles.contains("dev")) {
-                        req.antMatchers("/admin").hasRole("ADMIN");
+                        req.antMatchers("/admin**").hasRole("ADMIN");
                     }
                     req.antMatchers("/**").permitAll();
                 })

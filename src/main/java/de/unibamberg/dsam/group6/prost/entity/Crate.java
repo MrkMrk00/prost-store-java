@@ -63,7 +63,12 @@ public class Crate extends Beverage {
     }
 
     @Override
-    public double getInStock() {
+    public int getInStock() {
         return this.cratesInStock;
+    }
+
+    @Override
+    public void setInStock(int inStock) {
+        this.cratesInStock = inStock;
     }
 }

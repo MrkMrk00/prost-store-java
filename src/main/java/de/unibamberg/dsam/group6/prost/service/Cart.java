@@ -84,7 +84,7 @@ public class Cart {
         this.session.setAttribute(CART_SESSION_KEY, cart);
     }
 
-    public void clearCart() {
+    public void clear() {
         this.setCartItems(new HashMap<>());
     }
 }

@@ -2,7 +2,6 @@ package de.unibamberg.dsam.group6.prost.entity;
 
 import java.util.Objects;
 import javax.persistence.*;
-import javax.validation.ValidationException;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
@@ -27,12 +26,8 @@ public class Bottle extends Beverage {
     private String bottlePic;
 
     @Column(name = "volume")
-    @Min(1)
+    @Min(0)
     private double volume;
-
-    @Column(name = "is_alcoholic")
-    @Setter(AccessLevel.NONE)
-    private boolean isAlcoholic;
 
     @Column(name = "volume_percent")
     @Setter(AccessLevel.NONE)
@@ -41,7 +36,7 @@ public class Bottle extends Beverage {
 
     @Column(name = "price")
     @Min(1)
-    private int price;
+    private double price;
 
     @Column(name = "supplier")
     @NotEmpty
@@ -58,14 +53,6 @@ public class Bottle extends Beverage {
     private Crate crate;
 
     // endregion
-
-    public void setVolumePercent(double volumePercent) {
-        if (volumePercent < 0) {
-            throw new ValidationException();
-        }
-        this.isAlcoholic = volumePercent > 0;
-        this.volumePercent = volumePercent;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -86,12 +73,21 @@ public class Bottle extends Beverage {
     }
 
     @Override
-    public double getInStock() {
+    public int getInStock() {
         return this.inStock;
+    }
+
+    @Override
+    public void setInStock(int inStock) {
+        this.inStock = inStock;
     }
 
     @Override
     public double getPrice() {
         return this.price;
+    }
+
+    public boolean isAlcoholic() {
+        return this.volumePercent > 0;
     }
 }

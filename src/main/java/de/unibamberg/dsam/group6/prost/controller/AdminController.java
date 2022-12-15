@@ -1,36 +1,42 @@
 package de.unibamberg.dsam.group6.prost.controller;
 
-import static de.unibamberg.dsam.group6.prost.service.AdminActionsProvider.AdminActionInstance;
-
+import de.unibamberg.dsam.group6.prost.entity.Bottle;
+import de.unibamberg.dsam.group6.prost.entity.Crate;
+import de.unibamberg.dsam.group6.prost.repository.BottlesRepository;
+import de.unibamberg.dsam.group6.prost.repository.CratesRepository;
 import de.unibamberg.dsam.group6.prost.service.AdminActionsProvider;
 import de.unibamberg.dsam.group6.prost.service.UserErrorManager;
 import de.unibamberg.dsam.group6.prost.util.Toast;
 import de.unibamberg.dsam.group6.prost.util.exception.CallFailedException;
-import java.util.List;
+
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/admin")
+@RequiredArgsConstructor
 public class AdminController {
     private final UserErrorManager errors;
-    private final List<AdminActionInstance> actions;
-
-    public AdminController(UserErrorManager errors, AdminActionsProvider actions) {
-        this.errors = errors;
-        this.actions = actions.getAnnotatedInstances();
-    }
+    private final AdminActionsProvider actions;
+    private final BottlesRepository bottlesRepository;
+    private final CratesRepository cratesRepository;
 
     @GetMapping("")
-    public String adminIndex(Model model) {
-        model.addAttribute("actions", this.actions);
-        model.addAttribute("admin_message", this.errors.getAdminMessageAndRemove());
-        return "pages/admin";
+    public ModelAndView adminIndex() {
+        return new ModelAndView("pages/admin", Map.of(
+                "actions", this.actions.getAnnotatedInstances(),
+                "bottle", new Bottle(),
+                "crate", new Crate()
+        ));
     }
 
     @GetMapping("/action")
@@ -47,7 +53,7 @@ public class AdminController {
             return "redirect:" + next.orElse("/admin");
         }
 
-        var instance = this.actions.stream()
+        var instance = this.actions.getAnnotatedInstances().stream()
                 .filter(i -> i.getInstanceName().equals(a[0]))
                 .toList();
         if (instance.size() != 1) {
@@ -65,5 +71,31 @@ public class AdminController {
             this.errors.addToast(Toast.error("Action failed: %s", e));
         }
         return "redirect:" + next.orElse("/admin");
+    }
+
+    @PostMapping("/addBottle")
+    public String addBottle(@ModelAttribute @Valid Bottle bottle, Errors errors) {
+        if (errors.hasErrors()) {
+            errors.getAllErrors().forEach(e -> {
+                this.errors.addToast(Toast.error("%s: %s", (e.getCodes() == null ? "" : e.getCodes()[1]), e.getDefaultMessage()));
+            });
+        } else {
+            var added = this.bottlesRepository.save(bottle);
+            this.errors.addToast(Toast.success("%s added successfully.", added.getName()));
+        }
+        return "redirect:/admin";
+    }
+
+    @PostMapping("/addCrate")
+    public String addCrate(@ModelAttribute @Valid Crate crate, Errors errors) {
+        if (errors.hasErrors()) {
+            errors.getAllErrors().forEach(e -> {
+                this.errors.addToast(Toast.error("%s: %s", (e.getCodes() == null ? "" : e.getCodes()[1]), e.getDefaultMessage()));
+            });
+        } else {
+            var added = this.cratesRepository.save(crate);
+            this.errors.addToast(Toast.success("%s added successfully.", added.getName()));
+        }
+        return "redirect:/admin";
     }
 }

@@ -33,5 +33,7 @@ public abstract class Beverage {
 
     public abstract String getPicture();
 
-    public abstract double getInStock();
+    public abstract int getInStock();
+
+    public abstract void setInStock(int inStock);
 }

@@ -13,6 +13,7 @@ import java.util.Optional;
 import javax.validation.Validator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -67,9 +68,11 @@ public class CartController {
     }
 
     @PostMapping("/cart/submit")
+    @Transactional
     public String submitCart(Principal principal) {
         var user = this.userRepo.findUserByUsername(principal.getName()).orElseThrow();
         var cartState = this.cart.getCartState();
+
         var order = new Order();
         order.setUser(user);
         order.setOrderItems(cartState.getOrderItems());
@@ -81,8 +84,20 @@ public class CartController {
             return "redirect:/cart";
         }
 
-        this.cart.clearCart();
         this.ordersRepo.save(order);
+
+        // reduce pieces in stock
+        var reducedPiecesBeverages = cartState.beverages.entrySet().stream().map(entry -> {
+            var bev = entry.getKey();
+            var reduced = bev.getInStock() - entry.getValue();
+
+            bev.setInStock(reduced < 0 ? 0 : reduced);
+            return bev;
+        }).toList();
+
+        this.beveragesRepo.saveAll(reducedPiecesBeverages);
+
+        this.cart.clear();
         this.errors.addToast(Toast.success("Order created successfully. :)"));
         return "redirect:/orders";
     }

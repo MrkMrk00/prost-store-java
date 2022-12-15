@@ -45,7 +45,7 @@ public class IndexController {
         var bottles = this.bottlesRepository.findAll(pagable);
 
         model.addAttribute("beverages", bottles.getContent());
-        model.addAttribute("max_page", this.bottlesRepository.count() / 9);
+        model.addAttribute("max_page", (this.bottlesRepository.count() - 1) / 9);
         model.addAttribute("current_page", currentPage);
         return "pages/bottles";
     }
@@ -61,7 +61,7 @@ public class IndexController {
         var bottles = this.cratesRepository.findAll(pagable);
 
         model.addAttribute("beverages", bottles.getContent());
-        model.addAttribute("max_page", this.cratesRepository.count() / 9);
+        model.addAttribute("max_page", (this.cratesRepository.count() - 1) / 9);
         model.addAttribute("current_page", currentPage);
         return "pages/crates";
     }
