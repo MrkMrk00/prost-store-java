@@ -72,7 +72,7 @@
 }
 
 .btn {
-    @apply rounded-3xl shadow-lg;
+    @apply rounded-xl shadow-lg;
     padding: 0.5em;
     transition: background-color ease-in-out 200ms;
 
@@ -83,6 +83,17 @@
 
         &:hover {
             background-color: var(--primary-color-dark);
+        }
+    }
+
+    &-secondary{
+        @apply btn;
+        background-color: var(--gray);
+        color: var(--gray-dark);
+
+        &:hover {
+            background-color: var(--gray-med);
+            cursor: pointer;
         }
     }
 
