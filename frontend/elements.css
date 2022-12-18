@@ -16,8 +16,6 @@
     padding: 2em 0;
     margin: 0 0 2em 2em;
     background: white;
-    color:black;
-
 
     .beverage-content {
         display: flex;
@@ -55,7 +53,6 @@
             .number-input {
                 max-width: 50px;
                 padding: 0;
-                background-color: white;
             }
 
             .to-cart-btn {
@@ -76,7 +73,7 @@
 
 .btn {
     @apply rounded-3xl shadow-lg;
-    padding: 0.5em;
+    padding: 0.5em 1em;
     transition: background-color ease-in-out 200ms;
 
     &-primary {
@@ -110,18 +107,11 @@
     }
 }
 
-.userform {
-    @apply rounded-lg shadow-lg border;
+.form {
     display: flex;
     flex-direction: column;
 
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 3em;
-
-    background-color: white;
-
-    .userform__row {
+    .form__row {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -129,10 +119,11 @@
 
         label {
             font-weight: bold;
+            margin-right: 1em;
         }
 
         .form-control {
-            width: 40%;
+            min-width: 40%;
         }
     }
 }
