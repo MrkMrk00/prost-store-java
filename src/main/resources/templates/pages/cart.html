@@ -9,7 +9,7 @@
 </head>
 <body class="prost-bg">
 <div>
-    <div th:replace="include/navbar"></div>
+    <div th:replace="${ activeUser == 'anonymousUser' ? 'include/navbar_signed_out' : 'include/navbar' }"></div>
     <main class="content-container tiled-page">
         <div class="tiled-page-container--left p-5">
             <h1 class="text-3xl font-semibold mb-3">Your cart</h1>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title th:text="${#authentication.getName()} + '\'s orders'"></title>
+    <meta th:replace="include/head">
+</head>
+<body class="prost-bg">
+<div class="page_container flex flex-col">
+
+<div th:replace="${ activeUser == 'anonymousUser' ? 'include/navbar_signed_out' : 'include/navbar' }"></div>
+<div class="h-[70vh] flex flex-col justify-center items-center gap-2">
+    <h2 class="text-2xl text-black font-bold">Your order was recieved! We wish you a happy time! Prost!</h2>
+    <img src="../../images/frog.jpg" alt="frog" class="h-[280px] w-[380px] rounded-xl">
+    <div class="flex flex-row gap-2 w-[40vw]">
+        <a class="btn-primary flex-1 grid place-content-center font-bold" href="/bottles">Continue with shopping</a>
+        <a class="btn-primary flex-1 grid place-content-center font-bold" href="/bottles">See your orders</a>
+    </div>
+
+
+</div>
+
+</div>
+<footer class="" th:replace="${ activeUser == 'anonymousUser' ? 'include/footer_signed_out' : 'include/footer' }"></footer>
+</body>
+</html>

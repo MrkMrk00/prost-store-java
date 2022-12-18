@@ -16,6 +16,8 @@
     padding: 2em 0;
     margin: 0 0 2em 2em;
     background: white;
+    color:black;
+
 
     .beverage-content {
         display: flex;
@@ -53,6 +55,7 @@
             .number-input {
                 max-width: 50px;
                 padding: 0;
+                background-color: white;
             }
 
             .to-cart-btn {
