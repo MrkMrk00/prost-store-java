@@ -13,8 +13,6 @@ import java.security.Principal;
 import java.util.Optional;
 import javax.validation.Validator;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -116,7 +114,6 @@ public class CartController {
         this.beveragesRepo.saveAll(reducedPiecesBeverages);
 
         this.cart.clear();
-        this.errors.addToast(Toast.success("Order created successfully. :)"));
-        return "redirect:/orders";
+        return "redirect:/order_success";
     }
 }

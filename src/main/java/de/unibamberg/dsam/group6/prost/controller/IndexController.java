@@ -5,8 +5,6 @@ import de.unibamberg.dsam.group6.prost.repository.CratesRepository;
 import de.unibamberg.dsam.group6.prost.util.OffsetBasedPageRequest;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +19,11 @@ public class IndexController {
     @GetMapping("/")
     public String index() {
         return "pages/index";
+    }
+
+    @GetMapping("/order_success")
+    public String onAfterOrderSubmit() {
+        return "pages/after_order_submission";
     }
 
     @GetMapping("/bottles")

@@ -29,6 +29,8 @@
                     </svg>
                 </a>
             </th:block>
+            <a sec:authorize="isAnonymous()" th:classappend="${#httpServletRequest.getRequestURI() == '/login' ? 'active' : ''}" class="nv-link" href="/login">Log in</a>
+            <a sec:authorize="isAuthenticated()" th:classappend="${#httpServletRequest.getRequestURI() == '/admin' ? 'active' : ''}" class="nv-link" href="/admin">Admin</a>
         </div>
     </div>
 </div>
