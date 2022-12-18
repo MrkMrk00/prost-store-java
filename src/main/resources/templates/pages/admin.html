@@ -32,24 +32,24 @@
             <form action="/admin/addBottle" method="post" th:object="${bottle}">
                 <div class="form">
                     <div class="form__row">
-                        <label for="BottleForm__name">Name</label>
+                        <label for="BottleForm__name">Name</label> </br>
                         <input id="BottleForm__name" class="form-control" th:field="*{name}">
                     </div>
                     <div class="form__row">
-                        <label for="BottleForm__bottlePic">Picture URL</label>
+                        <label for="BottleForm__bottlePic">Picture URL</label> </br>
                         <input id="BottleForm__bottlePic" class="form-control" th:field="*{bottlePic}">
                     </div>
                     <div class="form__row">
-                        <label for="BottleForm__volume">Volume</label>
-                        <div class="flex flex-row justify-end max-w-[67%]">
+                        <label for="BottleForm__volume">Volume</label> </br>
+                        <div class="flex flex-row gap-2  max-w-[67%] items-center">
                             <input id="BottleForm__volume" type="number" min="0" step="0.01" class="form-control"
                                    th:field="*{volume}">
-                            <span class="p-2">l</span>
+                            <span class="p-2 text-xl">  litre</span>
                         </div>
                     </div>
                     <div class="form__row">
-                        <label for="BottleForm__volumePercent">Volume %</label>
-                        <div class="flex flex-row justify-end max-w-[67%]">
+                        <label for="BottleForm__volumePercent">Alcohol %</label> </br>
+                        <div class="flex flex-row  max-w-[67%] gap-2 items-center">
                             <input
                                 id="BottleForm__volumePercent"
                                 type="number"
@@ -57,12 +57,12 @@
                                 class="form-control"
                                 th:field="*{volumePercent}"
                             >
-                            <span class="p-2">%</span>
+                            <span class="p-2 text-xl">  %</span>
                         </div>
                     </div>
                     <div class="form__row">
-                        <label for="BottleForm__price">Price</label>
-                        <div class="flex flex-row justify-end max-w-[67%]">
+                        <label for="BottleForm__price">Price</label> </br>
+                        <div class="flex flex-row  max-w-[67%] items-center gap-2">
                             <input
                                 id="BottleForm__price"
                                 type="number"
@@ -70,11 +70,11 @@
                                 class="form-control"
                                 th:field="*{price}"
                             >
-                            <span class="p-2">€</span>
+                            <span class="p-2 text-xl">  €</span>
                         </div>
                     </div>
                     <div class="form__row">
-                        <label for="BottleForm__supplier">Supplier</label>
+                        <label for="BottleForm__supplier">Supplier</label> </br>
                         <input
                             id="BottleForm__supplier"
                             type="text"
@@ -83,7 +83,7 @@
                         >
                     </div>
                     <div class="form__row">
-                        <label for="BottleForm__inStock">In stock</label>
+                        <label for="BottleForm__inStock">In stock</label> </br>
                         <input
                             id="BottleForm__inStock"
                             type="number"
@@ -92,10 +92,58 @@
                             th:field="*{inStock}"
                         >
                     </div>
-                    <div class="flex flex-row justify-between">
-                        <span></span>
-                        <button type="submit" class="btn-primary">Create</button>
+                    <div class="flex py-5"><button  type="submit" class="btn-primary  flex-1 ">Add</button> </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="admin-widget" th:if="${crate != null}">
+            <h2 class="widget-title">Add new crate</h2>
+            <hr class="mb-3" />
+            <form action="/admin/addCrate" method="post" th:object="${crate}">
+                <div class="form">
+                    <div class="form__row">
+                        <label for="CrateForm__name">Name</label> </br>
+                        <input id="CrateForm__name" class="form-control" th:field="*{name}">
                     </div>
+                    <div class="form__row">
+                        <label for="CrateForm__crate_pic">Picture URL</label> </br>
+                        <input id="CrateForm__crate_pic" class="form-control" th:field="*{cratePic}">
+                    </div>
+                    <div class="form__row">
+                        <label for="CrateForm__no_of_bottles">Number of Bottles</label> </br>
+                        <div class="flex flex-row gap-2  max-w-[67%] items-center">
+                            <input id="CrateForm__no_of_bottles" type="number" min="0" step="0.01" class="form-control"
+                                   th:field="*{noOfBottles}">
+                            <span class="p-2 text-xl"></span>
+                        </div>
+                    </div>
+
+                    <div class="form__row">
+                        <label for="CrateForm__price">Price</label> </br>
+                        <div class="flex flex-row  max-w-[67%] items-center gap-2">
+                            <input
+                                    id="CrateForm__price"
+                                    type="number"
+                                    min="1"
+                                    class="form-control"
+                                    th:field="*{price}"
+                            >
+                            <span class="p-2 text-xl">  €</span>
+                        </div>
+                    </div>
+
+                    <div class="form__row">
+                        <label for="CrateForm__crates_in_stock">In stock</label> </br>
+                        <input
+                                id="CrateForm__crates_in_stock"
+                                type="number"
+                                min="0"
+                                class="form-control"
+                                th:field="*{cratesInStock}"
+                        >
+                    </div>
+                    <div class="flex py-5"><button  type="submit" class="btn-primary  flex-1 ">Add</button> </div>
                 </div>
             </form>
         </div>

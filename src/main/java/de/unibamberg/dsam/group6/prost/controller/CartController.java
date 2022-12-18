@@ -12,6 +12,8 @@ import java.security.Principal;
 import java.util.Optional;
 import javax.validation.Validator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -29,6 +31,9 @@ public class CartController {
 
     @GetMapping("/cart")
     public String showCart(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        model.addAttribute("activeUser", auth.getPrincipal().toString());
         model.addAttribute("cart", this.cart.getCartState());
         return "pages/cart";
     }

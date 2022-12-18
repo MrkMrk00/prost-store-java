@@ -4,10 +4,11 @@
     <title th:text="${#authentication.getName()} + '\'s orders'"></title>
 </head>
 <body>
-<ul>
-    <li th:each="order : ${orders}">
-        <span th:text="'€ ' + ${order.getTotalPrice()}"></span>
-    </li>
-</ul>
+<!--<div class="page_container">-->
+
+    <div th:replace="${ activeUser == 'anonymousUser' ? 'include/navbar_signed_out' : 'include/navbar' }"></div>
+
+    <footer th:replace="${ activeUser == 'anonymousUser' ? 'include/footer_signed_out' : 'include/footer' }"></footer>
+<!--</div>-->
 </body>
 </html>

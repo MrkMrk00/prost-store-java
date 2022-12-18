@@ -3,6 +3,8 @@ package de.unibamberg.dsam.group6.prost.controller;
 import de.unibamberg.dsam.group6.prost.repository.OrdersRepository;
 import de.unibamberg.dsam.group6.prost.util.CartDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,9 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class OrdersController {
     private final OrdersRepository ordersRepo;
-
     @GetMapping("/orders")
     public String showOrders(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        model.addAttribute("activeUser", auth.getPrincipal().toString());
         var orders = this.ordersRepo.findAll().stream().map(CartDTO::fromOrder).toList();
         model.addAttribute("orders", orders);
         return "pages/orders";

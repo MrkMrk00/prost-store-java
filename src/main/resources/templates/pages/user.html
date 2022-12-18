@@ -6,9 +6,9 @@
 </head>
 <body class="prost-bg">
 <div class="page_container">
-    <div th:replace="include/navbar"></div>
-    <main class="content-container mx-auto container py-3">
-        <form action="/user" method="post" th:object="${user}">
+    <div th:replace="${ activeUser == 'anonymousUser' ? 'include/navbar_signed_out' : 'include/navbar' }"></div>
+    <main class="content-container mx-auto container py-3 text-black">
+        <form action="/user" method="post" th:object="${user}" >
             <div class="form max-w-lg p-5 mx-auto rounded-lg shadow-lg border bg-white">
                 <div class="form__row">
                     <label>Your username:</label>
@@ -33,7 +33,7 @@
             </div>
         </form>
     </main>
-    <footer th:replace="include/footer"></footer>
+    <footer th:replace="${ activeUser == 'anonymousUser' ? 'include/footer_signed_out' : 'include/footer' }"></footer>
 </div>
 </body>
 </html>
