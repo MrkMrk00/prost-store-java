@@ -8,8 +8,11 @@
 <div class="page_container">
     <div th:replace="include/navbar"></div>
     <main class="content-container mx-auto container py-3 text-black">
-        <form action="/user" method="post" th:object="${user}" >
+        <div class="flex flex-row justify-evenly">
+        <form action="/user" method="post" th:object="${user}">
             <div class="form max-w-lg p-5 mx-auto rounded-lg shadow-lg border bg-white">
+                <h2 class="text-xl text-center"><strong>User credentials</strong></h2>
+                <hr class="mb-3" />
                 <div class="form__row">
                     <label>Your username:</label>
                     <span class="form-control font-bold" th:text="*{username}"></span>
@@ -20,11 +23,17 @@
                 </div>
                 <div class="form__row">
                     <label for="UserForm__billingAddress">Billing address: </label>
-                    <input id="UserForm__billingAddress" class="form-control" type="text" th:field="*{billingAddress}">
+                    <select class="form-control" id="UserForm__billingAddress" th:field="*{billingAddress.id}">
+                        <option th:value="null">-- Select address --</option>
+                        <option th:each="bAaddress:${allAddresses}" th:value="${bAaddress.id}" th:text="${bAaddress.toString()}"></option>
+                    </select>
                 </div>
                 <div class="form__row">
                     <label for="UserForm__deliveryAddress">Delivery address: </label>
-                    <input id="UserForm__deliveryAddress" class="form-control" type="text" th:field="*{deliveryAddress}">
+                    <select class="form-control" id="UserForm__deliveryAddress" th:field="*{deliveryAddress.id}">
+                        <option th:value="null">-- Select address --</option>
+                        <option th:each="bAaddress:${allAddresses}" th:value="${bAaddress.id}" th:text="${bAaddress.toString()}"></option>
+                    </select>
                 </div>
                 <div class="form__row">
                     <span></span>
@@ -32,6 +41,29 @@
                 </div>
             </div>
         </form>
+        <form action="/user/addAddress" method="post" th:object="${address}" >
+            <div class="form max-w-lg p-5 mx-auto rounded-lg shadow-lg border bg-white">
+                <h2 class="text-xl text-center"><strong>Create new address</strong></h2>
+                <hr class="mb-3" />
+                <div class="form__row">
+                    <label for="AddressForm__street">Street: </label>
+                    <input id="AddressForm__street" class="form-control" type="text" th:field="*{street}">
+                </div>
+                <div class="form__row">
+                    <label for="AddressForm__number">Address Number: </label>
+                    <input id="AddressForm__number" class="form-control" type="text" th:field="*{number}">
+                </div>
+                <div class="form__row">
+                    <label for="AddressForm__postalCode">Address postal code: </label>
+                    <input id="AddressForm__postalCode" class="form-control" type="text" th:field="*{postalCode}">
+                </div>
+                <div class="form__row">
+                    <span></span>
+                    <button type="submit" class="btn-primary">Add address</button>
+                </div>
+            </div>
+        </form>
+        </div>
     </main>
     <footer th:replace="include/footer"></footer>
 </div>

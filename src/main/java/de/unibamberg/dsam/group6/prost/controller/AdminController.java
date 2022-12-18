@@ -2,17 +2,13 @@ package de.unibamberg.dsam.group6.prost.controller;
 
 import de.unibamberg.dsam.group6.prost.entity.Bottle;
 import de.unibamberg.dsam.group6.prost.entity.Crate;
+import de.unibamberg.dsam.group6.prost.repository.AddressRepository;
 import de.unibamberg.dsam.group6.prost.repository.BottlesRepository;
 import de.unibamberg.dsam.group6.prost.repository.CratesRepository;
 import de.unibamberg.dsam.group6.prost.service.AdminActionsProvider;
 import de.unibamberg.dsam.group6.prost.service.UserErrorManager;
 import de.unibamberg.dsam.group6.prost.util.Toast;
 import de.unibamberg.dsam.group6.prost.util.exception.CallFailedException;
-
-import java.util.Map;
-import java.util.Optional;
-import java.util.concurrent.ExecutionException;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -20,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.ExecutionException;
 
 @Controller
 @RequestMapping("/admin")
@@ -29,6 +28,8 @@ public class AdminController {
     private final AdminActionsProvider actions;
     private final BottlesRepository bottlesRepository;
     private final CratesRepository cratesRepository;
+
+    private final AddressRepository addressRepository;
 
     @GetMapping("")
     public ModelAndView adminIndex() {

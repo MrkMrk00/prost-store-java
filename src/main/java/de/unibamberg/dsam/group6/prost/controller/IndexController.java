@@ -86,19 +86,4 @@ public class IndexController {
         model.addAttribute("current_page", currentPage);
         return "pages/crates";
     }
-
-
-    @GetMapping("/user")
-    public String showUserSettings(Principal principal, Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-        model.addAttribute("activeUser", auth.getPrincipal().toString());
-        model.addAttribute("user", this.userRepository.findUserByUsername(principal.getName()).orElseThrow());
-        return "pages/user";
-    }
-
-    @PostMapping("/user")
-    public String updateUserSettings(@ModelAttribute @Valid User user) {
-        return "redirect:/user";
-    }
 }
