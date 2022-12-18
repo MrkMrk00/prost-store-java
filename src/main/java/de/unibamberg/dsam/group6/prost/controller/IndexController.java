@@ -35,7 +35,7 @@ public class IndexController {
     }
 
     @GetMapping("/")
-    public String index( Model model) {
+    public String index(Model model) {
         var users = this.userRepository.findAll();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
