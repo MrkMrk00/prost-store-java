@@ -6,10 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.validator.constraints.URL;
 
@@ -17,13 +14,8 @@ import org.hibernate.validator.constraints.URL;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Crate {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Setter(AccessLevel.NONE)
-    @Column(name = "id", nullable = false)
-    private Long id;
-
+@AllArgsConstructor
+public class Crate extends Beverage {
     @Column(name = "name", nullable = false)
     @NotEmpty
     @Pattern(regexp = "\\w+")
@@ -45,19 +37,38 @@ public class Crate {
     @Min(0)
     private int cratesInStock;
 
+    // region Relations
+
     @OneToMany(mappedBy = "crate")
     private List<Bottle> bottles;
+
+    // endregion
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Crate crate = (Crate) o;
-        return id != null && Objects.equals(id, crate.id);
+        return getId() != null && Objects.equals(getId(), crate.getId());
     }
 
     @Override
     public int hashCode() {
         return getClass().hashCode();
+    }
+
+    @Override
+    public String getPicture() {
+        return this.cratePic;
+    }
+
+    @Override
+    public int getInStock() {
+        return this.cratesInStock;
+    }
+
+    @Override
+    public void setInStock(int inStock) {
+        this.cratesInStock = inStock;
     }
 }

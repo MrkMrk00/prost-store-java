@@ -1,0 +1,8 @@
+<div class="pagination" th:if="${max_page > 0}">
+    <a th:href="${#httpServletRequest.getRequestURI()} + '?page=' + ${current_page - 1}"
+       th:classappend="${current_page < 1} ? 'disabled' : ''"><i class="fa-solid fa-arrow-left"></i></a>
+    <a th:href="${#httpServletRequest.getRequestURI()} + '?page=' + ${current_page + 1}"
+       th:classappend="${current_page >= max_page} ? 'disabled' : ''"><i
+        class="fa-solid fa-arrow-right"></i></a>
+    <a th:href="${#httpServletRequest.getRequestURI()} + '?page=' + ${max_page}">Last</a>
+</div>

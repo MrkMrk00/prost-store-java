@@ -6,23 +6,20 @@
 </head>
 <body>
 <div class="page_container">
-    <div th:replace="include/navbar"></div>
-    <main class="mx-auto container">
-        <div class="flex flex-col center h-100">
-            <h1 class="text-6xl mb-3">Prost!</h1>
-            <button class="btn-success" onclick="window.location.reload()">Tvoje mama <i
-                class="fa-solid fa-person-dress"></i></button>
-        </div>
-        <h1 class="text-xl font-bold">These are users in the database:</h1>
-            <ul>
-                <li th:each="user : ${users}">
-                    <span th:text="${user.username}"></span>
-                    <span th:text="${user.birthday}"></span>
-                </li>
-            </ul>
-    </main>
-    <div th:replace="include/toasts"></div>
-    <footer th:replace="include/footer"></footer>
+
+    <div th:replace="${ activeUser == 'anonymousUser' ? 'include/navbar_signed_out' : 'include/navbar' }"></div>
+
+    <div th:replace="components/search_section"></div>
+    <div class=" w-screen p-5 text-center" style="height: 500px; text-align: center">
+        <p class="text-black text-3xl font-bold">Happiness is a choice, so is getting drunk!</p>
+        <p class="text-black py-2">
+            Choose from our great collection of alcholic and non-alcholic beverages.
+            We got you, whatever your taste!
+        </p>
+        <div th:replace="components/beercards"></div>
+    </div>
+    <footer th:replace="${ activeUser == 'anonymousUser' ? 'include/footer_signed_out' : 'include/footer' }"></footer>
+
 </div>
 </body>
 </html>

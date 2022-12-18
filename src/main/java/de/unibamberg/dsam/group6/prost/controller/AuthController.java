@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Validator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -26,21 +27,19 @@ public class AuthController {
 
     @GetMapping("/whoami")
     @ResponseBody
+    @Profile("dev")
     public String whoami(Principal principal) {
         return principal == null ? "not logged in" : principal.getName();
     }
 
     @GetMapping("/login")
     public String loginPage(@RequestParam(required = false) String next, Model model) {
-        this.errors.injectToasts(model);
         model.addAttribute("next", next);
         return "pages/login";
     }
 
     @GetMapping("/register")
-    public String registerPage(Principal principal, Model model) {
-        this.errors.injectToasts(model);
-
+    public String registerPage(Principal principal) {
         if (principal != null) {
             return "redirect:/";
         }
@@ -71,7 +70,6 @@ public class AuthController {
         var res = this.validator.validate(user);
         if (!res.isEmpty()) {
             res.forEach(err -> this.errors.addToast(Toast.error(err.getMessage())));
-            res.forEach(System.out::println);
             return "redirect:/register";
         }
 

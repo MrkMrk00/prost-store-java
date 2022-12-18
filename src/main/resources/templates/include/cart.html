@@ -1,0 +1,58 @@
+<div class="cart-items-wrapper">
+    <div class="cart-items-wrapper__items">
+        <div class="cart-item-row"
+             th:each="item : ${cart.beverages}"
+             th:with="beverage=${item.key},count=${item.value}"
+        >
+            <div class="cart-item">
+                <div class="cart-item__picture">
+                    <img th:src="${beverage.getPicture()}" th:alt="${beverage.getName()}">
+                </div>
+                <div class="cart-item__details">
+                    <div class="text-left">
+                        <div class="flex flex-row justify-between">
+                            <h2 class="text-xl font-semibold" th:text="${beverage.getName()}"></h2>
+                            <form action="/cart/remove" method="post">
+                                <input name="beverageId" type="hidden" th:value="${beverage.getId()}">
+                                <input name="next" type="hidden" value="/cart">
+                                <input name="all" type="hidden" value="1">
+                                <button type="submit" class="cart-item-button text-red-600">
+                                    <i class="fa-solid fa-x"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <small th:if="${beverage.isBottle()}" th:text="${beverage.volume} + ' l'"></small>
+                        <small th:if="${beverage.isCrate()}" th:text="${beverage.noOfBottles} + ' bottles'"></small>
+                    </div>
+                    <div class="flex flex-row justify-between">
+                        <span th:text="${count} + ' pcs.'"></span>
+                        <div>
+                            <span th:text="'€ ' + ${beverage.getPrice()*count}"></span>
+                            <small th:if="${count > 1}" th:text="' à ' + ${beverage.getPrice()}"></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cart-item-row__buttons">
+                <div>
+                    <form action="/cart/add" method="post">
+                        <input name="beverageId" type="hidden" th:value="${beverage.getId()}">
+                        <input name="next" type="hidden" value="/cart">
+                        <button type="submit" class="cart-item-button">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </form>
+                </div>
+                <div>
+                    <form action="/cart/remove" method="post">
+                        <input name="beverageId" type="hidden" th:value="${beverage.getId()}">
+                        <input name="next" type="hidden" value="/cart">
+                        <button type="submit" class="cart-item-button">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

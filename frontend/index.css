@@ -6,12 +6,16 @@
 
 html,
 body {
+    color : black;
     padding: 0;
     margin: 0;
-    font-family: Roboto, sans-serif;
+    font-family: Inter, sans-serif;
     overflow-x: hidden;
-
     height: 100%;
+
+    .prost-bg {
+        background-image: url("./images/bg.png");
+    }
 }
 
 a {
@@ -29,7 +33,7 @@ a {
     }
     body {
         color: white;
-        background: black;
+        background: whitesmoke;
     }
 }
 
@@ -37,59 +41,21 @@ a {
     --success-color: #4BB543;
     --success-color-dark: #378330;
 
-    --primary-color: #3B82F6FF;
-    --primary-color-dark: #2d5db0;
+    --primary-color: #F99336;
+    --primary-color-dark: #C97528;
 
     --danger-color: #dc3545;
     --danger-color-dark: #9d2736;
 
     --warning-color: #ffc107;
     --warning-color-dark: #be930a;
-}
 
-@layer components {
-    .btn, .btn[type=submit] {
-        @apply rounded-md shadow-md;
-        padding: 0.5em;
-    }
 
-    .btn-success, .btn-success[type=submit] {
-        @apply btn bg-success transition ease-in-out duration-150;
-    }
+    --gray: #f1f1f1;
+    --gray-med: #bebebe;
+    --gray-dark:#636363;
 
-    .btn-success:hover {
-        background-color: var(--success-color-dark);
-    }
 
-    .btn-primary {
-        @apply btn bg-primary transition ease-in-out duration-150;
-    }
-
-    .btn-primary:hover {
-        background-color: var(--primary-color-dark);
-    }
-
-    .btn-danger {
-        @apply btn bg-danger transition ease-in-out duration-150;
-    }
-
-    .btn-danger:hover {
-        background-color: var(--danger-color-dark);
-    }
-
-    .btn-warning {
-        @apply btn bg-warning transition ease-in-out duration-150;
-    }
-
-    .btn-warning:hover {
-        background-color: var(--warning-color-dark);
-    }
-
-    .form-control {
-        @apply border-gray-200 bg-gray-200 rounded w-full py-2
-        px-4 text-gray-700 leading-tight border
-        focus:outline-none focus:border-blue-500;
-    }
 }
 
 @layer utilities {
@@ -149,19 +115,8 @@ a {
         color: black;
     }
 
-    .text-shadow {
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.10);
-    }
+}
 
-    .text-shadow-md {
-        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
-    }
-
-    .text-shadow-lg {
-        text-shadow: 0 15px 30px rgba(0, 0, 0, 0.11), 0 5px 15px rgba(0, 0, 0, 0.08);
-    }
-
-    .text-shadow-none {
-        text-shadow: none;
-    }
+a.disabled {
+    pointer-events: none;
 }

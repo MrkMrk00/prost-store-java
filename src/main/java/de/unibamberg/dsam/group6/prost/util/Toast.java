@@ -23,19 +23,19 @@ public class Toast implements Serializable {
     private ToastLevel level;
     private String message;
 
-    public static Toast info(@NotNull String message) {
-        return new Toast(ToastLevel.INFO, message);
+    public static Toast info(@NotNull String message, Object... formatVars) {
+        return new Toast(ToastLevel.INFO, String.format(message, formatVars));
     }
 
-    public static Toast success(@NotNull String message) {
-        return new Toast(ToastLevel.SUCCESS, message);
+    public static Toast success(@NotNull String message, Object... formatVars) {
+        return new Toast(ToastLevel.SUCCESS, String.format(message, formatVars));
     }
 
-    public static Toast notice(@NotNull String message) {
-        return new Toast(ToastLevel.NOTICE, message);
+    public static Toast notice(@NotNull String message, Object... formatVars) {
+        return new Toast(ToastLevel.NOTICE, String.format(message, formatVars));
     }
 
-    public static Toast error(@NotNull String message) {
-        return new Toast(ToastLevel.ERROR, message);
+    public static Toast error(@NotNull String message, Object... formatVars) {
+        return new Toast(ToastLevel.ERROR, String.format(message, formatVars));
     }
 }

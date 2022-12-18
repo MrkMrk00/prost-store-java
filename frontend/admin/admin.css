@@ -1,0 +1,24 @@
+.admin-widget-container {
+    display: flex;
+    color:black;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    padding: 2em;
+
+    .admin-widget {
+        @apply rounded-xl shadow-lg;
+        background-color: white;
+        padding: 2em;
+        margin-left: 2em;
+        margin-bottom: 2em;
+
+        .widget-title {
+            @apply text-2xl;
+            font-weight: bold;
+            text-align: center;
+        }
+    }
+}
+
