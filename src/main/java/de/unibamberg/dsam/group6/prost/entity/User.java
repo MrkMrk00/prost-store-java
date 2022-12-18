@@ -1,7 +1,6 @@
 package de.unibamberg.dsam.group6.prost.entity;
 
 import de.unibamberg.dsam.group6.prost.util.annotation.IsAfter;
-
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
@@ -9,7 +8,6 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.*;
-
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.springframework.format.annotation.DateTimeFormat;

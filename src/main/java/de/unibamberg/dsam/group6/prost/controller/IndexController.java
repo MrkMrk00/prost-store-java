@@ -3,9 +3,7 @@ package de.unibamberg.dsam.group6.prost.controller;
 import de.unibamberg.dsam.group6.prost.repository.BottlesRepository;
 import de.unibamberg.dsam.group6.prost.repository.CratesRepository;
 import de.unibamberg.dsam.group6.prost.util.OffsetBasedPageRequest;
-
 import java.util.Optional;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,14 +21,6 @@ public class IndexController {
     @GetMapping("/")
     public String index() {
         return "pages/index";
-    }
-
-    @GetMapping("/x")
-    public String orderPage(Model model){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-        model.addAttribute("activeUser", auth.getPrincipal().toString());
-        return "pages/x";
     }
 
     @GetMapping("/bottles")

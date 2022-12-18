@@ -33,9 +33,6 @@ public class CartController {
 
     @GetMapping("/cart")
     public String showCart(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-        model.addAttribute("activeUser", auth.getPrincipal().toString());
         model.addAttribute("cart", this.cart.getCartState());
         return "pages/cart";
     }
@@ -106,13 +103,15 @@ public class CartController {
         this.orderItemsRepository.saveAll(orderItems);
 
         // reduce pieces in stock
-        var reducedPiecesBeverages = cartState.beverages.entrySet().stream().map(entry -> {
-            var bev = entry.getKey();
-            var reduced = bev.getInStock() - entry.getValue();
+        var reducedPiecesBeverages = cartState.beverages.entrySet().stream()
+                .map(entry -> {
+                    var bev = entry.getKey();
+                    var reduced = bev.getInStock() - entry.getValue();
 
-            bev.setInStock(Math.max(reduced, 0));
-            return bev;
-        }).toList();
+                    bev.setInStock(Math.max(reduced, 0));
+                    return bev;
+                })
+                .toList();
 
         this.beveragesRepo.saveAll(reducedPiecesBeverages);
 

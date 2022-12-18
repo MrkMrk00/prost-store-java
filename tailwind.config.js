@@ -8,15 +8,15 @@ module.exports = {
             colors: {
                 'footer-bg': '#F2EBEB',
             },
-            backgroundImage:{
-                'alcoholic':"url('/static/images/alcoholic.png')",
-                'nonalcoholic':"url('/static/images/non-alcoholic.png')",
-            }
-        }
+            backgroundImage: {
+                alcoholic: "url('/static/images/alcoholic.png')",
+                nonalcoholic: "url('/static/images/non-alcoholic.png')",
+            },
+        },
     },
     variants: {
         extend: {
-            visibility: ["group-hover"],
+            visibility: ['group-hover'],
         },
     },
     plugins: [],

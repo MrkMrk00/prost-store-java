@@ -6,6 +6,8 @@ import de.unibamberg.dsam.group6.prost.repository.AddressRepository;
 import de.unibamberg.dsam.group6.prost.repository.UserRepository;
 import de.unibamberg.dsam.group6.prost.service.UserErrorManager;
 import de.unibamberg.dsam.group6.prost.util.Toast;
+import java.security.Principal;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.validation.Valid;
-import java.security.Principal;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,7 +31,9 @@ public class UserController {
     public String showUserSettings(Principal principal, Model model) {
         model.addAttribute("address", new Address());
         model.addAttribute("allAddresses", this.addressRepository.findAll());
-        model.addAttribute("user", this.userRepository.findUserByUsername(principal.getName()).orElseThrow());
+        model.addAttribute(
+                "user",
+                this.userRepository.findUserByUsername(principal.getName()).orElseThrow());
         return "pages/user";
     }
 
@@ -40,13 +41,17 @@ public class UserController {
     public String updateUserSettings(Principal principal, @ModelAttribute("user") User templateUser) {
         var user = this.userRepository.findUserByUsername(principal.getName()).orElseThrow();
 
-        if (templateUser.getBillingAddress() != null && templateUser.getBillingAddress().getId() != null) {
-            this.addressRepository.findById(templateUser.getBillingAddress().getId())
+        if (templateUser.getBillingAddress() != null
+                && templateUser.getBillingAddress().getId() != null) {
+            this.addressRepository
+                    .findById(templateUser.getBillingAddress().getId())
                     .ifPresent(user::setBillingAddress);
         }
 
-        if (templateUser.getDeliveryAddress() != null && templateUser.getDeliveryAddress().getId() != null) {
-            this.addressRepository.findById(templateUser.getDeliveryAddress().getId())
+        if (templateUser.getDeliveryAddress() != null
+                && templateUser.getDeliveryAddress().getId() != null) {
+            this.addressRepository
+                    .findById(templateUser.getDeliveryAddress().getId())
                     .ifPresent(user::setDeliveryAddress);
         }
 
@@ -63,7 +68,8 @@ public class UserController {
     public String addUserAddress(@ModelAttribute @Valid Address address, Errors errors) {
         if (errors.hasErrors()) {
             errors.getAllErrors().forEach(e -> {
-                this.errors.addToast(Toast.error("%s: %s", (e.getCodes() == null ? "" : e.getCodes()[1]), e.getDefaultMessage()));
+                this.errors.addToast(
+                        Toast.error("%s: %s", (e.getCodes() == null ? "" : e.getCodes()[1]), e.getDefaultMessage()));
             });
         } else {
             var added = this.addressRepository.save(address);
@@ -72,4 +78,3 @@ public class UserController {
         return "redirect:/user";
     }
 }
-

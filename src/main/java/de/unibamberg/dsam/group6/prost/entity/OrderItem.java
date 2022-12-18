@@ -3,7 +3,6 @@ package de.unibamberg.dsam.group6.prost.entity;
 import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import lombok.*;

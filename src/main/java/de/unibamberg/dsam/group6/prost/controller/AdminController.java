@@ -9,16 +9,15 @@ import de.unibamberg.dsam.group6.prost.service.AdminActionsProvider;
 import de.unibamberg.dsam.group6.prost.service.UserErrorManager;
 import de.unibamberg.dsam.group6.prost.util.Toast;
 import de.unibamberg.dsam.group6.prost.util.exception.CallFailedException;
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.ExecutionException;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.validation.Valid;
-import java.util.Map;
-import java.util.Optional;
-import java.util.concurrent.ExecutionException;
 
 @Controller
 @RequestMapping("/admin")
@@ -29,15 +28,14 @@ public class AdminController {
     private final BottlesRepository bottlesRepository;
     private final CratesRepository cratesRepository;
 
-    private final AddressRepository addressRepository;
-
     @GetMapping("")
     public ModelAndView adminIndex() {
-        return new ModelAndView("pages/admin", Map.of(
-                "actions", this.actions.getAnnotatedInstances(),
-                "bottle", new Bottle(),
-                "crate", new Crate()
-        ));
+        return new ModelAndView(
+                "pages/admin",
+                Map.of(
+                        "actions", this.actions.getAnnotatedInstances(),
+                        "bottle", new Bottle(),
+                        "crate", new Crate()));
     }
 
     @GetMapping("/action")
@@ -78,7 +76,8 @@ public class AdminController {
     public String addBottle(@ModelAttribute @Valid Bottle bottle, Errors errors) {
         if (errors.hasErrors()) {
             errors.getAllErrors().forEach(e -> {
-                this.errors.addToast(Toast.error("%s: %s", (e.getCodes() == null ? "" : e.getCodes()[1]), e.getDefaultMessage()));
+                this.errors.addToast(
+                        Toast.error("%s: %s", (e.getCodes() == null ? "" : e.getCodes()[1]), e.getDefaultMessage()));
             });
         } else {
             var added = this.bottlesRepository.save(bottle);
@@ -91,7 +90,8 @@ public class AdminController {
     public String addCrate(@ModelAttribute @Valid Crate crate, Errors errors) {
         if (errors.hasErrors()) {
             errors.getAllErrors().forEach(e -> {
-                this.errors.addToast(Toast.error("%s: %s", (e.getCodes() == null ? "" : e.getCodes()[1]), e.getDefaultMessage()));
+                this.errors.addToast(
+                        Toast.error("%s: %s", (e.getCodes() == null ? "" : e.getCodes()[1]), e.getDefaultMessage()));
             });
         } else {
             var added = this.cratesRepository.save(crate);

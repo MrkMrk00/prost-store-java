@@ -4,13 +4,12 @@ import de.unibamberg.dsam.group6.prost.repository.OrdersRepository;
 import de.unibamberg.dsam.group6.prost.service.UserErrorManager;
 import de.unibamberg.dsam.group6.prost.util.CartDTO;
 import de.unibamberg.dsam.group6.prost.util.Toast;
+import java.security.Principal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import java.security.Principal;
 
 @Controller
 @RequiredArgsConstructor
