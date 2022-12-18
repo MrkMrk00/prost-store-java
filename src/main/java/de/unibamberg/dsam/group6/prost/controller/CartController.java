@@ -96,7 +96,7 @@ public class CartController {
             var bev = entry.getKey();
             var reduced = bev.getInStock() - entry.getValue();
 
-            bev.setInStock(reduced < 0 ? 0 : reduced);
+            bev.setInStock(Math.max(reduced, 0));
             return bev;
         }).toList();
 
