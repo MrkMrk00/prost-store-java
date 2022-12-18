@@ -3,25 +3,13 @@
 @tailwind utilities;
 
 :root {
-    --footer-height: 80px;
+    --footer-height: 175px;
+    --navbar-height: 80px;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin: 0 auto;
+.content-container {
+    min-height: calc(100vh - var(--footer-height) - var(--navbar-height));
 }
-
-.row {
-    display: flex;
-    flex-direction: row;
-}
-
-.center {
-    margin: 0 auto;
-}
-
 
 #toast_container {
     @apply max-w-lg;
@@ -34,66 +22,20 @@
     padding-right: 20px;
     padding-bottom: 20px;
     margin-left: auto;
-}
 
-.toast_container__toast {
-    @apply shadow-xl rounded-xl mt-5;
-    padding: 1em;
-}
+    .toast {
+        @apply shadow-xl rounded-xl mt-5 flex flex-row justify-between transition ease-in-out duration-150;
+        padding: 1em;
+    }
 
-.toast_container__toast-close-button {
-    @apply shadow-md;
-    background-color: white;
-    color: black;
-    border-radius: 50%;
-    opacity: 70%;
+    .toast-close-button {
+        @apply shadow-md;
+        background-color: white;
+        color: black;
+        border-radius: 50%;
+        opacity: 70%;
 
-    width: 2em;
-    height: 2em;
-}
-
-.page_container {
-    min-height: 100%;
-}
-
-main {
-    min-height: calc(100vh - var(--footer-height) - 4.5rem);
-}
-
-footer {
-    position: relative;
-    padding: 2em;
-    background-color: var(--primary-color);
-    color: white;
-    width: 100%;
-    height: var(--footer-height);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-
-nav .nav__navlinks a {
-    @apply hover:text-gray-200;
-    margin-right: 3em;
-}
-
-nav {
-    @apply shadow-md;
-    position: sticky;
-    width: 100%;
-    margin-bottom: 1rem;
-    padding: 1rem 2rem;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    background-color: var(--primary-color);
-    color: white;
-}
-
-
-nav a:last-child {
-    margin-right: 0;
+        width: 2em;
+        height: 2em;
+    }
 }

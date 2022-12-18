@@ -3,17 +3,17 @@ package de.unibamberg.dsam.group6.prost.entity;
 import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.Hibernate;
 
 @Entity(name = "order_items")
 @Getter
 @Setter
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,6 +33,11 @@ public class OrderItem {
     @ManyToOne(targetEntity = Order.class)
     @JoinColumn(name = "order_id")
     private Order order;
+
+    @ManyToOne
+    @JoinColumn(name = "beverage_id")
+    @NotNull
+    private Beverage beverage;
 
     // endregion
 

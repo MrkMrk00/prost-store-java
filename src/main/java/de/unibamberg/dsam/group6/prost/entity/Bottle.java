@@ -2,14 +2,10 @@ package de.unibamberg.dsam.group6.prost.entity;
 
 import java.util.Objects;
 import javax.persistence.*;
-import javax.validation.ValidationException;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.validator.constraints.URL;
 
@@ -17,12 +13,9 @@ import org.hibernate.validator.constraints.URL;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Bottle {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private Long id;
-
+@AllArgsConstructor
+@Builder
+public class Bottle extends Beverage {
     @Column(name = "name")
     @NotEmpty
     @Pattern(regexp = "\\w+")
@@ -33,12 +26,8 @@ public class Bottle {
     private String bottlePic;
 
     @Column(name = "volume")
-    @Min(1)
+    @Min(0)
     private double volume;
-
-    @Column(name = "is_alcoholic")
-    @Setter(AccessLevel.NONE)
-    private boolean isAlcoholic;
 
     @Column(name = "volume_percent")
     @Setter(AccessLevel.NONE)
@@ -47,7 +36,7 @@ public class Bottle {
 
     @Column(name = "price")
     @Min(1)
-    private int price;
+    private double price;
 
     @Column(name = "supplier")
     @NotEmpty
@@ -58,30 +47,47 @@ public class Bottle {
     private int inStock;
 
     // region Relation
-    @ManyToOne(targetEntity = Crate.class, optional = false)
+
+    @ManyToOne(targetEntity = Crate.class)
     @JoinColumn(name = "crate_id")
     private Crate crate;
 
     // endregion
-
-    public void setVolumePercent(double volumePercent) {
-        if (volumePercent < 0) {
-            throw new ValidationException();
-        }
-        this.isAlcoholic = volumePercent > 0;
-        this.volumePercent = volumePercent;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Bottle bottle = (Bottle) o;
-        return id != null && Objects.equals(id, bottle.id);
+        return getId() != null && Objects.equals(getId(), bottle.getId());
     }
 
     @Override
     public int hashCode() {
         return getClass().hashCode();
+    }
+
+    @Override
+    public String getPicture() {
+        return this.bottlePic;
+    }
+
+    @Override
+    public int getInStock() {
+        return this.inStock;
+    }
+
+    @Override
+    public void setInStock(int inStock) {
+        this.inStock = inStock;
+    }
+
+    @Override
+    public double getPrice() {
+        return this.price;
+    }
+
+    public boolean isAlcoholic() {
+        return this.volumePercent > 0;
     }
 }

@@ -1,5 +1,7 @@
 package de.unibamberg.dsam.group6.prost.entity;
 
+import static java.lang.String.format;
+
 import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -45,5 +47,10 @@ public class Address {
     @Override
     public int hashCode() {
         return getClass().hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return format("%s\n%s %s", this.postalCode, this.street, this.number);
     }
 }

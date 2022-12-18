@@ -1,0 +1,5 @@
+<div class="beverage-card-container">
+    <div th:each="beverage : ${beverages}">
+        <th:block th:replace="include/beverage_view/beverage_card"></th:block>
+    </div>
+</div>

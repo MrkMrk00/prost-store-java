@@ -1,6 +1,6 @@
 spring:
     profiles:
-        active: dev
+        active: dev,local
     jpa:
         database-platform: org.hibernate.dialect.H2Dialect
         open-in-view: false
@@ -16,3 +16,6 @@ spring:
     web:
         resources:
             static-locations: file:src/main/resources/static/
+    session:
+        jdbc:
+            initialize-schema: always

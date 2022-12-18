@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta th:replace="include/admin_head">
+    <title>Prost admin</title>
+</head>
+<body class="prost-bg">
+<div class="flex flex-row w-100">
+    <div class="admin-widget-container">
+        <div class="admin-widget">
+            <h2 class="widget-title">Actions</h2>
+            <div class="flex flex-col" th:each="actionInstance : ${actions}">
+                <hr class="mb-3">
+                <div th:each="method : ${actionInstance.getMethodNames()}" class="flex flex-row justify-between mb-3">
+                    <h3 style="margin-right: 1em;" th:text="${method}"></h3>
+                    <div>
+                        <a class="btn-success" th:href="'/admin/action?a=' + ${method}">Call</a>
+                        <a class="btn-success" th:href="'/admin/action?a=' + ${method} + '&await=1'">Await</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-widget" th:if="${admin_message != null}">
+            <h2 class="widget-title">Message</h2>
+            <textarea aria-label="Admin message" th:text="${admin_message}"></textarea>
+        </div>
+
+        <div class="admin-widget" th:if="${bottle != null}">
+            <h2 class="widget-title">Add new bottle</h2>
+            <hr class="mb-3" />
+            <form action="/admin/addBottle" method="post" th:object="${bottle}">
+                <div class="form">
+                    <div class="form__row">
+                        <label for="BottleForm__name">Name</label>
+                        <input id="BottleForm__name" class="form-control" th:field="*{name}">
+                    </div>
+                    <div class="form__row">
+                        <label for="BottleForm__bottlePic">Picture URL</label>
+                        <input id="BottleForm__bottlePic" class="form-control" th:field="*{bottlePic}">
+                    </div>
+                    <div class="form__row">
+                        <label for="BottleForm__volume">Volume</label>
+                        <div class="flex flex-row justify-end max-w-[67%]">
+                            <input id="BottleForm__volume" type="number" min="0" step="0.01" class="form-control"
+                                   th:field="*{volume}">
+                            <span class="p-2 w-[2em]">l</span>
+                        </div>
+                    </div>
+                    <div class="form__row">
+                        <label for="BottleForm__volumePercent">Volume %</label>
+                        <div class="flex flex-row justify-end max-w-[67%]">
+                            <input
+                                id="BottleForm__volumePercent"
+                                type="number"
+                                min="0" max="100" step="0.01"
+                                class="form-control"
+                                th:field="*{volumePercent}"
+                            >
+                            <span class="p-2 w-[2em]">%</span>
+                        </div>
+                    </div>
+                    <div class="form__row">
+                        <label for="BottleForm__price">Price</label>
+                        <div class="flex flex-row justify-end max-w-[67%]">
+                            <input
+                                id="BottleForm__price"
+                                type="number"
+                                min="1"
+                                class="form-control"
+                                th:field="*{price}"
+                            >
+                            <span class="p-2 w-[2em]">€</span>
+                        </div>
+                    </div>
+                    <div class="form__row">
+                        <label for="BottleForm__supplier">Supplier</label>
+                        <input
+                            id="BottleForm__supplier"
+                            type="text"
+                            class="form-control"
+                            th:field="*{supplier}"
+                        >
+                    </div>
+                    <div class="form__row">
+                        <label for="BottleForm__inStock">In stock</label>
+                        <input
+                            id="BottleForm__inStock"
+                            type="number"
+                            min="0"
+                            class="form-control"
+                            th:field="*{inStock}"
+                        >
+                    </div>
+                    <div class="flex flex-row justify-between">
+                        <span></span>
+                        <button type="submit" class="btn-primary">Create</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="admin-widget" th:if="${crate != null}">
+            <h2 class="widget-title">Add new crate</h2>
+            <hr class="mb-3" />
+            <form action="/admin/addCrate" method="post" th:object="${crate}">
+                <div class="form">
+                    <div class="form__row">
+                        <label for="CrateForm__name">Name</label>
+                        <input id="CrateForm__name" class="form-control" th:field="*{name}">
+                    </div>
+                    <div class="form__row">
+                        <label for="CrateForm__cratePic">Picture URL</label>
+                        <input id="CrateForm__cratePic" class="form-control" th:field="*{cratePic}">
+                    </div>
+                    <div class="form__row">
+                        <label for="CrateForm__noOfBottles">Number of bottles</label>
+                        <div class="flex flex-row justify-end max-w-[67%]">
+                            <input
+                                id="CrateForm__noOfBottles"
+                                type="number"
+                                min="1"
+                                class="form-control"
+                                th:field="*{noOfBottles}"
+                            >
+                            <span class="p-2 w-[2em]">%</span>
+                        </div>
+                    </div>
+                    <div class="form__row">
+                        <label for="CrateForm__price">Price</label>
+                        <div class="flex flex-row justify-end max-w-[67%]">
+                            <input
+                                id="CrateForm__price"
+                                type="number"
+                                min="1"
+                                class="form-control"
+                                th:field="*{price}"
+                            >
+                            <span class="p-2 w-[2em]">€</span>
+                        </div>
+                    </div>
+                    <div class="form__row">
+                        <label for="CrateForm__stock">Number of crates in stock</label>
+                        <input
+                            id="CrateForm__stock"
+                            type="number"
+                            class="form-control"
+                            th:field="*{cratesInStock}"
+                        >
+                    </div>
+                    <div class="flex flex-row justify-between">
+                        <span></span>
+                        <button type="submit" class="btn-primary">Create</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div th:replace="include/toasts"></div>
+</body>
+</html>
