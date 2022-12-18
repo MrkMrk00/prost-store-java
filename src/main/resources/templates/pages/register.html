@@ -5,9 +5,9 @@
     <title>Register</title>
 </head>
 <body class="prost-bg">
+<div th:replace="include/navbar"></div>
 <div class="flex h-screen w-screen justify-center items-center">
-
-    <main class="content-container w-[30vw] drop-shadow rounded-xl flex flex-col items-start justify-start     py-2 bg-white">
+    <main class="content-container w-[30vw] drop-shadow rounded-xl flex flex-col items-start justify-start py-2 bg-white">
         <div class="logo self-center">
             <a href="#" class="no-underline"> <img class="h-16" src="/images/Prost.png" alt="Prost"></a>
         </div>
@@ -41,7 +41,7 @@
             </div>
         </form>
     </main>
-
 </div>
+<footer th:replace="include/footer"></footer>
 </body>
 </html>
