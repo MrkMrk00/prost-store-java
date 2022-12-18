@@ -37,7 +37,25 @@ public class UserController {
     }
 
     @PostMapping("")
-    public String updateUserSettings(@ModelAttribute @Valid User user) {
+    public String updateUserSettings(Principal principal, @ModelAttribute("user") User templateUser) {
+        var user = this.userRepository.findUserByUsername(principal.getName()).orElseThrow();
+
+        if (templateUser.getBillingAddress() != null && templateUser.getBillingAddress().getId() != null) {
+            this.addressRepository.findById(templateUser.getBillingAddress().getId())
+                    .ifPresent(user::setBillingAddress);
+        }
+
+        if (templateUser.getDeliveryAddress() != null && templateUser.getDeliveryAddress().getId() != null) {
+            this.addressRepository.findById(templateUser.getDeliveryAddress().getId())
+                    .ifPresent(user::setDeliveryAddress);
+        }
+
+        if (templateUser.getBirthday() != null) {
+            user.setBirthday(templateUser.getBirthday());
+        }
+
+        this.userRepository.saveAndFlush(user);
+        this.errors.addToast(Toast.success("Successfully changed."));
         return "redirect:/user";
     }
 

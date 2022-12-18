@@ -9,7 +9,7 @@
 </head>
 <body class="prost-bg">
 <div>
-    <div th:replace="${ activeUser == 'anonymousUser' ? 'include/navbar_signed_out' : 'include/navbar' }"></div>
+    <div th:replace="include/navbar"></div>
     <main class="content-container tiled-page">
         <div class="tiled-page-container--left p-5">
             <h1 class="text-3xl font-semibold mb-3">Your cart</h1>
@@ -17,14 +17,21 @@
         </div>
         <div class="tiled-page-container--right">
             <div class="summary" th:with="user=${#authentication.getPrincipal()}">
-                <div>
-                    <h1 class="text-3xl font-semibold mb-3">Your bill</h1>
-                </div>
-                <div th:with="totalPrice=${cart.getTotalPrice()}">
-                    <h2 class="text-4xl mb-3">Total: <strong th:text="'€ ' + ${totalPrice}"></strong></h2>
-                    <form action="/cart/submit" method="post">
-                        <button class="cart-submit-button" type="submit">Submit</button>
-                    </form>
+                <div class="Summary__content">
+                    <div>
+                        <h1 class="text-3xl font-semibold mb-3">Your bill</h1>
+                    </div>
+                    <div th:with="totalPrice=${cart.getTotalPrice()}">
+                        <h2 class="text-4xl mb-3">Total: <strong th:text="'€ ' + ${totalPrice}"></strong></h2>
+                        <form action="/cart/submit" method="post">
+                            <div class="flex flex-row justify-between">
+                                <button class="cart-submit-button mb-3" type="submit">Submit</button>
+                                <div class="flex flex-col justify-center h-100">
+                                    <a class="underline hover:text-gray-200 transition-colors" href="/orders"><strong>See previous orders</strong></a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

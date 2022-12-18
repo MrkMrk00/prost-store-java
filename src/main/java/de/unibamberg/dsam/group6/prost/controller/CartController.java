@@ -2,6 +2,7 @@ package de.unibamberg.dsam.group6.prost.controller;
 
 import de.unibamberg.dsam.group6.prost.entity.Order;
 import de.unibamberg.dsam.group6.prost.repository.BeveragesRepository;
+import de.unibamberg.dsam.group6.prost.repository.OrderItemsRepository;
 import de.unibamberg.dsam.group6.prost.repository.OrdersRepository;
 import de.unibamberg.dsam.group6.prost.repository.UserRepository;
 import de.unibamberg.dsam.group6.prost.service.Cart;
@@ -28,6 +29,7 @@ public class CartController {
     private final OrdersRepository ordersRepo;
     private final Validator validator;
     private final UserErrorManager errors;
+    private final OrderItemsRepository orderItemsRepository;
 
     @GetMapping("/cart")
     public String showCart(Model model) {
@@ -78,9 +80,13 @@ public class CartController {
         var user = this.userRepo.findUserByUsername(principal.getName()).orElseThrow();
         var cartState = this.cart.getCartState();
 
+        if (cartState.beverages.isEmpty()) {
+            this.errors.addToast(Toast.notice("No items in cart."));
+            return "redirect:/cart";
+        }
+
         var order = new Order();
         order.setUser(user);
-        order.setOrderItems(cartState.getOrderItems());
         order.setPrice(cartState.getTotalPrice());
 
         var res = this.validator.validate(order);
@@ -89,7 +95,15 @@ public class CartController {
             return "redirect:/cart";
         }
 
-        this.ordersRepo.save(order);
+        // save empty order
+        order = this.ordersRepo.save(order);
+
+        // add order items
+        var orderItems = cartState.getOrderItems();
+        for (var oi : orderItems) {
+            oi.setOrder(order);
+        }
+        this.orderItemsRepository.saveAll(orderItems);
 
         // reduce pieces in stock
         var reducedPiecesBeverages = cartState.beverages.entrySet().stream().map(entry -> {

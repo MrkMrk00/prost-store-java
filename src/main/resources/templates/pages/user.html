@@ -23,14 +23,14 @@
                 </div>
                 <div class="form__row">
                     <label for="UserForm__billingAddress">Billing address: </label>
-                    <select class="form-control" id="UserForm__billingAddress" th:field="*{billingAddress.id}">
+                    <select class="form-control" id="UserForm__billingAddress" th:field="*{billingAddress}">
                         <option th:value="null">-- Select address --</option>
                         <option th:each="bAaddress:${allAddresses}" th:value="${bAaddress.id}" th:text="${bAaddress.toString()}"></option>
                     </select>
                 </div>
                 <div class="form__row">
                     <label for="UserForm__deliveryAddress">Delivery address: </label>
-                    <select class="form-control" id="UserForm__deliveryAddress" th:field="*{deliveryAddress.id}">
+                    <select class="form-control" id="UserForm__deliveryAddress" th:field="*{deliveryAddress}">
                         <option th:value="null">-- Select address --</option>
                         <option th:each="bAaddress:${allAddresses}" th:value="${bAaddress.id}" th:text="${bAaddress.toString()}"></option>
                     </select>

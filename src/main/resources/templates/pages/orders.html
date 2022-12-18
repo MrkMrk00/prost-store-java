@@ -2,13 +2,42 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title th:text="${#authentication.getName()} + '\'s orders'"></title>
+    <meta th:replace="include/head">
 </head>
-<body>
-<!--<div class="page_container">-->
-
-    <div th:replace="${ activeUser == 'anonymousUser' ? 'include/navbar_signed_out' : 'include/navbar' }"></div>
-
-    <footer th:replace="${ activeUser == 'anonymousUser' ? 'include/footer_signed_out' : 'include/footer' }"></footer>
-<!--</div>-->
+<body class="prost-bg">
+<div th:replace="include/navbar"></div>
+<main class="content-container flex flex-row justify-center">
+    <div>
+        <h1 class="text-3xl mb-3"><strong>Your orders</strong></h1>
+        <div class="overflow-x-auto relative">
+            <table class="w-[75vw] text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="py-3 px-6">
+                        #
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Total price
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="order : ${orders}"
+                    class="bg-white hover:bg-slate-200 border-b dark:bg-gray-800 dark:border-gray-700 cursor-pointer transition-colors"
+                    th:onclick="'window.location.assign(\'/orders/' + ${order.id} +'\');'"
+                >
+                    <th
+                        scope="row"
+                        class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                        th:text="${orderStat.index}"
+                    ></th>
+                    <td class="py-4 px-6" th:text="'€ ' + ${order.price}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+<footer th:replace="include/footer"></footer>
 </body>
 </html>
