@@ -11,10 +11,8 @@
         <div class="logo self-center">
             <a href="#" class="no-underline"> <img class="h-16" src="/images/Prost.png" alt="Prost"></a>
         </div>
-        <p class="text-black mt-5 mb-3 px-[1.8rem]"> We are so excited, only few steps before  join us!!</p>
+        <p class="text-black mt-5 mb-3 px-[1.8rem]"> We are so excited, only few steps before join us!!</p>
         <form th:action="@{/register}" method="post" class="px-[1.8rem] w-max">
-<!--            <h1 class="text-3xl">Register</h1>-->
-<!--            <hr class="mb-5" />-->
             <div class="mb-3 w-full bg-transparent">
                 <label for="register__username"></label>
                 <input class="form-control w-full"
@@ -30,18 +28,22 @@
                 <input class="form-control w-full bg-transparent"
                        id="register__password_check" name="passwordCheck" type="password" placeholder="Repeat password">
             </div>
+            <div class="mb-5 w-full bg-transparent">
+                <input class="form-control w-full bg-transparent"
+                       aria-label="Birthday"
+                       id="register__birthday" name="birthday" type="date" placeholder="Birthday">
+            </div>
             <input name="next" th:if="${next != null && next.length() > 0}" type="hidden" th:value="next">
-
             <div class="mb-3 flex gap-2 mt-3">
-<!--                <button class="btn-success w-1/3" type="submit">Register</button>-->
-                <button class="btn-primary flex-1 font-bold rounded-1 h-[46px] w-[266px] drop-shadow " type="submit">Register</button>
-
-                <a class="btn-secondary flex-1 font-bold grid place-content-center" th:href="@{'/login' + ${next != null ? '?next='+next : ''}}">Sign In</a>
-
+                <!--                <button class="btn-success w-1/3" type="submit">Register</button>-->
+                <button class="btn-primary flex-1 font-bold rounded-1 h-[46px] w-[266px] drop-shadow " type="submit">
+                    Register
+                </button>
+                <a class="btn-secondary flex-1 font-bold grid place-content-center"
+                   th:href="@{'/login' + ${next != null ? '?next='+next : ''}}">Sign In</a>
             </div>
         </form>
     </main>
 </div>
-
 </body>
 </html>
