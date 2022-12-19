@@ -7,17 +7,17 @@
 <body class="prost-bg">
 <div th:replace="include/navbar"></div>
 <div class="flex h-screen w-screen justify-center items-center">
-    <main class="content-container w-[30vw] drop-shadow rounded-xl flex flex-col items-start justify-start py-2 bg-white">
+    <main class="content-container w-max drop-shadow rounded-xl flex flex-col items-start justify-start py-2 bg-white">
         <div class="logo self-center">
             <a href="#" class="no-underline"> <img class="h-16" src="/images/Prost.png" alt="Prost"></a>
         </div>
         <p class="text-black mt-5 mb-3 px-[1.8rem]"> We are so excited, only few steps before  join us!!</p>
-        <form th:action="@{/register}" method="post" class="px-[1.8rem]">
+        <form th:action="@{/register}" method="post" class="px-[1.8rem] w-max">
 <!--            <h1 class="text-3xl">Register</h1>-->
 <!--            <hr class="mb-5" />-->
             <div class="mb-3 w-full bg-transparent">
                 <label for="register__username"></label>
-                <input class="form-control w-full bg-transparent"
+                <input class="form-control w-full"
                        id="register__username" name="username" type="text" placeholder="Enter your username">
             </div>
             <div class="mb-3 w-full bg-transparent">
@@ -42,6 +42,6 @@
         </form>
     </main>
 </div>
-<footer th:replace="include/footer"></footer>
+
 </body>
 </html>

@@ -72,7 +72,8 @@
 }
 
 .btn {
-    @apply rounded-xl shadow-lg; // DON'T CHANGE BORDER RADIUS MAN!
+    @apply rounded-xl shadow-lg;
+
     padding: 0.5em 1em;
     transition: background-color ease-in-out 200ms;
 
