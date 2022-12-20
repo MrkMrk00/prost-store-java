@@ -2,6 +2,9 @@ package de.unibamberg.dsam.group6.prost.configuration;
 
 import de.unibamberg.dsam.group6.prost.service.UserDetailSecurityService;
 import java.util.List;
+
+import de.unibamberg.dsam.group6.prost.service.UserErrorManager;
+import de.unibamberg.dsam.group6.prost.util.Toast;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -23,6 +26,7 @@ public class SecurityConfig {
 
     @Value("${spring.profiles.active}")
     private final List<String> activeProfiles;
+    private final UserErrorManager errors;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -38,10 +42,13 @@ public class SecurityConfig {
                 })
                 .formLogin(form -> {
                     form.loginPage("/login").permitAll();
+                    form.failureHandler((req, res, e) -> {
+                        this.errors.addToast(Toast.error(e.getMessage()));
+                        res.sendRedirect("/login");
+                    });
                 })
                 .logout(Customizer.withDefaults());
 
-        // TODO: CSRF
         if (this.activeProfiles.contains("dev")) {
             http.headers(h -> {
                 h.frameOptions().disable().httpStrictTransportSecurity().disable();

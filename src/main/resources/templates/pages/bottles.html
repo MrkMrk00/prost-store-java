@@ -8,8 +8,8 @@
 <div>
     <div th:replace="include/navbar"></div>
     <main class="content-container mx-auto container py-3">
-        <div class="flex flex-row justify-between pb-5">
-            <div th:replace="include/beverage_view/pagination"></div>
+        <div class="flex flex-row justify-end pb-5">
+            <div th:if="${max_page > 0}" th:replace="include/beverage_view/pagination"></div>
         </div>
         <div th:replace="include/beverage_view/beverage_view"></div>
     </main>

@@ -8,6 +8,19 @@
 <div class="flex flex-row w-100">
     <div class="admin-widget-container">
         <div class="admin-widget">
+            <h2 class="widget-title">Links</h2>
+            <div class="flex flex-col gap-3 text-center">
+                <hr class="mb-3">
+                <a class="btn-primary" href="/">Home</a>
+                <a class="btn-primary" href="/bottles">Bottles</a>
+                <a class="btn-primary" href="/crates">Crates</a>
+                <a class="btn-primary" href="/orders">Orders</a>
+                <a class="btn-primary" href="/user">User page</a>
+                <a class="btn-primary" href="/logout">Log Out</a>
+            </div>
+        </div>
+
+        <div class="admin-widget">
             <h2 class="widget-title">Actions</h2>
             <div class="flex flex-col" th:each="actionInstance : ${actions}">
                 <hr class="mb-3">

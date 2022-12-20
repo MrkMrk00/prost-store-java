@@ -7,9 +7,7 @@
 <body class="prost-bg">
 <div th:replace="include/navbar"></div>
 <div class="flex h-screen w-screen justify-center items-center">
-
     <main class="content-container w-max drop-shadow rounded-xl flex flex-col items-start justify-start py-2 bg-white">
-
         <div class="logo self-center">
             <a href="#" class="no-underline"> <img class="h-16" src="/images/Prost.png" alt="Prost"></a>
         </div>
@@ -26,17 +24,13 @@
                        id="loginform__password" name="password" type="password" placeholder="Enter password">
             </div>
             <input name="next" th:if="${next != null && next.length() > 0}" type="hidden" th:value="next">
-
             <div class="mb-3 flex  gap-2 mt-3">
                 <button class="btn-primary flex-1 font-bold rounded-1 h-[46px] w-[266px] drop-shadow " type="submit">Sign In</button>
-
                 <a class="btn-secondary flex-1 font-bold grid place-content-center" href="/register">Register</a>
-
             </div>
         </form>
-
     </main>
-
 </div>
+<div th:replace="include/toasts"></div>
 </body>
 </html>

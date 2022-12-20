@@ -35,7 +35,6 @@
             </div>
             <input name="next" th:if="${next != null && next.length() > 0}" type="hidden" th:value="next">
             <div class="mb-3 flex gap-2 mt-3">
-                <!--                <button class="btn-success w-1/3" type="submit">Register</button>-->
                 <button class="btn-primary flex-1 font-bold rounded-1 h-[46px] w-[266px] drop-shadow " type="submit">
                     Register
                 </button>
@@ -45,5 +44,6 @@
         </form>
     </main>
 </div>
+<div th:replace="include/toasts"></div>
 </body>
 </html>

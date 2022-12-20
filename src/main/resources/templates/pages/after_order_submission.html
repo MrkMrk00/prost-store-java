@@ -5,17 +5,19 @@
     <meta th:replace="include/head">
 </head>
 <body class="prost-bg">
-<div class="flex flex-col">
-    <div th:replace="include/navbar"></div>
-    <div class="content-container flex flex-col justify-center items-center gap-2">
-        <h2 class="text-2xl text-black font-bold">Your order was recieved! We wish you a happy time! Prost!</h2>
-        <img src="/images/frog.jpg" alt="frog" class="h-[280px] w-[380px] rounded-xl">
-        <div class="flex flex-row gap-2 w-[40vw]">
-            <a class="btn-primary flex-1 grid place-content-center font-bold" href="/">Continue with shopping</a>
-            <a class="btn-primary flex-1 grid place-content-center font-bold" href="/orders">See your orders</a>
+<div th:replace="include/navbar"></div>
+<main class="content-container flex justify-center">
+    <div class="flex flex-col gap-5">
+        <h2 class="text-2xl font-bold">Your order was recieved! We wish you a happy time! Prost!</h2>
+        <div>
+            <img style="height: 280px;" class="rounded-xl mx-auto" src="/images/frog.jpg" alt="frog">
+        </div>
+        <div class="flex flex-row gap-5 text-center">
+            <a class="btn-primary w-1/2" href="/"><strong>Continue with shopping</strong></a>
+            <a class="btn-primary w-1/2" href="/orders"><strong>See your orders</strong></a>
         </div>
     </div>
-</div>
+</main>
 <footer th:replace="include/footer"></footer>
 </body>
 </html>

@@ -1,64 +1,70 @@
 .nav-nv {
-    height: var(--navbar-height);
     width: 100vw;
+    height: var(--navbar-height);
+    font-family: Roboto, sans-serif;
     background-color: white;
-    overflow-x: hidden;
-    padding: 16px 32px;
-    display: flex;
-    justify-content: center;
 }
 
 .nv-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 92%;
-    height: 100%;
+    justify-content: space-between;
+    width: 100%;
     background-color: white;
-}
+    padding: 16px 32px;
 
-.nv-container .logo {
-    background-color: white;
-    width: 30%;
-}
+    .nv-links {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        text-align: right;
+        color: black;
 
-.nv-container .logo img {
-    width: 119px;
-    height: 49px;
-}
+        & > a {
+            margin: 0 12px;
+            transition: color ease-out 150ms;
 
-.nv-container .nv-links {
-    width: 70%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    text-align: right;
-    color: black;
-}
+            &.active {
+                font-weight: bold;
+            }
 
-.nv-link {
-    font-family: Roboto, sans-serif;
-    margin: 0 12px;
-    transition: color ease-out 150ms;
-
-    &.active {
-        font-weight: bold;
+            &:hover {
+                cursor: pointer;
+                color: #F99336;
+            }
+        }
     }
-
-    &:hover {
-        cursor: pointer;
-        color: #F99336;
-    }
-}
-
-.nv-icon {
-    width: 24px;
-}
-
-.nv-container .nv-links .nv-icon svg {
-    max-height: 24px;
 }
 
 .prost-footer {
-    height: var(--footer-height)
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: var(--footer-height);
+    background-color: #F2EBEB;
+    color: black;
+    padding: 1em;
+
+    .footer-part {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+
+        a, p {
+            font-size: 14px;
+        }
+
+        a {
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
 }
