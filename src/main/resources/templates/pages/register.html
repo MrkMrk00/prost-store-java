@@ -16,22 +16,22 @@
             <div class="mb-3 w-full bg-transparent">
                 <label for="register__username"></label>
                 <input class="form-control w-full"
-                       id="register__username" name="username" type="text" placeholder="Enter your username">
+                       id="register__username" name="username" type="text" placeholder="Enter your username" required>
             </div>
             <div class="mb-3 w-full bg-transparent">
                 <label for="register__password"></label>
                 <input class="form-control w-full bg-transparent"
-                       id="register__password" name="password" type="password" placeholder="Enter password">
+                       id="register__password" name="password" type="password" placeholder="Enter password" required>
             </div>
             <div class="mb-5 w-full bg-transparent">
                 <label for="register__password_check"></label>
                 <input class="form-control w-full bg-transparent"
-                       id="register__password_check" name="passwordCheck" type="password" placeholder="Repeat password">
+                       id="register__password_check" name="passwordCheck" type="password" placeholder="Repeat password" required>
             </div>
             <div class="mb-5 w-full bg-transparent">
                 <input class="form-control w-full bg-transparent"
                        aria-label="Birthday"
-                       id="register__birthday" name="birthday" type="date" placeholder="Birthday">
+                       id="register__birthday" name="birthday" type="date" placeholder="Birthday" required>
             </div>
             <input name="next" th:if="${next != null && next.length() > 0}" type="hidden" th:value="next">
             <div class="mb-3 flex gap-2 mt-3">
