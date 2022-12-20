@@ -32,6 +32,9 @@ export const pagination = {
         );
 
         switch (elem.getAttribute('data-pagination')) {
+            case '0':
+                pageInput.remove();
+                break;
             case '+1':
                 if (currentPage + 1 > maxPage) {
                     pageInput.value = maxPage;

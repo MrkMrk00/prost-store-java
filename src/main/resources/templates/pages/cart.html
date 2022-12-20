@@ -22,7 +22,7 @@
                         <h1 class="text-3xl font-semibold mb-3">Your bill</h1>
                     </div>
                     <div th:with="totalPrice=${cart.getTotalPrice()}">
-                        <h2 class="text-4xl mb-3">Total: <strong th:text="'€ ' + ${totalPrice}"></strong></h2>
+                        <h2 class="text-4xl mb-3">Total: <strong th:text="'€' + ${totalPrice}"></strong></h2>
                         <form action="/cart/submit" method="post">
                             <div class="flex flex-row justify-between">
                                 <button class="cart-submit-button mb-3" type="submit">Submit</button>

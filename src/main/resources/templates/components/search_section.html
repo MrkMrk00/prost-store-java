@@ -1,7 +1,7 @@
 <div class="search-container" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <h1>We serve drinks 🍺<br />
         & memories 🍻</h1>
-    <div sec:authorize="!isAuthenticated()" class="flex flex-col items-center justify-center gap-5">
+    <div sec:authorize="isAnonymous()" class="flex flex-col items-center justify-center gap-5">
         <p class="text-lg  text-black text-center" >
             <i>“The mouth of a perfectly happy man is filled with beer.”</i>
             <br/>

@@ -25,9 +25,9 @@
                         <small th:if="${beverage.isCrate()}" th:text="${beverage.noOfBottles} + ' bottles'"></small>
                     </div>
                     <div class="flex flex-row justify-between">
-                        <span th:text="${count} + ' pcs.'"></span>
+                        <span th:text="${count} + ' in stock'"></span>
                         <div>
-                            <span th:text="'€ ' + ${beverage.getPrice()*count}"></span>
+                            <span th:text="'€' + ${beverage.getPrice()*count}"></span>
                             <small th:if="${count > 1}" th:text="' à ' + ${beverage.getPrice()}"></small>
                         </div>
                     </div>

@@ -162,5 +162,9 @@
                 background-color: white;
             }
         }
+
+        &.with-text {
+            width: 80px;
+        }
     }
 }
