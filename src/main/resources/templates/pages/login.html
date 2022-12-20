@@ -16,16 +16,16 @@
             <div class="mb-3 w-full">
                 <label for="loginform__username"></label><br>
                 <input class="form-control w-full"
-                       id="loginform__username" name="username" type="text" placeholder="Enter your username">
+                       id="loginform__username" name="username" type="text" placeholder="Enter your username" required>
             </div>
             <div class="mb-5 w-full">
                 <label for="loginform__password"></label><br>
                 <input class="form-control w-full"
-                       id="loginform__password" name="password" type="password" placeholder="Enter password">
+                       id="loginform__password" name="password" type="password" placeholder="Enter password" required>
             </div>
             <input name="next" th:if="${next != null && next.length() > 0}" type="hidden" th:value="next">
             <div class="mb-3 flex  gap-2 mt-3">
-                <button class="btn-primary flex-1 font-bold rounded-1 h-[46px] w-[266px] drop-shadow " type="submit">Sign In</button>
+                <button class="btn-primary flex-1 font-bold rounded-1 h-[46px] w-[266px] drop-shadow" type="submit">Sign In</button>
                 <a class="btn-secondary flex-1 font-bold grid place-content-center" href="/register">Register</a>
             </div>
         </form>

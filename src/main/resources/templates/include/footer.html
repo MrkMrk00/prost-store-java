@@ -32,11 +32,14 @@
         <p>© 2022 Group 6</p>
     </div>
     <div class="footer-part">
-        <div class="footer-links">
+        <div sec:authorize="isAuthenticated()" class="footer-links">
             <span class="mb-2"><strong>Account</strong></span>
             <a href="/orders">Orders</a>
             <a href="/user">Details</a>
             <a href="/logout">Log Out</a>
+        </div>
+        <div sec:authorize="isAnonymous()" class="footer-links">
+
         </div>
         <div class="footer-links">
             <span class="mb-2"><strong>Pages</strong></span>
