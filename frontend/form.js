@@ -1,21 +1,34 @@
 export const pagination = {
-    changePage: (elem) => {
+    changePage: elem => {
         if (elem.classList.contains('disabled')) {
             return;
         }
 
-        let pageInput = document.querySelector('#pagination-form input[name="page"]');
+        let pageInput = document.querySelector(
+            '#pagination-form input[name="page"]'
+        );
 
-        if (document.querySelector('#pagination-form input[name="page"]') == null) {
-            document.querySelector('#pagination-form')
-                .insertAdjacentHTML('afterbegin', `<input type="hidden" name="page" value="${0}">`)
+        if (
+            document.querySelector('#pagination-form input[name="page"]') ==
+            null
+        ) {
+            document
+                .querySelector('#pagination-form')
+                .insertAdjacentHTML(
+                    'afterbegin',
+                    `<input type="hidden" name="page" value="${0}">`
+                );
 
-            pageInput = document.querySelector('#pagination-form input[name="page"]');
+            pageInput = document.querySelector(
+                '#pagination-form input[name="page"]'
+            );
         }
 
         const currentPage = parseInt(pageInput.value);
         const maxPage = parseInt(
-            document.querySelector('#pagination-form').getAttribute('data-pagination-max-page')
+            document
+                .querySelector('#pagination-form')
+                .getAttribute('data-pagination-max-page')
         );
 
         switch (elem.getAttribute('data-pagination')) {
@@ -38,5 +51,5 @@ export const pagination = {
                 break;
         }
         document.querySelector('#pagination-form').submit();
-    }
-}
+    },
+};
