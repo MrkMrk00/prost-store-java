@@ -140,26 +140,24 @@
 }
 
 .pagination {
-    @apply rounded-xl shadow border divide-x-2;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    @apply rounded-xl shadow border;
     background-color: white;
 
-    a {
+    .Pagination__container {
+        @apply divide-x-2;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .Pagination__submit {
         @apply hover:bg-slate-200;
         padding: 1em 1.5em;
 
-        &:first-child {
-            @apply rounded-tl-xl rounded-bl-xl;
-        }
-
-        &:last-child {
-            @apply rounded-tr-xl rounded-br-xl;
-        }
-
         &.disabled {
             color: grey;
+            cursor: default;
+
             &:hover {
                 background-color: white;
             }
