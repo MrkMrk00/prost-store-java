@@ -42,6 +42,10 @@ public class IndexController {
         return "pages/bottles";
     }
 
+    @GetMapping("x")
+    public String x(Model model){
+        return "pages/x";
+    }
     @GetMapping("/crates")
     public String cratesCatalogue(@RequestParam Optional<Integer> page, Model model) {
         var currentPage = 0;

@@ -1,4 +1,4 @@
-<footer class="prost-footer w-screen bg-[#F2EBEB] text-black px-24 py-5">
+<footer class="prost-footer w-screen bg-[#F2EBEB] text-black px-24 py-5" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <div class="flex flex-row">
         <div class="basis-1/6">
             <p class="text-black font-bold mb-2">Address</p>
@@ -21,7 +21,7 @@
             </div>
             <p class="text-sm "> © 2022 Group 6 </p>
         </div>
-        <div class="basis-1/6 ">
+        <div class="basis-1/6 " sec:authorize="isAuthenticated()">
             <p class="text-black font-bold mb-2">Account</p>
             <div>
                 <a class="text-black hover:underline text-sm" href="/orders">Orders</a>
@@ -32,6 +32,13 @@
             <div>
                 <a class="text-black hover:underline text-sm" href="/logout">Log Out</a>
             </div>
+        </div>
+        <div class="basis-1/6 " sec:authorize="!isAuthenticated()">
+            <p class="text-black font-bold mb-2">Account</p>
+            <div>
+                <a class="text-black hover:underline text-sm" href="/login">Log In</a>
+            </div>
+
         </div>
         <div class="basis-1/6">
             <p class="text-black font-bold mb-2">Pages</p>
