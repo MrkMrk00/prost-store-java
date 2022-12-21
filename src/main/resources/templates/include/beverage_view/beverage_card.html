@@ -14,7 +14,13 @@
         <div class="flex flex-row justify-end">
             <form th:action="@{/cart/add}" method="post">
                 <input name="beverageId" th:value="${beverage.getId()}" type="hidden">
-                <input name="next" th:value="${#httpServletRequest.getRequestURI()} + '?' + ${#httpServletRequest.getQueryString()}" type="hidden">
+                <input name="next"
+                       th:value="
+                           ${#httpServletRequest.getRequestURI()} + ${#httpServletRequest.getQueryString() == null ?
+                                '' :
+                                '?' + #httpServletRequest.getQueryString()
+                       }"
+                       type="hidden">
                 <div class="flex flex-row justify-end">
                     <div class="beverage-to-cart py-3">
                         <div class="flex flex-col justify-center px-3">

@@ -1,18 +1,16 @@
 .admin-widget-container {
+    color: black;
     display: flex;
-    color:black;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: wrap;
-
-    padding: 2em;
+    gap: 2em;
+    padding: 0.5em;
 
     .admin-widget {
         @apply rounded-xl shadow-lg;
         background-color: white;
         padding: 2em;
-        margin-left: 2em;
-        margin-bottom: 2em;
 
         .widget-title {
             @apply text-2xl;
@@ -21,4 +19,3 @@
         }
     }
 }
-

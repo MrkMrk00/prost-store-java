@@ -17,6 +17,9 @@
                         #
                     </th>
                     <th scope="col" class="py-3 px-6">
+                        Ordered on
+                    </th>
+                    <th scope="col" class="py-3 px-6">
                         Total price
                     </th>
                 </tr>
@@ -31,6 +34,7 @@
                         class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                         th:text="${orderStat.index}"
                     ></th>
+                    <td class="py-4 px-6" th:text="${#dates.format(order.createdOn, 'dd-MM-yyyy hh a')}"></td>
                     <td class="py-4 px-6" th:text="'€' + ${order.price}"></td>
                 </tr>
                 </tbody>

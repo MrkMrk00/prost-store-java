@@ -6,34 +6,44 @@
 </head>
 <body class="prost-bg">
 <div th:replace="include/navbar"></div>
-<main class="content-container flex flex-row justify-center">
+<main class="content-container flex flex-row justify-center py-5">
     <div class="flex flex-col">
-        <div class="flex flex-row justify-between text-lg mb-5">
-            <div class="flex flex-col px-5">
-                Order number:
+        <div class="bg-white p-3 rounded-xl shadow">
+            <div class="flex flex-row gap-3 mb-2">
+                <a class="btn-primary" href="/orders"><i class="fa-solid fa-arrow-left"></i> All orders</a>
+                <h1 class="font-bold text-2xl">Order summation</h1>
             </div>
-            <div class="flex flex-col px-5">
-                <strong th:text="${order.id}"></strong>
+            <hr class="mb-5" />
+            <div class="flex flex-row justify-center text-lg mb-5">
+                <div class="flex flex-col px-5">
+                    Order number:
+                </div>
+                <div class="flex flex-col px-5">
+                    <strong th:text="${order.id}"></strong>
+                </div>
             </div>
-        </div>
-        <div class="flex flex-row justify-between text-lg mb-5">
-            <div class="flex flex-col px-5">
-                Total price:
+            <div class="flex flex-row justify-center text-lg mb-5">
+                <div class="flex flex-col px-5">
+                    Total price:
+                </div>
+                <div class="flex flex-col px-5">
+                    <strong th:text="'€' + ${order.price}"></strong>
+                </div>
             </div>
-            <div class="flex flex-col px-5">
-                <strong th:text="'€' + ${order.price}"></strong>
+            <div class="flex flex-row justify-start text-lg">
+                <div class="flex flex-col px-5">
+                    Items:
+                </div>
+                <div class="flex flex-col px-5"></div>
             </div>
-        </div>
-        <div class="flex flex-row justify-between text-lg">
-            <div class="flex flex-col px-5">
-                Items:
-            </div>
-            <div class="flex flex-col px-5"></div>
-        </div>
-        <div class="ml-5 flex flex-row" th:each="bev : ${cartDTO.beverages}">
-            <div class="flex flex-col px-5" th:text="${bev.value} + 'x'"></div>
-            <div class="flex flex-col px-5">
-                <strong th:text="${bev.key.getName()}"></strong>
+            <div class="ml-5 flex flex-row justify-between gap-5" th:each="bev : ${cartDTO.beverages}">
+                <div class="flex flex-row">
+                    <div class="flex flex-col px-5" th:text="${bev.value} + 'x'"></div>
+                    <i th:if="${bev.key.isBottle()}" class="fa-solid fa-wine-bottle">&emsp;</i>
+                    <i th:if="${bev.key.isCrate()}" class="fa-solid fa-suitcase">&emsp;</i>
+                    <strong th:text="${bev.key.getName()}"></strong>
+                </div>
+                <span>à <strong th:text="'€' + ${bev.key.getPrice()}"></strong></span>
             </div>
         </div>
     </div>

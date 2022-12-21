@@ -25,7 +25,7 @@
                         <small th:if="${beverage.isCrate()}" th:text="${beverage.noOfBottles} + ' bottles'"></small>
                     </div>
                     <div class="flex flex-row justify-between">
-                        <span th:text="${count} + ' in stock'"></span>
+                        <span th:if="${count > 1}" th:text="${count} + ' pcs.'"></span>
                         <div>
                             <span th:text="'€' + ${beverage.getPrice()*count}"></span>
                             <small th:if="${count > 1}" th:text="' à ' + ${beverage.getPrice()}"></small>
@@ -53,6 +53,14 @@
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="flex flex-row justify-center" th:if="${cart.beverages.isEmpty()}">
+        <div class="bg-white p-5 rounded-xl shadow">
+            <a style="color: blue; text-decoration: underline;" href="https://youtube.com/embed/dQw4w9WgXcQ?autoplay=1">
+                <h2 class="text-3xl" style="font-family: 'Comic Neue', sans-serif;">So empty, much sad.</h2>
+            </a>
+            <img class="rounded-xl mx-auto" style="width: 200px;" src="/images/sad_doge.png" alt="Sad doge :(">
         </div>
     </div>
 </div>
