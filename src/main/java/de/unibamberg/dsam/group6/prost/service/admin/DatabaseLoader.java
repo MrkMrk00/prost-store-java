@@ -93,7 +93,7 @@ public class DatabaseLoader {
     @Async
     public Future<String> action__importCrates() throws IOException {
         final var crates = (List<Map<String, Object>>) this.getData().get("crates");
-        final var bottles = this.bottlesRepository.findAll();
+        final var bottles = this.bottlesRepository.findAllBeerLike();
         var iter = 0;
 
         for (var c : crates) {
@@ -113,5 +113,14 @@ public class DatabaseLoader {
         }
         this.cratesRepository.flush();
         return new AsyncResult<>("Crates imported successfully");
+    }
+
+    @Async
+    public Future<String> action__clearDatabase() {
+        this.cratesRepository.deleteAll();
+        this.userRepository.deleteAll();
+        this.bottlesRepository.deleteAll();
+
+        return new AsyncResult<>("Cleared successfully.");
     }
 }

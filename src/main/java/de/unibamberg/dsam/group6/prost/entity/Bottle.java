@@ -9,6 +9,8 @@ import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.validator.constraints.URL;
 
+import static java.lang.String.format;
+
 @Entity(name = "bottles")
 @Getter
 @Setter
@@ -81,5 +83,10 @@ public class Bottle extends Beverage {
 
     public boolean isAlcoholic() {
         return this.volumePercent > 0;
+    }
+
+    @Override
+    public String toString() {
+        return format("%.2f l - %s %s", this.volume, this.supplier, this.name);
     }
 }

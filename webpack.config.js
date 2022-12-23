@@ -19,6 +19,7 @@ module.exports = {
     },
     output: {
         path: resolve(__dirname, assets),
+        publicPath: '/build/',
         filename: '[name].js',
     },
     plugins: [

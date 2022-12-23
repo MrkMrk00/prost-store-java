@@ -1,7 +1,11 @@
 <div class="beverage-wrapper">
     <div class="beverage-content">
-        <img class="beverage-image object-contain"
-             th:src="${beverage.getPicture()}" th:alt="${beverage.getName()}">
+        <img class="beverage-image"
+             th:classappend="${beverage.isCrate() ? 'crate' : ''}"
+             th:src="${beverage.getPicture()}"
+             th:alt="${beverage.getName()}"
+        >
+        <span th:if="${beverage.isCrate()}" th:text="${beverage.bottle.toString()}" class="crate-bottle-descr"></span>
     </div>
     <div class="beverage-content">
         <div class="beverage-descr">

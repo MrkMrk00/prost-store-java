@@ -1,0 +1,53 @@
+<h2 class="widget-title">Add new crate</h2>
+<hr class="mb-3" />
+<form action="/admin/addCrate" method="post" th:object="${crate}">
+    <div class="form">
+        <div class="form__row">
+            <label for="CrateForm__name">Name</label>
+            <input id="CrateForm__name" class="form-control" th:field="*{name}">
+        </div>
+        <div class="form__row">
+            <label for="CrateForm__cratePic">Picture URL</label>
+            <input id="CrateForm__cratePic" class="form-control" th:field="*{cratePic}">
+        </div>
+        <div class="form__row">
+            <label for="CrateForm__noOfBottles">Number of bottles</label>
+            <div class="flex flex-row justify-end max-w-[67%]">
+                <input
+                    id="CrateForm__noOfBottles"
+                    type="number"
+                    min="1"
+                    class="form-control"
+                    th:field="*{noOfBottles}"
+                >
+                <span class="p-2 w-[2em]">%</span>
+            </div>
+        </div>
+        <div class="form__row">
+            <label for="CrateForm__price">Price</label>
+            <div class="flex flex-row justify-end max-w-[67%]">
+                <input
+                    id="CrateForm__price"
+                    type="number"
+                    min="1"
+                    class="form-control"
+                    th:field="*{price}"
+                >
+                <span class="p-2 w-[2em]">€</span>
+            </div>
+        </div>
+        <div class="form__row">
+            <label for="CrateForm__stock">Number of crates in stock</label>
+            <input
+                id="CrateForm__stock"
+                type="number"
+                class="form-control"
+                th:field="*{cratesInStock}"
+            >
+        </div>
+        <div class="flex flex-row justify-between">
+            <span></span>
+            <button type="submit" class="btn-primary">Create</button>
+        </div>
+    </div>
+</form>
