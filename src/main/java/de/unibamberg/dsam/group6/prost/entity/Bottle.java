@@ -46,14 +46,6 @@ public class Bottle extends Beverage {
     @Min(0)
     private int inStock;
 
-    // region Relation
-
-    @ManyToOne(targetEntity = Crate.class)
-    @JoinColumn(name = "crate_id")
-    private Crate crate;
-
-    // endregion
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

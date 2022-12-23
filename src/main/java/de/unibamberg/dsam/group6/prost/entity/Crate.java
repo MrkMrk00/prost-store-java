@@ -5,6 +5,7 @@ import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -40,8 +41,10 @@ public class Crate extends Beverage {
 
     // region Relations
 
-    @OneToMany(mappedBy = "crate")
-    private List<Bottle> bottles;
+    @ManyToOne
+    @JoinColumn(name = "bottle_id")
+    @NotNull
+    private Bottle bottle;
 
     // endregion
 
