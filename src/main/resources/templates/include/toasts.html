@@ -13,8 +13,12 @@
     >
         <div nl2br:text="${toast.getMessage()}"></div>
         <button class="toast_container__toast-close-button"
-                th:onclick="prostLib.slideOffScreen('#toast_message-[[${toastStat.index}]]')">
+                th:onclick="prostLib.transitions.slideOffScreen('#toast_message-[[${toastStat.index}]]')">
             <i class="fa-solid fa-x"></i>
         </button>
+        <script th:if="${toast.getLevel().name().equals('INFO') || toast.getLevel().name().equals('SUCCESS')}"
+            type="application/javascript">
+            setTimeout(() => prostLib.transitions.slideOffScreen('#toast_message-[[${toastStat.index}]]'), 3000);
+        </script>
     </div>
 </div>

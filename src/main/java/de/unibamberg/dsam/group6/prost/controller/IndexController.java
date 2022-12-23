@@ -4,7 +4,6 @@ import de.unibamberg.dsam.group6.prost.entity.Bottle;
 import de.unibamberg.dsam.group6.prost.repository.BottlesRepository;
 import de.unibamberg.dsam.group6.prost.repository.CratesRepository;
 import de.unibamberg.dsam.group6.prost.util.OffsetBasedPageRequest;
-
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -31,9 +30,7 @@ public class IndexController {
 
     @GetMapping("/bottles")
     public String bottleCatalogue(
-            @RequestParam Optional<Boolean> containsAlcohol,
-            @RequestParam Optional<Integer> page,
-            Model model) {
+            @RequestParam Optional<Boolean> containsAlcohol, @RequestParam Optional<Integer> page, Model model) {
         var currentPage = 0;
         if (page.isPresent() && page.get() >= 0) {
             currentPage = page.get();
@@ -45,15 +42,17 @@ public class IndexController {
         if (containsAlcohol.isPresent()) {
             if (containsAlcohol.get()) {
                 bottles = this.bottlesRepository.findAllAlcoholic(pagable);
+                model.addAttribute("max_page", this.bottlesRepository.countAllAlcoholic() / 9);
             } else {
                 bottles = this.bottlesRepository.findAllNonAlcoholic(pagable);
+                model.addAttribute("max_page", this.bottlesRepository.countAllNonAlcoholic() / 9);
             }
         } else {
             bottles = this.bottlesRepository.findAll(pagable);
+            model.addAttribute("max_page", this.bottlesRepository.count() / 9);
         }
 
         model.addAttribute("beverages", bottles.getContent());
-        model.addAttribute("max_page", (this.bottlesRepository.count() - 1) / 9);
         model.addAttribute("current_page", currentPage);
         return "pages/bottles";
     }
@@ -69,7 +68,7 @@ public class IndexController {
         var bottles = this.cratesRepository.findAll(pagable);
 
         model.addAttribute("beverages", bottles.getContent());
-        model.addAttribute("max_page", (this.cratesRepository.count() - 1) / 9);
+        model.addAttribute("max_page", (bottles.getTotalElements() - 1) / 9);
         model.addAttribute("current_page", currentPage);
         return "pages/crates";
     }

@@ -1,10 +1,9 @@
 package de.unibamberg.dsam.group6.prost.configuration;
 
 import de.unibamberg.dsam.group6.prost.service.UserDetailSecurityService;
-import java.util.List;
-
 import de.unibamberg.dsam.group6.prost.service.UserErrorManager;
 import de.unibamberg.dsam.group6.prost.util.Toast;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -26,6 +25,7 @@ public class SecurityConfig {
 
     @Value("${spring.profiles.active}")
     private final List<String> activeProfiles;
+
     private final UserErrorManager errors;
 
     @Bean

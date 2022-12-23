@@ -2,6 +2,7 @@ package de.unibamberg.dsam.group6.prost.entity;
 
 import static java.lang.String.format;
 
+import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -16,7 +17,7 @@ import org.hibernate.validator.constraints.Length;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Address {
+public class Address implements Serializable {
     @Id
     @Setter(AccessLevel.NONE)
     @GeneratedValue(strategy = GenerationType.AUTO)

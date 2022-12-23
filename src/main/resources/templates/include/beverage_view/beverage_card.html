@@ -7,14 +7,20 @@
         <div class="beverage-descr">
             <h2><strong th:text="${beverage.getName()}"></strong></h2>
             <hr />
-            <p th:text="'€ ' + ${beverage.getPrice()}"></p>
+            <p th:text="'€' + ${beverage.getPrice()}"></p>
             <hr />
-            <p th:text="${beverage.getInStock()} + ' pcs.'"></p>
+            <p th:text="${beverage.getInStock()} + ' in stock'"></p>
         </div>
         <div class="flex flex-row justify-end">
             <form th:action="@{/cart/add}" method="post">
                 <input name="beverageId" th:value="${beverage.getId()}" type="hidden">
-                <input name="next" th:value="${#httpServletRequest.getRequestURI()}" type="hidden">
+                <input name="next"
+                       th:value="
+                           ${#httpServletRequest.getRequestURI()} + ${#httpServletRequest.getQueryString() == null ?
+                                '' :
+                                '?' + #httpServletRequest.getQueryString()
+                       }"
+                       type="hidden">
                 <div class="flex flex-row justify-end">
                     <div class="beverage-to-cart py-3">
                         <div class="flex flex-col justify-center px-3 text-black bg-white">
