@@ -1,7 +1,6 @@
 package de.unibamberg.dsam.group6.prost.repository;
 
 import de.unibamberg.dsam.group6.prost.entity.Bottle;
-
 import java.util.List;
 import java.util.Optional;
 import javax.validation.constraints.NotNull;

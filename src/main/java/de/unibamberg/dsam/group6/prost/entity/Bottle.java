@@ -1,5 +1,7 @@
 package de.unibamberg.dsam.group6.prost.entity;
 
+import static java.lang.String.format;
+
 import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -8,8 +10,6 @@ import javax.validation.constraints.Pattern;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.validator.constraints.URL;
-
-import static java.lang.String.format;
 
 @Entity(name = "bottles")
 @Getter

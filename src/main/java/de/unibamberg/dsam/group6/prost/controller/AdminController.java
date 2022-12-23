@@ -8,12 +8,10 @@ import de.unibamberg.dsam.group6.prost.service.AdminActionsProvider;
 import de.unibamberg.dsam.group6.prost.service.UserErrorManager;
 import de.unibamberg.dsam.group6.prost.util.Toast;
 import de.unibamberg.dsam.group6.prost.util.exception.CallFailedException;
-
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import javax.validation.Valid;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -91,10 +89,7 @@ public class AdminController {
     }
 
     @PostMapping("/addBottle")
-    public String addBottle(
-            @RequestParam Optional<String> next,
-            @ModelAttribute @Valid Bottle bottle,
-            Errors errors) {
+    public String addBottle(@RequestParam Optional<String> next, @ModelAttribute @Valid Bottle bottle, Errors errors) {
         if (errors.hasErrors()) {
             errors.getAllErrors().forEach(e -> {
                 this.errors.addToast(
@@ -108,10 +103,7 @@ public class AdminController {
     }
 
     @PostMapping("/addCrate")
-    public String addCrate(
-            @RequestParam Optional<String> next,
-            @ModelAttribute @Valid Crate crate,
-            Errors errors) {
+    public String addCrate(@RequestParam Optional<String> next, @ModelAttribute @Valid Crate crate, Errors errors) {
         if (errors.hasErrors()) {
             errors.getAllErrors().forEach(e -> {
                 this.errors.addToast(
