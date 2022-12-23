@@ -17,11 +17,11 @@
                 <input name="next" th:value="${#httpServletRequest.getRequestURI()}" type="hidden">
                 <div class="flex flex-row justify-end">
                     <div class="beverage-to-cart py-3">
-                        <div class="flex flex-col justify-center px-3">
+                        <div class="flex flex-col justify-center px-3 text-black bg-white">
                             <input
                                 type="number"
                                 name="count"
-                                class="number-input"
+                                class="number-input bg-slate-300"
                                 value="1" min="1" th:max="${beverage.getInStock()}"
                                 aria-label="Beverage count"
                             >

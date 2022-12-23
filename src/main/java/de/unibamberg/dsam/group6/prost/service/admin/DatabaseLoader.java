@@ -45,6 +45,7 @@ public class DatabaseLoader {
     public Future<String> action__importAll() throws ExecutionException, InterruptedException, IOException {
         var users = this.action__importUsers();
         var bottles = this.action__importBottles();
+        var crates = this.action__importCrates();
         return new AsyncResult<>(users.get() + "\n" + bottles.get());
     }
 
