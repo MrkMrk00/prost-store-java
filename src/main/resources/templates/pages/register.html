@@ -6,36 +6,36 @@
 </head>
 <body class="prost-bg">
 <div th:replace="include/navbar"></div>
-<div class="flex h-screen w-screen justify-center items-center">
-    <main class="content-container w-max drop-shadow rounded-xl flex flex-col items-start justify-start py-2 bg-white">
+<main class="content-container flex flex-row justify-center items-center text-black">
+    <main class="flex flex-col gap-3 p-8 bg-white shadow rounded-xl">
         <div class="logo self-center">
-            <a href="#" class="no-underline"> <img class="h-16" src="/images/Prost.png" alt="Prost"></a>
+            <a href="/"> <img class="h-16" src="/images/Prost.png" alt="Prost"></a>
         </div>
-        <p class="text-black mt-5 mb-3 px-[1.8rem]"> We are so excited, only few steps before join us!!</p>
-        <form th:action="@{/register}" method="post" class="px-[1.8rem] w-max">
-            <div class="mb-3 w-full bg-transparent">
+        <p>We are so excited, only few steps before join us!!</p>
+        <form th:action="@{/register}" method="post">
+            <div class="mb-3 w-full">
                 <label for="register__username"></label>
                 <input class="form-control w-full"
-                       id="register__username" name="username" type="text" placeholder="Enter your username" required>
+                       id="register__username" name="username" type="text" placeholder="Username" required>
             </div>
-            <div class="mb-3 w-full bg-transparent">
+            <div class="mb-3 w-full">
                 <label for="register__password"></label>
-                <input class="form-control w-full bg-transparent"
-                       id="register__password" name="password" type="password" placeholder="Enter password" required>
+                <input class="form-control w-full"
+                       id="register__password" name="password" type="password" placeholder="Password" required>
             </div>
-            <div class="mb-5 w-full bg-transparent">
+            <div class="mb-5 w-full">
                 <label for="register__password_check"></label>
-                <input class="form-control w-full bg-transparent"
+                <input class="form-control w-full"
                        id="register__password_check" name="passwordCheck" type="password" placeholder="Repeat password" required>
             </div>
-            <div class="mb-5 w-full bg-transparent">
-                <input class="form-control w-full bg-transparent"
-                       aria-label="Birthday"
+            <div class="mb-5 w-full">
+                <label for="register__birthday">Birthday:</label>
+                <input class="form-control w-full"
                        id="register__birthday" name="birthday" type="date" placeholder="Birthday" required>
             </div>
             <input name="next" th:if="${next != null && next.length() > 0}" type="hidden" th:value="next">
             <div class="mb-3 flex gap-2 mt-3">
-                <button class="btn-primary flex-1 font-bold rounded-1 h-[46px] w-[266px] drop-shadow " type="submit">
+                <button class="btn-primary flex-1 font-bold rounded-1 h-[46px] w-[266px] drop-shadow" type="submit">
                     Register
                 </button>
                 <a class="btn-secondary flex-1 font-bold grid place-content-center"
@@ -43,7 +43,7 @@
             </div>
         </form>
     </main>
-</div>
+</main>
 <footer th:replace="include/footer"></footer>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package de.unibamberg.dsam.group6.prost.repository;
 
 import de.unibamberg.dsam.group6.prost.entity.Bottle;
+import java.util.List;
 import java.util.Optional;
 import javax.validation.constraints.NotNull;
 import org.springframework.data.domain.Page;
@@ -19,15 +20,18 @@ public interface BottlesRepository extends JpaRepository<Bottle, Long> {
     @Override
     Page<Bottle> findAll(Pageable pageable);
 
-    @Query("select b from bottles b where b.volumePercent > 0.5")
+    @Query("select b from bottles b where b.volumePercent > 0.0")
     Page<Bottle> findAllAlcoholic(Pageable pageable);
 
-    @Query("select b from bottles b where b.volumePercent <= 0.5")
+    @Query("select b from bottles b where b.volumePercent <= 0.0")
     Page<Bottle> findAllNonAlcoholic(Pageable pageable);
 
-    @Query("select count(b) from bottles b where b.volumePercent > 0.5")
+    @Query("select count(b) from bottles b where b.volumePercent > 0.0")
     Long countAllAlcoholic();
 
-    @Query("select count(b) from bottles b where b.volumePercent <= 0.5")
+    @Query("select count(b) from bottles b where b.volumePercent <= 0.0")
     Long countAllNonAlcoholic();
+
+    @Query("select b from bottles b where b.volumePercent > 3 and b.volumePercent < 8")
+    List<Bottle> findAllBeerLike();
 }

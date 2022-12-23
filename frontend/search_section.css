@@ -1,5 +1,5 @@
 .search-container {
-    height: 50vh;
+    padding: 4em 0;
     width: 100vw;
     background-image: url("./images/bg.png");
     background-blend-mode: overlay;

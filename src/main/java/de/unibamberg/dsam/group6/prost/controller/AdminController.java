@@ -14,6 +14,7 @@ import java.util.concurrent.ExecutionException;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -71,8 +72,24 @@ public class AdminController {
         return "redirect:" + next.orElse("/admin");
     }
 
+    @GetMapping("/form")
+    public String renderForm(@RequestParam Optional<String> type, Model model) {
+        if (type.isEmpty()) {
+            return "pages/admin_form_page";
+        }
+
+        if (type.get().equals("bottle")) {
+            model.addAttribute("bottle", new Bottle());
+        } else if (type.get().equals("crate")) {
+            model.addAttribute("crate", new Crate());
+            model.addAttribute("allBottles", this.bottlesRepository.findAll());
+        }
+
+        return "pages/admin_form_page";
+    }
+
     @PostMapping("/addBottle")
-    public String addBottle(@ModelAttribute @Valid Bottle bottle, Errors errors) {
+    public String addBottle(@RequestParam Optional<String> next, @ModelAttribute @Valid Bottle bottle, Errors errors) {
         if (errors.hasErrors()) {
             errors.getAllErrors().forEach(e -> {
                 this.errors.addToast(
@@ -82,11 +99,11 @@ public class AdminController {
             var added = this.bottlesRepository.save(bottle);
             this.errors.addToast(Toast.success("%s added successfully.", added.getName()));
         }
-        return "redirect:/admin";
+        return "redirect:" + next.orElse("/admin");
     }
 
     @PostMapping("/addCrate")
-    public String addCrate(@ModelAttribute @Valid Crate crate, Errors errors) {
+    public String addCrate(@RequestParam Optional<String> next, @ModelAttribute @Valid Crate crate, Errors errors) {
         if (errors.hasErrors()) {
             errors.getAllErrors().forEach(e -> {
                 this.errors.addToast(
@@ -96,6 +113,6 @@ public class AdminController {
             var added = this.cratesRepository.save(crate);
             this.errors.addToast(Toast.success("%s added successfully.", added.getName()));
         }
-        return "redirect:/admin";
+        return "redirect:" + next.orElse("/admin");
     }
 }

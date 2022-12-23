@@ -26,8 +26,22 @@
         .beverage-image {
             @apply rounded-3xl;
             height: 250px;
-            max-width: 200px;
+            width: 200px;
             object-fit: contain;
+
+            &.crate {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                height: calc(250px - 2em);
+            }
+        }
+
+        .crate-bottle-descr {
+            height: 2em;
+            max-width: 200px;
+            text-wrap: normal;
         }
 
         .beverage-descr {
@@ -167,4 +181,18 @@
             width: 80px;
         }
     }
+}
+
+.prost-frog-image {
+    @apply rounded-xl shadow;
+    height: 280px;
+    width: 380px;
+    background-image: url("./images/frog.jpg");
+    background-size: 380px 280px;
+    background-color: white;
+}
+
+.error-page-message {
+
+
 }

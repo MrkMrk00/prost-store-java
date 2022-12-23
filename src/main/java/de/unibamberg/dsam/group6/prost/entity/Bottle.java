@@ -1,5 +1,7 @@
 package de.unibamberg.dsam.group6.prost.entity;
 
+import static java.lang.String.format;
+
 import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -18,7 +20,7 @@ import org.hibernate.validator.constraints.URL;
 public class Bottle extends Beverage {
     @Column(name = "name")
     @NotEmpty
-    @Pattern(regexp = "\\w+")
+    @Pattern(regexp = "\\w+", message = "Name must only contain letters or numbers.")
     private String name;
 
     @Column(name = "bottle_pic")
@@ -45,14 +47,6 @@ public class Bottle extends Beverage {
     @Column(name = "in_stock")
     @Min(0)
     private int inStock;
-
-    // region Relation
-
-    @ManyToOne(targetEntity = Crate.class)
-    @JoinColumn(name = "crate_id")
-    private Crate crate;
-
-    // endregion
 
     @Override
     public boolean equals(Object o) {
@@ -89,5 +83,10 @@ public class Bottle extends Beverage {
 
     public boolean isAlcoholic() {
         return this.volumePercent > 0;
+    }
+
+    @Override
+    public String toString() {
+        return format("%.2f l - %s %s", this.volume, this.supplier, this.name);
     }
 }

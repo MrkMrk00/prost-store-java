@@ -42,14 +42,14 @@ public class IndexController {
         if (containsAlcohol.isPresent()) {
             if (containsAlcohol.get()) {
                 bottles = this.bottlesRepository.findAllAlcoholic(pagable);
-                model.addAttribute("max_page", this.bottlesRepository.countAllAlcoholic() / 9);
+                model.addAttribute("max_page", (this.bottlesRepository.countAllAlcoholic() - 1) / 9);
             } else {
                 bottles = this.bottlesRepository.findAllNonAlcoholic(pagable);
-                model.addAttribute("max_page", this.bottlesRepository.countAllNonAlcoholic() / 9);
+                model.addAttribute("max_page", (this.bottlesRepository.countAllNonAlcoholic() - 1) / 9);
             }
         } else {
             bottles = this.bottlesRepository.findAll(pagable);
-            model.addAttribute("max_page", this.bottlesRepository.count() / 9);
+            model.addAttribute("max_page", (this.bottlesRepository.count() - 1) / 9);
         }
 
         model.addAttribute("beverages", bottles.getContent());

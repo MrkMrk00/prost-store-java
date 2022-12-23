@@ -28,7 +28,7 @@ import org.springframework.util.ResourceUtils;
 public class DatabaseLoader {
     private final UserRepository userRepository;
     private final BottlesRepository bottlesRepository;
-    private final CratesRepository crateRepository;
+    private final CratesRepository cratesRepository;
     private final PasswordEncoder encoder;
 
     private Map<String, Object> data = null;
@@ -43,15 +43,20 @@ public class DatabaseLoader {
 
     @Async
     public Future<String> action__importAll() throws ExecutionException, InterruptedException, IOException {
-        var users = this.action__importUsers();
-        var bottles = this.action__importBottles();
-        var crates = this.action__importCrates();
-        return new AsyncResult<>(users.get() + "\n" + bottles.get());
+        final var sb = new StringBuilder()
+                .append(this.action__importUsers().get())
+                .append(System.lineSeparator())
+                .append(this.action__importBottles().get())
+                .append(System.lineSeparator())
+                .append(this.action__importCrates().get())
+                .append(System.lineSeparator());
+
+        return new AsyncResult<>(sb.toString());
     }
 
     @Async
     public Future<String> action__importUsers() throws IOException {
-        var users = (List<Map<String, String>>) this.getData().get("users");
+        final var users = (List<Map<String, String>>) this.getData().get("users");
         users.forEach(u -> {
             var b = u.get("birthday").split("-");
 
@@ -61,14 +66,13 @@ public class DatabaseLoader {
                     .birthday(LocalDate.of(Integer.parseInt(b[0]), Integer.parseInt(b[1]), Integer.parseInt(b[2])))
                     .build());
         });
-
+        this.userRepository.flush();
         return new AsyncResult<>("Users imported successfully.");
     }
 
     @Async
     public Future<String> action__importBottles() throws IOException {
-        var bottles = (List<Map<String, Object>>) this.getData().get("bottles");
-
+        final var bottles = (List<Map<String, Object>>) this.getData().get("bottles");
         bottles.forEach(b -> {
             this.bottlesRepository.save(Bottle.builder()
                     .name((String) b.get("name"))
@@ -80,23 +84,41 @@ public class DatabaseLoader {
                     .inStock((Integer) b.get("inStock"))
                     .build());
         });
-
+        this.bottlesRepository.flush();
         return new AsyncResult<>("Bottles imported successfully.");
     }
-    @Async
-    public Future<String> action__importCrates() throws  IOException{
-        var crates = (List<Map<String,Object>>) this.getData().get("crates");
 
-        crates.forEach(c ->{
-            this.crateRepository.save(Crate.builder()
+    @Async
+    public Future<String> action__importCrates() throws IOException {
+        final var crates = (List<Map<String, Object>>) this.getData().get("crates");
+        final var bottles = this.bottlesRepository.findAllBeerLike();
+        var iter = 0;
+
+        for (var c : crates) {
+            if (iter >= bottles.size()) {
+                iter = 0;
+                this.cratesRepository.flush();
+            }
+            this.cratesRepository.save(Crate.builder()
                     .name((String) c.get("name"))
                     .cratePic((String) c.get("cratePic"))
                     .noOfBottles((int) c.get("noOfBottles"))
                     .price((double) c.get("price"))
                     .cratesInStock((int) c.get("cratesInStock"))
+                    .bottle(bottles.get(iter))
                     .build());
-        });
-
+            iter++;
+        }
+        this.cratesRepository.flush();
         return new AsyncResult<>("Crates imported successfully");
+    }
+
+    @Async
+    public Future<String> action__clearDatabase() {
+        this.cratesRepository.deleteAll();
+        this.userRepository.deleteAll();
+        this.bottlesRepository.deleteAll();
+
+        return new AsyncResult<>("Cleared successfully.");
     }
 }

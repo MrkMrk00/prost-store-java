@@ -14,6 +14,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+/**
+ * Handles loading classes annotated with @AdminAction
+ * and displaying/calling their actions from the admin panel (frontend).
+ */
 @Service
 @RequiredArgsConstructor
 public class AdminActionsProvider {

@@ -6,31 +6,35 @@
 </head>
 <body class="prost-bg">
 <div th:replace="include/navbar"></div>
-<div class="flex h-screen w-screen justify-center items-center">
-    <main class="content-container w-max drop-shadow rounded-xl flex flex-col items-start justify-start py-2 bg-white">
+<main class="content-container flex flex-row justify-center items-center text-black">
+    <div class="flex flex-col p-8 bg-white shadow rounded-xl">
         <div class="logo self-center">
-            <a href="#" class="no-underline"> <img class="h-16" src="/images/Prost.png" alt="Prost"></a>
+            <a href="/"><img class="h-16" src="/images/Prost.png" alt="Prost"></a>
         </div>
-        <p class="text-black mt-5 mb-3 px-[1.8rem]"> Welcome back amigo!</p>
-        <form th:action="@{/login}" method="post" class="px-[1.8rem] w-max">
-            <div class="mb-3 w-full">
-                <label for="loginform__username"></label><br>
-                <input class="form-control w-full"
-                       id="loginform__username" name="username" type="text" placeholder="Enter your username" required>
-            </div>
-            <div class="mb-5 w-full">
-                <label for="loginform__password"></label><br>
-                <input class="form-control w-full"
-                       id="loginform__password" name="password" type="password" placeholder="Enter password" required>
-            </div>
+        <p class="py-3">Welcome back, Amigo!</p>
+        <form th:action="@{/login}" method="post">
             <input name="next" th:if="${next != null && next.length() > 0}" type="hidden" th:value="next">
-            <div class="mb-3 flex  gap-2 mt-3">
-                <button class="btn-primary flex-1 font-bold rounded-1 h-[46px] w-[266px] drop-shadow" type="submit">Sign In</button>
-                <a class="btn-secondary flex-1 font-bold grid place-content-center" href="/register">Register</a>
+            <div class="w-[320px]">
+                <div>
+                    <label for="loginform__username"></label><br>
+                    <input class="form-control w-full"
+                           id="loginform__username" name="username" type="text" placeholder="Username"
+                           required>
+                </div>
+                <div class="mb-5">
+                    <label for="loginform__password"></label><br>
+                    <input class="form-control w-full"
+                           id="loginform__password" name="password" type="password" placeholder="Password"
+                           required>
+                </div>
+                <div class="flex flex-row gap-2 text-center font-bold">
+                    <button class="btn-primary drop-shadow w-1/2" type="submit">Sign In</button>
+                    <a class="btn-secondary drop-shadow w-1/2" href="/register">Register</a>
+                </div>
             </div>
         </form>
-    </main>
-</div>
-<div th:replace="include/toasts"></div>
+    </div>
+</main>
+<div th:replace="include/footer"></div>
 </body>
 </html>

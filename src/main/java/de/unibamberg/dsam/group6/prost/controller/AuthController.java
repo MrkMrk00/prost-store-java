@@ -59,6 +59,12 @@ public class AuthController {
             return "redirect:/register";
         }
 
+        // check for unique username
+        if (this.userRepo.findUserByUsername(username).isPresent()) {
+            this.errors.addToast(Toast.error("This username is already in use. :/"));
+            return "redirect:/register";
+        }
+
         // Create user object
         var user = User.builder()
                 .username(username)

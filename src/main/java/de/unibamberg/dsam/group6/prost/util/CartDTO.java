@@ -11,6 +11,9 @@ import java.util.Map;
 public class CartDTO {
     public final Map<Beverage, Integer> beverages = new HashMap<>();
 
+    /**
+     * Constructs a CartDTO object from an Order instance.
+     */
     public static CartDTO fromOrder(Order order) {
         var self = new CartDTO();
         self.totalPrice = order.getPrice();
@@ -30,11 +33,18 @@ public class CartDTO {
         return this.totalPrice;
     }
 
+    /**
+     * Calculate prices of all beverages in cart
+     */
     public void recalculatePrice() {
         this.totalPrice = this.beverages.keySet().stream()
                 .reduce(0.0, (prev, cur) -> prev + this.beverages.get(cur) * cur.getPrice(), Double::sum);
     }
 
+    /**
+     * Maps CartDTO object with cart items as Beverage instances into
+     * instances of OrderItem (they are not persisted yet).
+     */
     public List<OrderItem> getOrderItems() {
         var orderItems = new ArrayList<OrderItem>();
         var position = 0;

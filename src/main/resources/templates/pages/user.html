@@ -8,10 +8,12 @@
 <div class="page_container">
     <div th:replace="include/navbar"></div>
     <main class="content-container mx-auto container py-3 text-black">
-        <div class="flex flex-row justify-end mb-3">
-            <a class="btn-primary" href="/logout"><i class="fa-solid fa-user-large-slash"></i> Log out</a>
-        </div>
         <div class="flex flex-row justify-center gap-5 flex-wrap">
+            <div class="flex flex-row justify-end mb-3">
+                <div class="py-5">
+                    <a class="btn-primary" href="/logout"><i class="fa-solid fa-user-large-slash"></i> Log out</a>
+                </div>
+            </div>
             <form action="/user" method="post" th:object="${user}">
                 <div class="form max-w-lg p-5 mx-auto rounded-lg shadow-lg border bg-white">
                     <h2 class="text-xl text-center"><strong>User credentials</strong></h2>

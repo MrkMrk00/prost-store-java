@@ -16,6 +16,7 @@ spring:
     web:
         resources:
             static-locations: file:src/main/resources/static/
+        locale: en_US
     session:
         jdbc:
             initialize-schema: always

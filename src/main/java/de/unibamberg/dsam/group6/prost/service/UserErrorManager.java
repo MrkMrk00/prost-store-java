@@ -8,6 +8,11 @@ import javax.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+/**
+ * Handles toasts (messages delivered to user on each page refresh).
+ * Toasts are on every page, and after they are rendered once, they
+ * are deleted from the session.
+ */
 @Service
 @RequiredArgsConstructor
 public class UserErrorManager {

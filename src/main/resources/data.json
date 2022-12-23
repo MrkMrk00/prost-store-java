@@ -293,7 +293,6 @@
     ],
     "crates": [
         {
-
             "name": "Alkoholfrei_Kasten",
             "cratePic": "https://i.postimg.cc/JzkBPGbN/alkoholfrei-Kasten-35a15018.png",
             "noOfBottles": 20,
@@ -301,7 +300,6 @@
             "cratesInStock": 500
         },
         {
-
             "name": "Lager_Kasten",
             "cratePic": "https://i.postimg.cc/8Cgf3NHq/lager-kasten-9c8d3c8b.png",
             "noOfBottles": 20,
@@ -309,7 +307,6 @@
             "cratesInStock": 500
         },
         {
-
             "name": "Vollbier_Kasten",
             "cratePic": "https://i.postimg.cc/hPHXzcHf/vollbier-kasten-cb3e9e73.png",
             "noOfBottles": 20,
@@ -317,7 +314,6 @@
             "cratesInStock": 500
         },
         {
-
             "name": "Pills_Kasten",
             "cratePic": "https://i.postimg.cc/0j4bCsjX/pils-kasten-c00eaadb.png",
             "noOfBottles": 20,
@@ -325,7 +321,6 @@
             "cratesInStock": 500
         },
         {
-
             "name": "Weisbeir_Kasten",
             "cratePic": "https://i.postimg.cc/3xmd2zT9/weissbier-kasten-a7575d53.png",
             "noOfBottles": 20,
