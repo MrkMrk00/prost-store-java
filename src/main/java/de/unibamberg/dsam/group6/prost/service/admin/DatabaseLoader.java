@@ -2,8 +2,10 @@ package de.unibamberg.dsam.group6.prost.service.admin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.unibamberg.dsam.group6.prost.entity.Bottle;
+import de.unibamberg.dsam.group6.prost.entity.Crate;
 import de.unibamberg.dsam.group6.prost.entity.User;
 import de.unibamberg.dsam.group6.prost.repository.BottlesRepository;
+import de.unibamberg.dsam.group6.prost.repository.CratesRepository;
 import de.unibamberg.dsam.group6.prost.repository.UserRepository;
 import de.unibamberg.dsam.group6.prost.util.annotation.AdminAction;
 import java.io.IOException;
@@ -26,6 +28,7 @@ import org.springframework.util.ResourceUtils;
 public class DatabaseLoader {
     private final UserRepository userRepository;
     private final BottlesRepository bottlesRepository;
+    private final CratesRepository crateRepository;
     private final PasswordEncoder encoder;
 
     private Map<String, Object> data = null;
@@ -78,5 +81,21 @@ public class DatabaseLoader {
         });
 
         return new AsyncResult<>("Bottles imported successfully.");
+    }
+    @Async
+    public Future<String> action__importCrates() throws  IOException{
+        var crates = (List<Map<String,Object>>) this.getData().get("crates");
+
+        crates.forEach(c ->{
+            this.crateRepository.save(Crate.builder()
+                    .name((String) c.get("name"))
+                    .cratePic((String) c.get("cratePic"))
+                    .noOfBottles((int) c.get("noOfBottles"))
+                    .price((double) c.get("price"))
+                    .cratesInStock((int) c.get("cratesInStock"))
+                    .build());
+        });
+
+        return new AsyncResult<>("Crates imported successfully");
     }
 }

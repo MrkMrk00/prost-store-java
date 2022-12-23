@@ -15,6 +15,7 @@ import org.hibernate.validator.constraints.URL;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Crate extends Beverage {
     @Column(name = "name", nullable = false)
     @NotEmpty
