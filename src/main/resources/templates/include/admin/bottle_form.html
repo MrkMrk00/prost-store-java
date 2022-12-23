@@ -1,9 +1,9 @@
 <div class="flex flex-row justify-between mb-3">
-    <a th:href="@{/admin}" class="btn-primary">
-        <i class="fa-solid fa-arrow-left"></i>&ensp;
-        Admin
+    <a class="btn-primary" th:if="${param.get('from') != null}" th:with="from=${param.get('from').toString()}" th:href="${from}">
+        <i class="fa-solid fa-arrow-left"></i>
     </a>
     <h2 class="text-center text-3xl">Add new bottle</h2>
+    <span></span>
 </div>
 <hr class="mb-3" />
 <form action="/admin/addBottle" method="post" th:object="${bottle}">

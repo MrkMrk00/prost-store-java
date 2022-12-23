@@ -20,7 +20,7 @@ import static java.lang.String.format;
 public class Bottle extends Beverage {
     @Column(name = "name")
     @NotEmpty
-    @Pattern(regexp = "\\w+")
+    @Pattern(regexp = "\\w+", message = "Name must only contain letters or numbers.")
     private String name;
 
     @Column(name = "bottle_pic")

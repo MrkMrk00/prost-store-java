@@ -5,7 +5,10 @@
              th:src="${beverage.getPicture()}"
              th:alt="${beverage.getName()}"
         >
-        <span th:if="${beverage.isCrateInstance()}" th:text="${beverage.bottle.toString()}" class="crate-bottle-descr"></span>
+        <div th:if="${beverage.isCrateInstance()}" class="crate-bottle-descr">
+            <strong>Contains: </strong>
+            <span th:text="${beverage.bottle.toString()}"></span>
+        </div>
     </div>
     <div class="beverage-content">
         <div class="beverage-descr">

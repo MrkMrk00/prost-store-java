@@ -20,7 +20,7 @@ import org.hibernate.validator.constraints.URL;
 public class Crate extends Beverage {
     @Column(name = "name", nullable = false)
     @NotEmpty
-    @Pattern(regexp = "\\w+")
+    @Pattern(regexp = "\\w+", message = "Name must only contain letters or numbers.")
     private String name;
 
     @Column(name = "crate_pic")
@@ -43,7 +43,7 @@ public class Crate extends Beverage {
 
     @ManyToOne
     @JoinColumn(name = "bottle_id")
-    @NotNull
+    @NotNull(message = "Must choose a bottle.")
     private Bottle bottle;
 
     // endregion

@@ -4,10 +4,10 @@
     <meta th:replace="include/admin_head">
     <title>Prost admin</title>
 </head>
-<body>
+<body class="prost-bg">
 <nav th:replace="include/navbar"></nav>
 <main class="content-container flex flex-row justify-center">
-    <div>
+    <div class="bg-white p-5 m-5 rounded-xl drop-shadow">
         <th:block th:if="${param.get('type') != null}">
             <th:block th:if="${param.getOrDefault('type', '_').toString().equals('bottle')}">
                 <div th:replace="include/admin/bottle_form"></div>
