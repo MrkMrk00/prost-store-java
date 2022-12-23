@@ -27,7 +27,7 @@
             @apply rounded-3xl;
             height: 250px;
             max-width: 200px;
-            object-fit: cover;
+            object-fit: contain;
         }
 
         .beverage-descr {

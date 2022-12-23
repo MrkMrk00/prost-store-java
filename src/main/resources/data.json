@@ -177,7 +177,7 @@
             "name": "Whisky",
             "bottlePic": "https://i.postimg.cc/Hxmf7VgW/Tobermory-21-Years-26673-Whisky.png",
             "volume": 3.96,
-            "volumePercent": 3.18,
+            "volumePercent": 0.1,
             "price": 85,
             "supplier": "Tobermory",
             "inStock": 595
