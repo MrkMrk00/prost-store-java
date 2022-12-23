@@ -39,8 +39,8 @@
             <div class="ml-5 flex flex-row justify-between gap-5" th:each="bev : ${cartDTO.beverages}">
                 <div class="flex flex-row">
                     <div class="flex flex-col px-5" th:text="${bev.value} + 'x'"></div>
-                    <i th:if="${bev.key.isBottle()}" class="fa-solid fa-wine-bottle">&emsp;</i>
-                    <i th:if="${bev.key.isCrate()}" class="fa-solid fa-suitcase">&emsp;</i>
+                    <i th:if="${bev.key.isBottleInstance()}" class="fa-solid fa-wine-bottle">&emsp;</i>
+                    <i th:if="${bev.key.isCrateInstance()}" class="fa-solid fa-suitcase">&emsp;</i>
                     <strong th:text="${bev.key.getName()}"></strong>
                 </div>
                 <span>à <strong th:text="'€' + ${bev.key.getPrice()}"></strong></span>

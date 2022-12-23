@@ -5,6 +5,28 @@
     <title>Prost admin</title>
 </head>
 <body>
-
+<nav th:replace="include/navbar"></nav>
+<main class="content-container flex flex-row justify-center">
+    <div>
+        <th:block th:if="${param.get('type') != null}">
+            <th:block th:if="${param.getOrDefault('type', '_').toString().equals('bottle')}">
+                <div th:replace="include/admin/bottle_form"></div>
+            </th:block>
+            <th:block th:if="${param.getOrDefault('type', '_').toString().equals('crate')}">
+                <div th:replace="include/admin/crate_form"></div>
+            </th:block>
+        </th:block>
+        <div th:if="${param.get('type') == null}" class="flex flex-col text-center gap-3">
+            <h2>Form types:</h2>
+            <a class="btn-primary" th:href="@{${#httpServletRequest.getRequestURI()}(type='bottle')}">
+                Bottle
+            </a>
+            <a class="btn-primary" th:href="@{${#httpServletRequest.getRequestURI()}(type='crate')}">
+                Crate
+            </a>
+        </div>
+    </div>
+</main>
+<footer th:replace="include/footer"></footer>
 </body>
 </html>

@@ -21,8 +21,8 @@
                                 </button>
                             </form>
                         </div>
-                        <small th:if="${beverage.isBottle()}" th:text="${beverage.volume} + ' l'"></small>
-                        <small th:if="${beverage.isCrate()}" th:text="${beverage.noOfBottles} + ' bottles'"></small>
+                        <small th:if="${beverage.isBottleInstance()}" th:text="${beverage.volume} + ' l'"></small>
+                        <small th:if="${beverage.isCrateInstance()}" th:text="${beverage.noOfBottles} + ' bottles'"></small>
                     </div>
                     <div class="flex flex-row justify-between">
                         <span th:if="${count > 1}" th:text="${count} + ' pcs.'"></span>

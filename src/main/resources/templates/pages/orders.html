@@ -9,9 +9,9 @@
 <main class="content-container flex flex-row justify-center">
     <div>
         <h1 class="text-3xl mt-3 mb-3"><strong>Your orders</strong></h1>
-        <div class="overflow-x-auto relative">
-            <table class="w-[75vw] text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <div class="overflow-x-auto relative rounded-xl shadow">
+            <table class="w-[75vw] text-left">
+                <thead class="uppercase text-lg bg-gray-50 border-b">
                 <tr>
                     <th scope="col" class="py-3 px-6">
                         #
@@ -26,12 +26,12 @@
                 </thead>
                 <tbody>
                 <tr th:each="order : ${orders}"
-                    class="bg-white hover:bg-gray-50 border-b dark:bg-gray-800 dark:border-gray-700 cursor-pointer transition-colors"
+                    class="bg-white hover:bg-primary cursor-pointer transition-colors"
                     th:onclick="'window.location.assign(\'/orders/' + ${order.id} +'\');'"
                 >
                     <th
                         scope="row"
-                        class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                        class="py-4 px-6 whitespace-nowrap"
                         th:text="${orderStat.index}"
                     ></th>
                     <td class="py-4 px-6" th:text="${#dates.format(order.createdOn, 'dd-MM-yyyy hh a')}"></td>

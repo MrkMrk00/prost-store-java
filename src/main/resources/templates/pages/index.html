@@ -13,9 +13,13 @@
             <i>“The mouth of a perfectly happy man is filled with beer.”</i><br />
             What are you waiting for? join us and order now!
         </p>
-        <div>
-            <a class="btn-primary font-bold" style="padding: 12px 30px;" href="/register">Register</a>
-        </div>
+        <a
+            sec:authorize="isAnonymous()"
+            class="btn-primary font-bold"
+            style="padding: 12px 30px;"
+            href="/register"
+        >Register
+        </a>
     </div>
     <div class="p-5">
         <h2 class="text-3xl font-bold">Happiness is a choice, so is getting drunk!</h2>

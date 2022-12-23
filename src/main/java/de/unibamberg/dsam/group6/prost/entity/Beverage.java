@@ -19,11 +19,11 @@ public abstract class Beverage {
     @OneToMany(mappedBy = "beverage")
     private List<OrderItem> orderItem;
 
-    public boolean isBottle() {
+    public boolean isBottleInstance() {
         return this instanceof Bottle;
     }
 
-    public boolean isCrate() {
+    public boolean isCrateInstance() {
         return this instanceof Crate;
     }
 

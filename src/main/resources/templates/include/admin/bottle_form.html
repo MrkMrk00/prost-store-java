@@ -1,6 +1,15 @@
-<h2 class="widget-title">Add new bottle</h2>
+<div class="flex flex-row justify-between mb-3">
+    <a th:href="@{/admin}" class="btn-primary">
+        <i class="fa-solid fa-arrow-left"></i>&ensp;
+        Admin
+    </a>
+    <h2 class="text-center text-3xl">Add new bottle</h2>
+</div>
 <hr class="mb-3" />
 <form action="/admin/addBottle" method="post" th:object="${bottle}">
+    <input type="hidden" name="next"
+           th:value="${#httpServletRequest.getRequestURI()} + '?' + ${#httpServletRequest.getQueryString()}"
+    >
     <div class="form">
         <div class="form__row">
             <label for="BottleForm__name">Name</label>
