@@ -204,7 +204,7 @@
             "name": "Kolonne",
             "bottlePic": "https://i.postimg.cc/LsJjdxK1/Alkoholfreier-Wein-Kolonne-Null-Deutschland-0-75ltr.png",
             "volume": 13.88,
-            "volumePercent": 0.35,
+            "volumePercent": 0.0,
             "price": 85,
             "supplier": "Carl Jung",
             "inStock": 279
@@ -231,7 +231,7 @@
             "name": "Vibrante",
             "bottlePic": "https://i.postimg.cc/RVvfCSx9/Martini-Vibrante-alkoholfrei-21768.png",
             "volume": 5.35,
-            "volumePercent": 0.3,
+            "volumePercent": 0.0,
             "price": 28,
             "supplier": "Martini Rossi",
             "inStock": 328
@@ -249,7 +249,7 @@
             "name": "Ladubay",
             "bottlePic": "https://i.postimg.cc/63RRqTQ6/Bouvet-Ladubay-La-Petite-Reine-Jus-de-Pommes-Petillant-alkoholfrei-25823.png",
             "volume": 2.76,
-            "volumePercent": 7.19,
+            "volumePercent": 0.0,
             "price": 5,
             "supplier": "Domaine La Petite Reine",
             "inStock": 443
@@ -258,7 +258,7 @@
             "name": "Zero",
             "bottlePic": "https://i.postimg.cc/Hn9y0K5f/Boar-Zero-Bio-Destillat-alkoholfrei-aus-dem-Schwarzwald-24278.png",
             "volume": 5.13,
-            "volumePercent": 0.3,
+            "volumePercent": 0.0,
             "price": 25,
             "supplier": "Boar Distiller",
             "inStock": 462
@@ -267,7 +267,7 @@
             "name": "Martini_Floreale",
             "bottlePic": "https://i.postimg.cc/fWcmh3FB/Martini-Floreale-alkoholfrei-21769.png",
             "volume": 3.43,
-            "volumePercent": 0.2,
+            "volumePercent": 0.0,
             "price": 85,
             "supplier": "Martini and Rossi",
             "inStock": 554

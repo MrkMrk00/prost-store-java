@@ -23,7 +23,7 @@ public interface BottlesRepository extends JpaRepository<Bottle, Long> {
     @Query("select b from bottles b where b.volumePercent > 0.0")
     Page<Bottle> findAllAlcoholic(Pageable pageable);
 
-    @Query("select b from bottles b where b.volumePercent <= 0.0")
+    @Query("select b from bottles b where b.volumePercent = 0.0")
     Page<Bottle> findAllNonAlcoholic(Pageable pageable);
 
     @Query("select count(b) from bottles b where b.volumePercent > 0.0")
