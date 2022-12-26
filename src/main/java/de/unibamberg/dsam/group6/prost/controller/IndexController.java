@@ -28,7 +28,7 @@ public class IndexController {
         return "pages/index";
     }
 
-    @GetMapping("verifyAge")
+    @GetMapping("/verifyAge")
     public String verifyAge(HttpSession session){
         session.setAttribute("ageVerified",true);
         return "redirect:/";
