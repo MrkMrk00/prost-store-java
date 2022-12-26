@@ -6,12 +6,12 @@
 </head>
 <body class="prost-bg">
 <main class="content-container flex flex-row justify-center items-center">
-    <div class="flex flex-col gap-5 text-center font-bold">
-        <h2 class="text-4xl" th:text="${statusCode}"></h2>
+    <div class="flex flex-col gap-5 text-center font-bold pt-24">
+        <h2 class="text-4xl text-black" th:text="${statusCode}"></h2>
         <th:block th:switch="${statusCode}">
-            <h2 class="text-2xl" th:case="404">Are you lost?</h2>
-            <h2 class="text-2xl" th:case="500">Someone spilled beer in our system! We'll look into it!</h2>
-            <h2 class="text-2xl" th:case="*">If you are seeing this page, an error has occured!</h2>
+            <h2 class="text-2xl  text-black" th:case="404">Are you lost?</h2>
+            <h2 class="text-2xl text-black" th:case="500">Someone spilled beer in our system! We'll look into it!</h2>
+            <h2 class="text-2xl text-black" th:case="*">If you are seeing this page, an error has occured!</h2>
         </th:block>
 
         <div class="prost-frog-image mx-auto"></div>
@@ -20,7 +20,7 @@
                 <i class="fa-solid fa-arrow-left"></i>&ensp;
                 Go Back
             </button>
-            <a class="btn-primary w-1/2" href="/static">
+            <a class="btn-primary w-1/2" href="/">
                 <i class="fa-solid fa-home"></i>&ensp;
                 Go Home
             </a>
