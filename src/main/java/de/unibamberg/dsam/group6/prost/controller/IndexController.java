@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequiredArgsConstructor
 public class IndexController {
@@ -19,8 +21,17 @@ public class IndexController {
     private final CratesRepository cratesRepository;
 
     @GetMapping("/")
-    public String index() {
+    public String index(HttpSession session) {
+        if(session.getAttribute("ageVerified")==null){
+            session.setAttribute("ageVerified",false);
+        }
         return "pages/index";
+    }
+
+    @GetMapping("verifyAge")
+    public String verifyAge(HttpSession session){
+        session.setAttribute("ageVerified",true);
+        return "redirect:/";
     }
 
     @GetMapping("/order_success")
