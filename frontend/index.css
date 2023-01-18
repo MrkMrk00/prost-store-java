@@ -27,16 +27,6 @@ a {
     box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-    html {
-        color-scheme: dark;
-    }
-    body {
-        color: white;
-        background: whitesmoke;
-    }
-}
-
 :root {
     --success-color: #4BB543;
     --success-color-dark: #378330;
@@ -50,12 +40,9 @@ a {
     --warning-color: #ffc107;
     --warning-color-dark: #be930a;
 
-
     --gray: #f1f1f1;
     --gray-med: #bebebe;
     --gray-dark:#636363;
-
-
 }
 
 @layer utilities {
