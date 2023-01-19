@@ -37,6 +37,14 @@ public class User implements UserDetails {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
 
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
     // region Relations
 
     @OneToMany(mappedBy = "user")
@@ -88,5 +96,22 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "username"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+    private Collection<Role> roles;
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 }
