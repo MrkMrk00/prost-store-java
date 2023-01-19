@@ -13,6 +13,7 @@
                         <div class="flex flex-row justify-between">
                             <h2 class="text-xl font-semibold" th:text="${beverage.getName()}"></h2>
                             <form action="/cart/remove" method="post">
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                                 <input name="beverageId" type="hidden" th:value="${beverage.getId()}">
                                 <input name="next" type="hidden" value="/cart">
                                 <input name="all" type="hidden" value="1">
@@ -36,6 +37,7 @@
             <div class="cart-item-row__buttons">
                 <div>
                     <form action="/cart/add" method="post">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                         <input name="beverageId" type="hidden" th:value="${beverage.getId()}">
                         <input name="next" type="hidden" value="/cart">
                         <button type="submit" class="cart-item-button">
@@ -45,6 +47,7 @@
                 </div>
                 <div>
                     <form action="/cart/remove" method="post">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                         <input name="beverageId" type="hidden" th:value="${beverage.getId()}">
                         <input name="next" type="hidden" value="/cart">
                         <button type="submit" class="cart-item-button">

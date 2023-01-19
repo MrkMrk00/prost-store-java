@@ -45,6 +45,10 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
 }
 
+bootJar {
+    archiveName "prost.jar"
+}
+
 tasks.named('test') {
     useJUnitPlatform()
 }

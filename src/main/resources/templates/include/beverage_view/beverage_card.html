@@ -20,6 +20,7 @@
         </div>
         <div class="flex flex-row justify-end">
             <form th:action="@{/cart/add}" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                 <input name="beverageId" th:value="${beverage.getId()}" type="hidden">
                 <input name="next"
                        th:value="

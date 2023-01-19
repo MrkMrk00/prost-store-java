@@ -1,0 +1,10 @@
+.gradle
+.idea
+.settings
+./build/
+node_modules
+.eslintrc.yml
+.gitignore
+.prettierignore
+.prettierrc.yml
+*.md

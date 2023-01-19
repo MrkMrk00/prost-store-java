@@ -15,6 +15,7 @@
                 </div>
             </div>
             <form action="/user" method="post" th:object="${user}">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                 <div class="form max-w-lg p-5 mx-auto rounded-lg shadow-lg border bg-white">
                     <h2 class="text-xl text-center"><strong>User credentials</strong></h2>
                     <hr class="mb-3" />
@@ -49,6 +50,7 @@
                 </div>
             </form>
             <form action="/user/addAddress" method="post" th:object="${address}">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                 <div class="form max-w-lg p-5 mx-auto rounded-lg shadow-lg border bg-white">
                     <h2 class="text-xl text-center"><strong>Add new address</strong></h2>
                     <hr class="mb-3" />

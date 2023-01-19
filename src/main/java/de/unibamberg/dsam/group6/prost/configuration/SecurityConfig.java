@@ -53,7 +53,6 @@ public class SecurityConfig {
             http.headers(h -> {
                 h.frameOptions().disable().httpStrictTransportSecurity().disable();
             });
-            http.csrf().disable();
         }
         return http.build();
     }
