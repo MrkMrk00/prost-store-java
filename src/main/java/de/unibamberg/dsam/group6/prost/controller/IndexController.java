@@ -21,16 +21,7 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(HttpSession session) {
-        if (session.getAttribute("ageVerified") == null) {
-            session.setAttribute("ageVerified", false);
-        }
         return "pages/index";
-    }
-
-    @GetMapping("/verifyAge")
-    public String verifyAge(HttpSession session) {
-        session.setAttribute("ageVerified", true);
-        return "redirect:/";
     }
 
     @GetMapping("/order_success")
