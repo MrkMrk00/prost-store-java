@@ -5,14 +5,13 @@ import de.unibamberg.dsam.group6.prost.repository.BottlesRepository;
 import de.unibamberg.dsam.group6.prost.repository.CratesRepository;
 import de.unibamberg.dsam.group6.prost.util.OffsetBasedPageRequest;
 import java.util.Optional;
+import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.servlet.http.HttpSession;
 
 @Controller
 @RequiredArgsConstructor
@@ -22,15 +21,15 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(HttpSession session) {
-        if(session.getAttribute("ageVerified")==null){
-            session.setAttribute("ageVerified",false);
+        if (session.getAttribute("ageVerified") == null) {
+            session.setAttribute("ageVerified", false);
         }
         return "pages/index";
     }
 
     @GetMapping("/verifyAge")
-    public String verifyAge(HttpSession session){
-        session.setAttribute("ageVerified",true);
+    public String verifyAge(HttpSession session) {
+        session.setAttribute("ageVerified", true);
         return "redirect:/";
     }
 
