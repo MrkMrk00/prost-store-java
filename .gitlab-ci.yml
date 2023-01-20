@@ -2,6 +2,9 @@ image: google/cloud-sdk:alpine
 stages:
   - deploy
 
+variables:
+  PROJECT_ID: $PROJECT_ID
+
 default:
   before_script:
     - curl -s https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer | bash
@@ -14,7 +17,7 @@ deploy_application:
   only:
     - main
   script:
-    - gcloud app deploy app.yaml --quiet --project $PROJECT_ID
+    - gcloud app deploy app.yaml --quiet --project "$PROJECT_ID"
 
 deploy_invoicing_function:
   stage: deploy
@@ -22,7 +25,7 @@ deploy_invoicing_function:
     - main
   script:
     - cd invoicing-function
-    - gcloud functions deploy invoicing-function  --project $PROJECT_ID --quiet --max-instances 1 --entry-point $(cat functionMainClass) --region europe-west3 --runtime java17 --trigger-http --memory 512MB
+    - gcloud functions deploy invoicing-function  --project "$PROJECT_ID" --quiet --max-instances 1 --entry-point $(cat functionMainClass) --region europe-west3 --runtime java17 --trigger-http --memory 512MB
 
 deploy_bi_function:
   stage: deploy
@@ -30,4 +33,4 @@ deploy_bi_function:
     - main
   script:
     - cd bi-function
-    - gcloud functions deploy bi-function --project $PROJECT_ID --quiet --max-instances 1 --entry-point $(cat functionMainClass) --region europe-west3 --runtime java17 --trigger-http --memory 512MB
+    - gcloud functions deploy bi-function --project "$PROJECT_ID" --quiet --max-instances 1 --entry-point $(cat functionMainClass) --region europe-west3 --runtime java17 --trigger-http --memory 512MB
