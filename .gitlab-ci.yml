@@ -8,7 +8,7 @@ deploy_production:
   only:
   - main
   script:
-  -  curl -s https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer | bash
+  - curl -s https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer | bash
   - gcloud auth activate-service-account --key-file .secure_files/maximal-radius-375114-f09823b3e627.json
   - gcloud --quiet --project $PROJECT_ID app deploy app.yaml
 
