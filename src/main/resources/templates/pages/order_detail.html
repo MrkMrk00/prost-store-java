@@ -36,14 +36,14 @@
                 </div>
                 <div class="flex flex-col px-5"></div>
             </div>
-            <div class="ml-5 flex flex-row justify-between gap-5" th:each="bev : ${cartDTO.beverages}">
+            <div class="ml-5 flex flex-row justify-between gap-5" th:each="bev : ${cartDTO.beverages}" th:with="beverage=${bev.key},count=${bev.value}">
                 <div class="flex flex-row">
-                    <div class="flex flex-col px-5" th:text="${bev.value} + 'x'"></div>
-                    <i th:if="${bev.key.isBottleInstance()}" class="fa-solid fa-wine-bottle">&emsp;</i>
-                    <i th:if="${bev.key.isCrateInstance()}" class="fa-solid fa-suitcase">&emsp;</i>
-                    <strong th:text="${bev.key.getName()}"></strong>
+                    <img style="height: 150px;" th:alt="${beverage.getName()}" th:src="${beverage.getPicture()}">
+                    <div class="flex flex-col px-5" th:text="${count} + 'x'"></div>
+                    <strong th:text="${beverage.getName()}"></strong>
                 </div>
-                <span>à <strong th:text="'€' + ${bev.key.getPrice()}"></strong></span>
+                <span>à <strong th:text="'€' + ${beverage.getPrice()}"></strong></span>
+                <hr>
             </div>
         </div>
     </div>

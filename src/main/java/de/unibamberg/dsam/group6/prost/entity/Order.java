@@ -10,6 +10,17 @@ import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity(name = "orders")
+@NamedEntityGraph(
+        name = "order-beverages",
+        attributeNodes = @NamedAttributeNode(value = "orderItems", subgraph = "orderItem.beverage"),
+        subgraphs =
+                @NamedSubgraph(
+                        name = "orderItem.beverage",
+                        attributeNodes = {@NamedAttributeNode("beverage")}))
+@NamedEntityGraph(
+        name = "order-usernames",
+        attributeNodes = @NamedAttributeNode(value = "user", subgraph = "user.username"),
+        subgraphs = @NamedSubgraph(name = "user.username", attributeNodes = @NamedAttributeNode("username")))
 @Getter
 @Setter
 @NoArgsConstructor
@@ -31,11 +42,11 @@ public class Order {
 
     // region Relations
 
-    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems;
     // endregion
 

@@ -1,8 +1,9 @@
-.gradle
-.idea
-.settings
+.git/
+.gradle/
+.idea/
+.settings/
 ./build/
-node_modules
+node_modules/
 .eslintrc.yml
 .gitignore
 .prettierignore

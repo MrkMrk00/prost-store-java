@@ -53,7 +53,13 @@ public class SecurityConfig {
             http.headers(h -> {
                 h.frameOptions().disable().httpStrictTransportSecurity().disable();
             });
+        } else if (this.activeProfiles.contains("prod")) {
+            http.headers(h -> {
+                h.httpStrictTransportSecurity();
+                h.frameOptions().sameOrigin();
+            });
         }
+
         return http.build();
     }
 
