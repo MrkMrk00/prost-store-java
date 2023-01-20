@@ -14,7 +14,7 @@ deploy_application:
   only:
     - main
   script:
-    - gcloud --quiet --project $PROJECT_ID app deploy app.yaml
+    - gcloud app deploy app.yaml --quiet --project $PROJECT_ID
 
 deploy_invoicing_function:
   stage: deploy
@@ -22,7 +22,7 @@ deploy_invoicing_function:
     - main
   script:
     - cd invoicing-function
-    - gcloud --project $PROJECT_ID functions deploy invoicing-function --max-instances 1 --entry-point $(cat functionMainClass) --region europe-west3 --runtime java17 --trigger-http --memory 512MB
+    - gcloud functions deploy invoicing-function  --project $PROJECT_ID --quiet --max-instances 1 --entry-point $(cat functionMainClass) --region europe-west3 --runtime java17 --trigger-http --memory 512MB
 
 deploy_bi_function:
   stage: deploy
@@ -30,4 +30,4 @@ deploy_bi_function:
     - main
   script:
     - cd bi-function
-    - gcloud --project $PROJECT_ID functions deploy bi-function --max-instances 1 --entry-point $(cat functionMainClass) --region europe-west3 --runtime java17 --trigger-http --memory 512MB
+    - gcloud functions deploy bi-function --project $PROJECT_ID --quiet --max-instances 1 --entry-point $(cat functionMainClass) --region europe-west3 --runtime java17 --trigger-http --memory 512MB
