@@ -23,7 +23,7 @@ deploy_invoicing_function:
   only:
     - main
   script:
-    - cd $CI_BUILDS_DIR && cd invoicing-function
+    - cd invoicing-function
     - gcloud --project $PROJECT_ID functions deploy invoicing-function --entry-point $(cat functionMainClass) --region europe-west3 --runtime java17 --trigger-http --memory 512MB --allow-unauthenticated
 
 deploy_bi_function:
@@ -32,5 +32,5 @@ deploy_bi_function:
   only:
     - main
   script:
-    - cd $CI_BUILDS_DIR && cd bi-function
+    - cd bi-function
     - gcloud --project $PROJECT_ID functions deploy bi-function --entry-point $(cat functionMainClass) --region europe-west3 --runtime java17 --trigger-http --memory 512MB --allow-unauthenticated
