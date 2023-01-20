@@ -53,7 +53,8 @@ public class DatabaseLoader {
     private Role createRoleIfNotFound(String name, Collection<Privilege> privileges) {
         final var role = this.rolesRepository.findByName(name);
         if (role.isEmpty()) {
-            var newRole = new Role(name);
+            var newRole = new Role();
+            newRole.setName(name);
             newRole.setPrivileges(privileges);
             this.rolesRepository.save(newRole);
             return newRole;
@@ -64,7 +65,8 @@ public class DatabaseLoader {
     private Privilege createPrivilegeIfNotFound(String name) {
         final var privilege = this.privilegesRepository.findByName(name);
         if (privilege.isEmpty()) {
-            var newPrivilege = new Privilege(name);
+            var newPrivilege = new Privilege();
+            newPrivilege.setName(name);
             this.privilegesRepository.save(newPrivilege);
             return newPrivilege;
         }

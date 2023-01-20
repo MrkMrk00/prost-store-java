@@ -42,7 +42,7 @@ public class Order {
 
     // region Relations
 
-    @ManyToOne(targetEntity = User.class)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 

@@ -3,139 +3,24 @@
         {
             "username": "admin",
             "password": "admin123",
-            "birthday": "2020-06-15",
+            "birthday": "1995-06-15",
             "role": "ROLE_ADMIN"
         },
         {
             "username": "marek",
             "password": "tvojeMama",
-            "birthday": "2017-07-10",
+            "birthday": "2000-07-10",
             "role": "ROLE_ADMIN"
         },
         {
             "username": "sscrease2",
             "password": "tUVDj7t",
-            "birthday": "2019-12-18"
+            "birthday": "1998-12-18"
         },
         {
             "username": "ddimmne3",
             "password": "clqlGO",
-            "birthday": "2019-12-03"
-        },
-        {
-            "username": "nharral4",
-            "password": "idkWzK8WmGwn",
-            "birthday": "2020-05-08"
-        },
-        {
-            "username": "rbonsall5",
-            "password": "mAAOu9qjNT",
-            "birthday": "2017-05-21"
-        },
-        {
-            "username": "bgiuron6",
-            "password": "oGWLRecCzaP",
-            "birthday": "2020-04-10"
-        },
-        {
-            "username": "gdormon7",
-            "password": "VFL4af73",
-            "birthday": "2021-12-24"
-        },
-        {
-            "username": "cbulluck8",
-            "password": "4UL1wQVBb7",
-            "birthday": "2019-12-07"
-        },
-        {
-            "username": "mbooi9",
-            "password": "J6UJfQW4VB",
-            "birthday": "2022-04-30"
-        },
-        {
-            "username": "mmarkwelleya",
-            "password": "0Ri8Pq",
-            "birthday": "2020-01-16"
-        },
-        {
-            "username": "blabbeb",
-            "password": "Sa5404",
-            "birthday": "2018-05-12"
-        },
-        {
-            "username": "aroddamc",
-            "password": "mnDY8bsdcRV3",
-            "birthday": "2019-12-29"
-        },
-        {
-            "username": "pdionisiod",
-            "password": "JJxIgTSF5",
-            "birthday": "2021-02-21"
-        },
-        {
-            "username": "gissone",
-            "password": "1v0iqv",
-            "birthday": "2017-02-19"
-        },
-        {
-            "username": "dbartkef",
-            "password": "Wwy0sGZ",
-            "birthday": "2021-06-05"
-        },
-        {
-            "username": "mvedstrag",
-            "password": "4IlePSS",
-            "birthday": "2022-08-24"
-        },
-        {
-            "username": "wmascallh",
-            "password": "8g3Vr6KMi",
-            "birthday": "2017-12-01"
-        },
-        {
-            "username": "fgabitesi",
-            "password": "KIaFm8SJ",
-            "birthday": "2019-01-09"
-        },
-        {
-            "username": "cjustej",
-            "password": "l1VyHfucRr9V",
-            "birthday": "2021-11-11"
-        },
-        {
-            "username": "alashamk",
-            "password": "wdkUnznRSqL",
-            "birthday": "2018-11-09"
-        },
-        {
-            "username": "chyndsonl",
-            "password": "HrGfQLKY",
-            "birthday": "2019-01-13"
-        },
-        {
-            "username": "derleym",
-            "password": "fN8VXfP",
-            "birthday": "2021-05-09"
-        },
-        {
-            "username": "ltamesn",
-            "password": "bCTb3By2BRsE",
-            "birthday": "2018-10-19"
-        },
-        {
-            "username": "ostalleno",
-            "password": "LCc5fDc6qycV",
-            "birthday": "2022-06-17"
-        },
-        {
-            "username": "glebarrp",
-            "password": "IDG6DR1kmID",
-            "birthday": "2018-07-08"
-        },
-        {
-            "username": "jeveleighq",
-            "password": "yyDwJ3ofJ4",
-            "birthday": "2017-03-18"
+            "birthday": "1998-12-03"
         }
     ],
     "bottles": [
