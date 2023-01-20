@@ -2,9 +2,6 @@ image: google/cloud-sdk:alpine
 stages:
   - deploy
 
-variables:
-  PROJECT_ID: $PROJECT_ID
-
 default:
   before_script:
     - curl -s https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer | bash
