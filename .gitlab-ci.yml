@@ -24,7 +24,7 @@ deploy_invoicing_function:
     - main
   script:
     - cd invoicing-function
-    - gcloud --project $PROJECT_ID functions deploy invoicing-function --entry-point $(cat functionMainClass) --region europe-west3 --runtime java17 --trigger-http --memory 512MB --allow-unauthenticated
+    - gcloud --project $PROJECT_ID functions deploy invoicing-function --max-instances 1 --entry-point $(cat functionMainClass) --region europe-west3 --runtime java17 --trigger-http --memory 512MB
 
 deploy_bi_function:
   stage: deploy
@@ -33,4 +33,4 @@ deploy_bi_function:
     - main
   script:
     - cd bi-function
-    - gcloud --project $PROJECT_ID functions deploy bi-function --entry-point $(cat functionMainClass) --region europe-west3 --runtime java17 --trigger-http --memory 512MB --allow-unauthenticated
+    - gcloud --project $PROJECT_ID functions deploy bi-function --max-instances 1 --entry-point $(cat functionMainClass) --region europe-west3 --runtime java17 --trigger-http --memory 512MB
