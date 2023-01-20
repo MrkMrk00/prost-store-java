@@ -1,7 +1,7 @@
 package de.unibamberg.dsam.group6.prost.entity;
-import javax.persistence.*;
 
 import java.util.Collection;
+import javax.persistence.*;
 
 @Entity
 public class Role {
@@ -11,6 +11,7 @@ public class Role {
     private Long id;
 
     private String name;
+
     @ManyToMany(mappedBy = "roles")
     private Collection<User> users;
 
@@ -21,15 +22,11 @@ public class Role {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "roles_privileges",
-            joinColumns = @JoinColumn(
-                    name = "role_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "privilege_id", referencedColumnName = "id"))
+            joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "privilege_id", referencedColumnName = "id"))
     private Collection<Privilege> privileges;
 
-    public Role() {
-
-    }
+    public Role() {}
 
     public Long getId() {
         return id;
@@ -46,7 +43,6 @@ public class Role {
     public void setName(String name) {
         this.name = name;
     }
-
 
     public Collection<Privilege> getPrivileges() {
         return privileges;

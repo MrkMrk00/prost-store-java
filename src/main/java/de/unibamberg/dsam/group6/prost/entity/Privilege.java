@@ -1,12 +1,10 @@
 package de.unibamberg.dsam.group6.prost.entity;
 
-import javax.persistence.*;
-
 import java.util.Collection;
+import javax.persistence.*;
 
 @Entity
 public class Privilege {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,12 +16,10 @@ public class Privilege {
         this.name = name;
     }
 
-    @ManyToMany(mappedBy = "privileges",fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "privileges", fetch = FetchType.EAGER)
     private Collection<Role> roles;
 
-    public Privilege() {
-
-    }
+    public Privilege() {}
 
     public Long getId() {
         return id;

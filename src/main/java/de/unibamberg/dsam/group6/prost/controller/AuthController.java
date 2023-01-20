@@ -1,7 +1,7 @@
 package de.unibamberg.dsam.group6.prost.controller;
 
 import de.unibamberg.dsam.group6.prost.entity.User;
-import de.unibamberg.dsam.group6.prost.repository.RoleRepository;
+import de.unibamberg.dsam.group6.prost.repository.RolesRepository;
 import de.unibamberg.dsam.group6.prost.repository.UserRepository;
 import de.unibamberg.dsam.group6.prost.service.UserErrorManager;
 import de.unibamberg.dsam.group6.prost.util.Toast;
@@ -24,8 +24,6 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
     private final UserErrorManager errors;
     private final UserRepository userRepo;
-
-    private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private final Validator validator;
 
@@ -74,7 +72,6 @@ public class AuthController {
                 .username(username)
                 .password(this.passwordEncoder.encode(password))
                 .birthday(birthday)
-                .roles(Arrays.asList(roleRepository.findByName("ROLE_USER")))
                 .build();
 
         // Native Bean Validation constraint checking

@@ -21,3 +21,6 @@ spring:
         resources:
             cache:
                 period: 0
+logging:
+    level:
+        root: info

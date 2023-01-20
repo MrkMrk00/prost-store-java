@@ -35,10 +35,13 @@ public class SecurityConfig {
                     req.antMatchers("/cart/**").authenticated();
                     req.antMatchers("/orders/**").authenticated();
                     req.antMatchers("/user/**").authenticated();
-                    if (!this.activeProfiles.contains("dev")) {
-                        req.antMatchers("/admin/**").hasRole("ADMIN");
+
+                    if (this.activeProfiles.contains("dev")) {
+                        req.antMatchers("/h2-console/**").permitAll();
+                    } else {
+                        req.antMatchers("/admin/**").hasRole("ROLE_ADMIN");
                     }
-                    req.antMatchers("/**").permitAll();
+                    req.anyRequest().permitAll();
                 })
                 .formLogin(form -> {
                     form.loginPage("/login").permitAll();
@@ -50,10 +53,12 @@ public class SecurityConfig {
                 .logout(Customizer.withDefaults());
 
         if (this.activeProfiles.contains("dev")) {
+            http.csrf().ignoringAntMatchers("/h2-console/**");
             http.headers(h -> {
                 h.frameOptions().disable().httpStrictTransportSecurity().disable();
             });
         } else if (this.activeProfiles.contains("prod")) {
+            http.csrf();
             http.headers(h -> {
                 h.httpStrictTransportSecurity();
                 h.frameOptions().sameOrigin();

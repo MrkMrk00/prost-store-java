@@ -3,12 +3,14 @@
         {
             "username": "admin",
             "password": "admin123",
-            "birthday": "2020-06-15"
+            "birthday": "2020-06-15",
+            "role": "ROLE_ADMIN"
         },
         {
             "username": "marek",
             "password": "tvojeMama",
-            "birthday": "2017-07-10"
+            "birthday": "2017-07-10",
+            "role": "ROLE_ADMIN"
         },
         {
             "username": "sscrease2",
