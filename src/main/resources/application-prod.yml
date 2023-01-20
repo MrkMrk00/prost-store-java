@@ -17,3 +17,10 @@ spring:
                 format_sql: true
     thymeleaf:
         cache: true
+
+server:
+    servlet:
+        session:
+            cookie:
+                http-only: true
+                secure: true
