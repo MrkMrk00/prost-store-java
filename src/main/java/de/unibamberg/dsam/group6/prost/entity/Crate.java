@@ -12,10 +12,9 @@ import org.hibernate.validator.constraints.URL;
 
 @Entity(name = "crates")
 @NamedEntityGraph(
-        name = "crate.bottle",
+        name = "crate-with-bottle",
         attributeNodes = @NamedAttributeNode(value = "bottle", subgraph = "bottle.name"),
-        subgraphs = @NamedSubgraph(name = "bottle.name", attributeNodes = @NamedAttributeNode("name"))
-)
+        subgraphs = @NamedSubgraph(name = "bottle.name", attributeNodes = @NamedAttributeNode("name")))
 @Getter
 @Setter
 @NoArgsConstructor

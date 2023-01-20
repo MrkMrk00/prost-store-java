@@ -1,18 +1,19 @@
 package de.unibamberg.dsam.group6.prost.entity;
 
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.Set;
+import javax.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Collection;
-import javax.persistence.*;
-
 @Entity(name = "roles")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Role {
+public class Role implements Serializable {
     @Id
     @Setter(AccessLevel.NONE)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,5 +29,5 @@ public class Role {
             name = "roles_privileges",
             joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "privilege_id", referencedColumnName = "id"))
-    private Collection<Privilege> privileges;
+    private Set<Privilege> privileges;
 }

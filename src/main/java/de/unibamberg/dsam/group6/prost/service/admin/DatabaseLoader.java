@@ -50,7 +50,7 @@ public class DatabaseLoader {
         return new AsyncResult<>(sb.toString());
     }
 
-    private Role createRoleIfNotFound(String name, Collection<Privilege> privileges) {
+    private Role createRoleIfNotFound(String name, Set<Privilege> privileges) {
         final var role = this.rolesRepository.findByName(name);
         if (role.isEmpty()) {
             var newRole = new Role();

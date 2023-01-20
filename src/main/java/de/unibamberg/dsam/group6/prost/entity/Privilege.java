@@ -1,18 +1,19 @@
 package de.unibamberg.dsam.group6.prost.entity;
 
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.Set;
+import javax.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Collection;
-import javax.persistence.*;
-
 @Entity(name = "privileges")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Privilege {
+public class Privilege implements Serializable {
 
     @Id
     @Setter(AccessLevel.NONE)
@@ -22,5 +23,5 @@ public class Privilege {
     private String name;
 
     @ManyToMany(mappedBy = "privileges")
-    private Collection<Role> roles;
+    private Set<Role> roles;
 }
