@@ -3,12 +3,12 @@ FROM amazoncorretto:17-alpine-jdk AS build
 WORKDIR /build
 COPY . .
 
-# Java build
-RUN ./gradlew clean bootJar
-
-# Frontend build
+# Frontend build (have to be first -> static is coppied with java build)
 RUN apk add --update nodejs npm
 RUN npm install && npm run build
+
+# Java build
+RUN ./gradlew clean bootJar
 
 FROM amazoncorretto:17-alpine
 
