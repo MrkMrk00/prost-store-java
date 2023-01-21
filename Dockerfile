@@ -16,8 +16,6 @@ WORKDIR /app
 COPY --from=build /build/build/ ./
 
 ENV APP_ENV="prod"
+RUN echo "export DB_PASSWD=$(cat resources/main/db_passwd);java -jar libs/prost.jar" > start.sh
 
-RUN export DB_PASSWD=$(cat resources/main/db_passwd)
-RUN rm -f resources/main/db_passwd
-
-ENTRYPOINT ["java", "-jar", "libs/prost.jar"]
+ENTRYPOINT ["start.sh"]
