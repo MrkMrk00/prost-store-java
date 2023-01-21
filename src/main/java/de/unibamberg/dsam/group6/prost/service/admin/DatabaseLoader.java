@@ -10,6 +10,7 @@ import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -31,7 +32,7 @@ public class DatabaseLoader {
 
     private Map<String, Object> getData() throws IOException {
         if (this.data == null) {
-            var file = ResourceUtils.getFile("classpath:data.json");
+            var file = new ClassPathResource("data.json").getInputStream();
             this.data = new ObjectMapper().readValue(file, HashMap.class);
         }
         return this.data;
