@@ -1,7 +1,6 @@
 package de.unibamberg.dsam.group6.prost.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Set;
 import javax.persistence.*;
 import lombok.AccessLevel;

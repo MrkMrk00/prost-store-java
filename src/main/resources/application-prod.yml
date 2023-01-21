@@ -13,7 +13,6 @@ spring:
             ddl-auto: update
     thymeleaf:
         cache: true
-
 server:
     servlet:
         session:
