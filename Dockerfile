@@ -17,5 +17,6 @@ COPY --from=build /build/build/ ./
 
 ENV APP_ENV="prod"
 RUN echo "export DB_PASSWD=$(cat resources/main/db_passwd);java -jar libs/prost.jar" > start.sh
+RUN chmod +x start.sh
 
 ENTRYPOINT ["start.sh"]

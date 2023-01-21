@@ -11,10 +11,13 @@ default:
 
 deploy_application:
   stage: deploy
+  after_script:
+    - rm -rf .secret_files
+    - rm -f src/main/resources/db_passwd
   only:
     - main
   script:
-    - echo $DB_PASSWD > src/main/resources/db_passwd
+    - echo "$DB_PASSWD" > src/main/resources/db_passwd
     - gcloud --quiet --project "$PROJECT_ID" app deploy app.yaml
 
 deploy_invoicing_function:
