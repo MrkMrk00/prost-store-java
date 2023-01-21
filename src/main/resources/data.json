@@ -1,12 +1,6 @@
 {
     "users": [
         {
-            "username": "admin",
-            "password": "admin123",
-            "birthday": "1995-06-15",
-            "role": "ROLE_ADMIN"
-        },
-        {
             "username": "marek",
             "password": "tvojeMama",
             "birthday": "2000-07-10",

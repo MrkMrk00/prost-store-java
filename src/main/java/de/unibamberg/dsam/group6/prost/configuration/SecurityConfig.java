@@ -39,7 +39,7 @@ public class SecurityConfig {
                     if (this.activeProfiles.contains("dev")) {
                         req.antMatchers("/h2-console/**").permitAll();
                     } else {
-                        req.antMatchers("/admin/**").hasRole("ROLE_ADMIN");
+                        req.antMatchers("/admin/**").hasRole("ADMIN");
                     }
                     req.anyRequest().permitAll();
                 })
@@ -50,7 +50,7 @@ public class SecurityConfig {
                         res.sendRedirect("/login");
                     });
                 })
-                .logout(Customizer.withDefaults());
+                .logout(t -> t.logoutUrl("/logout").permitAll());
 
         if (this.activeProfiles.contains("dev")) {
             http.csrf().ignoringAntMatchers("/h2-console/**");

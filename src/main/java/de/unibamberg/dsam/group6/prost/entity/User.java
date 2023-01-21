@@ -68,12 +68,18 @@ public class User implements UserDetails {
         return getClass().hashCode();
     }
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.roles.stream()
+        final var authorities = new HashSet<GrantedAuthority>();
+        this.roles.stream()
+                .map(r -> new SimpleGrantedAuthority(r.getName()))
+                .forEach(authorities::add);
+        this.roles.stream()
                 .flatMap(r -> r.getPrivileges().stream())
-                .map(p -> new SimpleGrantedAuthority(p.getName()))
-                .collect(Collectors.toSet());
+                .map(r -> new SimpleGrantedAuthority(r.getName()))
+                .forEach(authorities::add);
+        return authorities;
     }
 
     @Override

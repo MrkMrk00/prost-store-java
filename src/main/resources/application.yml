@@ -2,7 +2,6 @@ spring:
     profiles:
         active: ${APP_ENV:dev,local}
     jpa:
-        database-platform: org.hibernate.dialect.H2Dialect
         open-in-view: false
         properties:
             hibernate:

@@ -2,15 +2,36 @@ image: google/cloud-sdk:alpine
 stages:
   - deploy
 
-deploy_production:
+default:
+  before_script:
+    - curl -s https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer | bash
+    - gcloud auth activate-service-account --key-file .secure_files/maximal-radius-375114-f09823b3e627.json
+  after_script:
+    - rm -rf .secret_files
+
+deploy_application:
   stage: deploy
   environment: Production
   only:
-  - main
+    - main
   script:
-  - curl -s https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer | bash
-  - gcloud auth activate-service-account --key-file .secure_files/maximal-radius-375114-f09823b3e627.json
-  - gcloud --quiet --project $PROJECT_ID app deploy app.yaml
+    - echo $DB_PASSWD > src/main/resources/db_passwd
+    - gcloud --quiet --project $PROJECT_ID app deploy app.yaml
 
-after_script:
-- rm -rf .secure_files
+deploy_invoicing_function:
+  stage: deploy
+  environment: Production
+  only:
+    - main
+  script:
+    - cd invoicing-function
+    - gcloud --project $PROJECT_ID functions deploy invoicing-function --entry-point $(cat functionMainClass) --region europe-west3 --runtime java17 --trigger-http --memory 512MB --allow-unauthenticated
+
+deploy_bi_function:
+  stage: deploy
+  environment: Production
+  only:
+    - main
+  script:
+    - cd bi-function
+    - gcloud --project $PROJECT_ID functions deploy bi-function --entry-point $(cat functionMainClass) --region europe-west3 --runtime java17 --trigger-http --memory 512MB --allow-unauthenticated
