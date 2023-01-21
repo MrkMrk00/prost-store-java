@@ -1,22 +1,24 @@
 package de.unibamberg.dsam.group6.prost.entity;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+
+import de.unibamberg.dsam.group6.prost.util.CartDTO;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 
 @Entity(name = "orders")
 @NamedEntityGraph(
         name = "order-beverages",
         attributeNodes = @NamedAttributeNode(value = "orderItems", subgraph = "orderItem.beverage"),
         subgraphs =
-                @NamedSubgraph(
-                        name = "orderItem.beverage",
-                        attributeNodes = {@NamedAttributeNode("beverage")}))
+        @NamedSubgraph(
+                name = "orderItem.beverage",
+                attributeNodes = {@NamedAttributeNode("beverage")}))
 @NamedEntityGraph(
         name = "order-usernames",
         attributeNodes = @NamedAttributeNode(value = "user", subgraph = "user.username"),
@@ -62,4 +64,18 @@ public class Order {
     public int hashCode() {
         return getClass().hashCode();
     }
+
+    public JSONObject getStats() {
+        final var deliveryAddress = this.getUser().getDeliveryAddress();
+        final var dto = CartDTO.fromOrder(this);
+        final var items = new HashMap<Long, Integer>();
+        dto.beverages.forEach((key, value) -> items.put(key.getId(), value));
+
+        return new JSONObject(Map.of(
+                "timeStamp", this.createdOn.getTime(),
+                "postalCode", deliveryAddress == null ? "00000" : deliveryAddress.getPostalCode(),
+                "orderItems", items
+        ));
+    }
 }
+
