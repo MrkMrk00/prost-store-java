@@ -13,7 +13,6 @@ deploy_application:
   stage: deploy
   after_script:
     - rm -rf .secret_files
-    - rm -f src/main/resources/db_passwd
   only:
     - main
   script:
