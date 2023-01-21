@@ -1,18 +1,12 @@
 package de.unibamberg.dsam.group6.prost.service.admin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.unibamberg.dsam.group6.prost.entity.Bottle;
-import de.unibamberg.dsam.group6.prost.entity.Crate;
-import de.unibamberg.dsam.group6.prost.entity.User;
-import de.unibamberg.dsam.group6.prost.repository.BottlesRepository;
-import de.unibamberg.dsam.group6.prost.repository.CratesRepository;
-import de.unibamberg.dsam.group6.prost.repository.UserRepository;
+import de.unibamberg.dsam.group6.prost.entity.*;
+import de.unibamberg.dsam.group6.prost.repository.*;
 import de.unibamberg.dsam.group6.prost.util.annotation.AdminAction;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +24,8 @@ public class DatabaseLoader {
     private final BottlesRepository bottlesRepository;
     private final CratesRepository cratesRepository;
     private final PasswordEncoder encoder;
+    private final RolesRepository rolesRepository;
+    private final PrivilegesRepository privilegesRepository;
 
     private Map<String, Object> data = null;
 
@@ -54,16 +50,45 @@ public class DatabaseLoader {
         return new AsyncResult<>(sb.toString());
     }
 
+    private Role createRoleIfNotFound(String name, Set<Privilege> privileges) {
+        final var role = this.rolesRepository.findByName(name);
+        if (role.isEmpty()) {
+            var newRole = new Role();
+            newRole.setName(name);
+            newRole.setPrivileges(privileges);
+            this.rolesRepository.save(newRole);
+            return newRole;
+        }
+        return role.get();
+    }
+
+    private Privilege createPrivilegeIfNotFound(String name) {
+        final var privilege = this.privilegesRepository.findByName(name);
+        if (privilege.isEmpty()) {
+            var newPrivilege = new Privilege();
+            newPrivilege.setName(name);
+            this.privilegesRepository.save(newPrivilege);
+            return newPrivilege;
+        }
+        return privilege.get();
+    }
+
     @Async
     public Future<String> action__importUsers() throws IOException {
         final var users = (List<Map<String, String>>) this.getData().get("users");
         users.forEach(u -> {
             var b = u.get("birthday").split("-");
+            final var roleStr = u.get("role");
+            final var role = new HashSet<Role>();
+            if (roleStr != null) {
+                role.add(this.createRoleIfNotFound(roleStr, Collections.emptySet()));
+            }
 
             this.userRepository.save(User.builder()
                     .username(u.get("username"))
                     .password(this.encoder.encode(u.get("password")))
                     .birthday(LocalDate.of(Integer.parseInt(b[0]), Integer.parseInt(b[1]), Integer.parseInt(b[2])))
+                    .roles(role)
                     .build());
         });
         this.userRepository.flush();

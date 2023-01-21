@@ -1,6 +1,7 @@
 package de.unibamberg.dsam.group6.prost.service;
 
 import de.unibamberg.dsam.group6.prost.repository.UserRepository;
+import java.util.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,20 +1,16 @@
 spring:
-    h2:
-        console:
-            enabled: false
     datasource:
-        username: prostadmin
-        password: strongpassword
-        url: jdbc:h2:mem:prost
-        driverClassName: org.h2.Driver
+        username: postgres
+        password: ${DB_PASSWD}
+        url: jdbc:postgresql://34.141.11.95:5432/prost
     jpa:
-        show-sql: true
-        generate-ddl: true
-        hibernate:
-            ddl-auto: create
         properties:
             hibernate:
-                format_sql: true
+                jdbc:
+                    lob:
+                        non_contextual_creation: true
+        hibernate:
+            ddl-auto: update
     thymeleaf:
         cache: true
 

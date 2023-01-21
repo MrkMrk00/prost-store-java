@@ -25,9 +25,11 @@
                 <a href="/user" th:classappend="${#httpServletRequest.getRequestURI() == '/user' ? 'active' : ''}">
                     <i class="fa-solid fa-lg fa-circle-user"></i>
                 </a>
-                <a th:classappend="${#httpServletRequest.getRequestURI() == '/admin' ? 'active' : ''}" href="/admin">
-                    Admin
-                </a>
+                <div sec:authorize="hasRole('ADMIN')">
+                    <a th:classappend="${#httpServletRequest.getRequestURI() == '/admin' ? 'active' : ''}" href="/admin">
+                        Admin
+                    </a>
+                </div>
             </th:block>
         </div>
     </div>

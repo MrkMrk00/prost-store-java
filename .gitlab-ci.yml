@@ -14,7 +14,8 @@ deploy_application:
   only:
     - main
   script:
-    - gcloud app deploy app.yaml --quiet --project "$PROJECT_ID"
+    - echo $DB_PASSWD > src/main/resources/db_passwd
+    - gcloud --quiet --project "$PROJECT_ID" app deploy app.yaml
 
 deploy_invoicing_function:
   stage: deploy

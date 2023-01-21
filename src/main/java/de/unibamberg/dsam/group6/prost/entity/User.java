@@ -2,19 +2,22 @@ package de.unibamberg.dsam.group6.prost.entity;
 
 import de.unibamberg.dsam.group6.prost.util.annotation.IsAfter;
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity(name = "users")
+@NamedEntityGraph(
+        name = "user-with-roles",
+        attributeNodes = @NamedAttributeNode(value = "roles", subgraph = "roles.privileges"),
+        subgraphs = @NamedSubgraph(name = "roles.privileges", attributeNodes = @NamedAttributeNode("privileges")))
 @Getter
 @Setter
 @NoArgsConstructor
@@ -65,9 +68,18 @@ public class User implements UserDetails {
         return getClass().hashCode();
     }
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.emptyList();
+        final var authorities = new HashSet<GrantedAuthority>();
+        this.roles.stream()
+                .map(r -> new SimpleGrantedAuthority(r.getName()))
+                .forEach(authorities::add);
+        this.roles.stream()
+                .flatMap(r -> r.getPrivileges().stream())
+                .map(r -> new SimpleGrantedAuthority(r.getName()))
+                .forEach(authorities::add);
+        return authorities;
     }
 
     @Override
@@ -88,5 +100,24 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @ManyToMany
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "username"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private Collection<Role> roles;
+
+    public void addRole(Role role) {
+        this.roles.add(role);
+    }
+
+    public void removeRole(Role role) {
+        this.roles.remove(role);
+    }
+
+    public boolean hasRole(Role role) {
+        return this.roles.contains(role);
     }
 }

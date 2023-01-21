@@ -9,3 +9,5 @@ node_modules/
 .prettierignore
 .prettierrc.yml
 *.md
+bi-function/
+invoicing-function/
