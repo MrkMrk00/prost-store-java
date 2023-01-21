@@ -30,8 +30,10 @@ public class CartController {
     private final OrderItemsRepository orderItemsRepository;
 
     @GetMapping("/cart")
-    public String showCart(Model model) {
+    public String showCart(Model model, Principal principal) {
+        final var user = this.userRepo.findUserByUsername(principal.getName()).orElseThrow();
         model.addAttribute("cart", this.cart.getCartState());
+        model.addAttribute("user", user);
         return "pages/cart";
     }
 
