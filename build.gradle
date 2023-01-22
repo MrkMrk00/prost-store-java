@@ -51,6 +51,7 @@ dependencies {
     implementation 'org.postgresql:postgresql'
     implementation 'org.apache.commons:commons-lang3'
     implementation 'com.fasterxml.jackson.core:jackson-core'
+    implementation 'com.google.code.gson:gson'
     developmentOnly 'com.h2database:h2'
 
     annotationProcessor 'org.projectlombok:lombok'

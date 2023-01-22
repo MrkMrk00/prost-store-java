@@ -3,7 +3,6 @@ package de.unibamberg.dsam.group6.prost.entity;
 import de.unibamberg.dsam.group6.prost.util.annotation.IsAfter;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import lombok.*;
@@ -68,13 +67,10 @@ public class User implements UserDetails {
         return getClass().hashCode();
     }
 
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         final var authorities = new HashSet<GrantedAuthority>();
-        this.roles.stream()
-                .map(r -> new SimpleGrantedAuthority(r.getName()))
-                .forEach(authorities::add);
+        this.roles.stream().map(r -> new SimpleGrantedAuthority(r.getName())).forEach(authorities::add);
         this.roles.stream()
                 .flatMap(r -> r.getPrivileges().stream())
                 .map(r -> new SimpleGrantedAuthority(r.getName()))

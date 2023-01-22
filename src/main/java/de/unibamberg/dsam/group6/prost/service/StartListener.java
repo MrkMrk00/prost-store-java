@@ -4,14 +4,13 @@ import de.unibamberg.dsam.group6.prost.entity.Role;
 import de.unibamberg.dsam.group6.prost.entity.User;
 import de.unibamberg.dsam.group6.prost.repository.RolesRepository;
 import de.unibamberg.dsam.group6.prost.repository.UserRepository;
+import java.time.LocalDate;
+import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDate;
-import java.util.Set;
 
 @Component
 @RequiredArgsConstructor

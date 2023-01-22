@@ -10,12 +10,12 @@ import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ResourceUtils;
 
 @Service
 @RequiredArgsConstructor
@@ -28,11 +28,14 @@ public class DatabaseLoader {
     private final RolesRepository rolesRepository;
     private final PrivilegesRepository privilegesRepository;
 
+    @Value("classpath:data.json")
+    private Resource dataFile;
+
     private Map<String, Object> data = null;
 
     private Map<String, Object> getData() throws IOException {
         if (this.data == null) {
-            var file = new ClassPathResource("data.json").getInputStream();
+            var file = this.dataFile.getInputStream();
             this.data = new ObjectMapper().readValue(file, HashMap.class);
         }
         return this.data;
