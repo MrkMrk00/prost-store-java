@@ -67,7 +67,7 @@ public class SecurityConfig {
                 h.httpStrictTransportSecurity();
                 h.frameOptions().sameOrigin();
             });
-            http.requiresChannel().anyRequest().requiresSecure();
+            http.requiresChannel().antMatchers("/*").requiresSecure();
         }
         return http.build();
     }
@@ -81,9 +81,9 @@ public class SecurityConfig {
         return new TomcatServletWebServerFactory() {
             @Override
             protected void postProcessContext(Context context) {
-                SecurityConstraint securityConstraint = new SecurityConstraint();
+                var securityConstraint = new SecurityConstraint();
                 securityConstraint.setUserConstraint("CONFIDENTIAL");
-                SecurityCollection collection = new SecurityCollection();
+                var collection = new SecurityCollection();
                 collection.addPattern("/*");
                 securityConstraint.addCollection(collection);
                 context.addConstraint(securityConstraint);
