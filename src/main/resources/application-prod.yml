@@ -6,6 +6,7 @@ spring:
         driver-class-name: org.postgresql.Driver
         tomcat:
             max-active: 5
+            max-idle: 5
     jpa:
         properties:
             hibernate:
