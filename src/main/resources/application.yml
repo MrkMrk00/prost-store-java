@@ -16,3 +16,8 @@ spring:
     session:
         jdbc:
             initialize-schema: always
+
+prost:
+    cfg:
+        bi-function-url: ''
+        invoicing-function-url: ''

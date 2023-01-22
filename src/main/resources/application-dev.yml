@@ -28,3 +28,4 @@ logging:
 prost:
     cfg:
         bi-function-url: http://localhost:8081/
+        invoicing-function-url: http://localhost:8081/
