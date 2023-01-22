@@ -1,14 +1,11 @@
 package de.unibamberg.dsam.group6.prost.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonObject;
 import de.unibamberg.dsam.group6.prost.entity.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,7 +20,7 @@ public class StatisticsService {
         this.doPost(order.getStats());
     }
 
-    private void doPost(JSONObject body) {
+    private void doPost(JsonObject body) {
         RestTemplate restTemplate = new RestTemplate();
         var headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");

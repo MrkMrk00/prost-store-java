@@ -1,24 +1,22 @@
 package de.unibamberg.dsam.group6.prost.entity;
 
+import com.google.gson.JsonObject;
+import de.unibamberg.dsam.group6.prost.util.CartDTO;
 import java.util.*;
-import java.util.stream.Collectors;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
-
-import de.unibamberg.dsam.group6.prost.util.CartDTO;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
 
 @Entity(name = "orders")
 @NamedEntityGraph(
         name = "order-beverages",
         attributeNodes = @NamedAttributeNode(value = "orderItems", subgraph = "orderItem.beverage"),
         subgraphs =
-        @NamedSubgraph(
-                name = "orderItem.beverage",
-                attributeNodes = {@NamedAttributeNode("beverage")}))
+                @NamedSubgraph(
+                        name = "orderItem.beverage",
+                        attributeNodes = {@NamedAttributeNode("beverage")}))
 @NamedEntityGraph(
         name = "order-usernames",
         attributeNodes = @NamedAttributeNode(value = "user", subgraph = "user.username"),
@@ -65,17 +63,19 @@ public class Order {
         return getClass().hashCode();
     }
 
-    public JSONObject getStats() {
+    public JsonObject getStats() {
         final var deliveryAddress = this.getUser().getDeliveryAddress();
-        final var dto = CartDTO.fromOrder(this);
-        final var items = new HashMap<Long, Integer>();
-        dto.beverages.forEach((key, value) -> items.put(key.getId(), value));
 
-        return new JSONObject(Map.of(
-                "timeStamp", this.createdOn.getTime(),
-                "postalCode", deliveryAddress == null ? "00000" : deliveryAddress.getPostalCode(),
-                "orderItems", items
-        ));
+        final var items = new JsonObject();
+        CartDTO.fromOrder(this)
+                .beverages
+                .forEach((key, value) -> items.addProperty(key.getId().toString(), value));
+
+        final var obj = new JsonObject();
+        obj.addProperty("timeStamp", this.createdOn.getTime());
+        obj.addProperty("postalCode", deliveryAddress == null ? "00000" : deliveryAddress.getPostalCode());
+        obj.add("orderItems", items);
+
+        return obj;
     }
 }
-
