@@ -1,7 +1,7 @@
 spring:
     datasource:
         username: postgres
-        password: 4:0hX~sybX6bva702WIzV1e8O1Y1.123rzAbpUi65
+        password: ${DB_PASSWD}
         url: jdbc:postgresql://172.17.0.1:5678/prost
     jpa:
         properties:
