@@ -1,6 +1,9 @@
 runtime: custom
 env: flex
 
+beta_settings:
+  cloud_sql_instances: maximal-radius-375114:europe-west3:prost-db=tcp:5678
+
 handlers:
     - url: /.*
       secure: always
