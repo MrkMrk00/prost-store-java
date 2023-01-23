@@ -72,25 +72,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-    /**
-     * Configures Tomcat to use HTTPS
-     */
-    @Profile("prod")
-    @Bean
-    public TomcatServletWebServerFactory servletContainer() {
-        return new TomcatServletWebServerFactory() {
-            @Override
-            protected void postProcessContext(Context context) {
-                var securityConstraint = new SecurityConstraint();
-                securityConstraint.setUserConstraint("CONFIDENTIAL");
-                var collection = new SecurityCollection();
-                collection.addPattern("/*");
-                securityConstraint.addCollection(collection);
-                context.addConstraint(securityConstraint);
-            }
-        };
-    }
-
     @Bean
     public AuthenticationProvider daoAuthenticationProvider() {
         var provider = new DaoAuthenticationProvider();
