@@ -6,6 +6,7 @@ import de.unibamberg.dsam.group6.prost.repository.BottlesRepository;
 import de.unibamberg.dsam.group6.prost.repository.CratesRepository;
 import de.unibamberg.dsam.group6.prost.service.AdminActionsProvider;
 import de.unibamberg.dsam.group6.prost.service.UserErrorManager;
+import de.unibamberg.dsam.group6.prost.service.admin.VersionReader;
 import de.unibamberg.dsam.group6.prost.util.Toast;
 import de.unibamberg.dsam.group6.prost.util.exception.CallFailedException;
 import java.util.Map;
@@ -27,15 +28,21 @@ public class AdminController {
     private final AdminActionsProvider actions;
     private final BottlesRepository bottlesRepository;
     private final CratesRepository cratesRepository;
+    private final VersionReader version;
 
     @GetMapping("")
     public ModelAndView adminIndex() {
         return new ModelAndView(
                 "pages/admin",
                 Map.of(
-                        "actions", this.actions.getAnnotatedInstances(),
-                        "bottle", new Bottle(),
-                        "crate", new Crate()));
+                        "actions",
+                        this.actions.getAnnotatedInstances(),
+                        "bottle",
+                        new Bottle(),
+                        "crate",
+                        new Crate(),
+                        "version",
+                        this.version.getVersion()));
     }
 
     @GetMapping("/action")

@@ -35,6 +35,9 @@ public class SecurityConfig {
                 res.sendRedirect("/login");
             });
         });
+        http.headers(h -> {
+            h.httpStrictTransportSecurity().disable();
+        });
         http.logout(l -> l.logoutUrl("/logout"));
         http.csrf();
 

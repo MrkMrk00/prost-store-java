@@ -34,9 +34,9 @@
             </div>
         </div>
 
-        <div class="admin-widget" th:if="${admin_message != null}">
-            <h2 class="widget-title">Message</h2>
-            <textarea aria-label="Admin message" th:text="${admin_message}"></textarea>
+        <div class="admin-widget">
+            <h2 class="widget-title">Version</h2>
+            <p nl2br:text="${version}"></p>
         </div>
 
         <div class="admin-widget">
