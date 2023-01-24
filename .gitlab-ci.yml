@@ -17,8 +17,7 @@ deploy_application:
     - main
   script:
     - echo $DB_PASSWD > src/main/resources/db_passwd
-    - echo "$CI_COMMIT_BRANCH:$CI_COMMIT_SHORT_SHA" > src/main/resources/version
-    - echo "$CI_COMMIT_MESSAGE" >> src/main/resources/version
+    - echo "$CI_COMMIT_BRANCH:$CI_COMMIT_SHORT_SHA\n$CI_COMMIT_MESSAGE\n$CI_JOB_STARTED_AT" > src/main/resources/version
     - gcloud --quiet --project "$PROJECT_ID" app deploy app.yaml
 
 deploy_invoicing_function:
