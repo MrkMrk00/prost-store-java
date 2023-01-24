@@ -70,6 +70,11 @@ public class AuthController {
             return "redirect:/register";
         }
 
+        if (!birthday.isAfter(LocalDate.now().minusYears(15))) {
+            this.errors.addToast(Toast.error("You are too young to join :)"));
+            return "redirect:/register";
+        }
+
         // Create user object
         var user = User.builder()
                 .username(username)
