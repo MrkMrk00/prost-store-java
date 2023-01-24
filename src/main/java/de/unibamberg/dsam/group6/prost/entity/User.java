@@ -15,7 +15,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Entity(name = "users")
 @NamedEntityGraph(
         name = "user-with-roles",
-        attributeNodes = @NamedAttributeNode(value = "roles", subgraph = "roles.privileges"),
+        attributeNodes = {
+            @NamedAttributeNode(value = "roles", subgraph = "roles.privileges"),
+            @NamedAttributeNode("billingAddress"),
+            @NamedAttributeNode("deliveryAddress")
+        },
         subgraphs = @NamedSubgraph(name = "roles.privileges", attributeNodes = @NamedAttributeNode("privileges")))
 @Getter
 @Setter
