@@ -25,3 +25,4 @@ server:
             cookie:
                 http-only: true
                 secure: true
+    forward-headers-strategy: native
