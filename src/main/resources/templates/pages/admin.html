@@ -49,7 +49,8 @@
 
         <div style="max-width: 280px;" class="admin-widget">
             <h2 class="widget-title">Version</h2>
-            <p class="break-words" nl2br:text="${version}"></p>
+            <hr class="mb-3">
+            <p class="break-words text-center" nl2br:text="${version}"></p>
         </div>
 
         <div th:if="${!@environment.acceptsProfiles('prod')}" class="admin-widget text-center">

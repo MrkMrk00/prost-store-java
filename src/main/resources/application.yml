@@ -8,7 +8,6 @@ spring:
                 validator:
                     apply_to_ddl: true
     thymeleaf:
-        cache: true
         mode: HTML
         encoding: UTF-8
     web:
