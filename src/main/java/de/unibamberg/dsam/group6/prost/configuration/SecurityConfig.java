@@ -67,7 +67,7 @@ public class SecurityConfig {
                 h.httpStrictTransportSecurity();
                 h.frameOptions().sameOrigin();
             });
-            http.requiresChannel().antMatchers("/*").requiresSecure();
+            http.requiresChannel().anyRequest().requiresSecure();
         }
         return http.build();
     }
