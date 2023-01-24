@@ -38,6 +38,11 @@ public class AuthController {
         return "pages/login";
     }
 
+    @PostMapping("/logout")
+    public String logout() {
+        return "redirect:/";
+    }
+
     @GetMapping("/register")
     public String registerPage(Principal principal) {
         if (principal != null) {

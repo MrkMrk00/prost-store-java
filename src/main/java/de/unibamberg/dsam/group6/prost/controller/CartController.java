@@ -46,11 +46,12 @@ public class CartController {
         if (beverageId.isEmpty()) {
             throw new BadRequestException();
         }
-        var beverage = this.beveragesRepo.findById(beverageId.get());
+        final var beverage = this.beveragesRepo.findById(beverageId.get());
 
-        if (beverage.isPresent()) {
+        if (beverage.isPresent() && count.orElse(1) <= beverage.get().getInStock()) {
             this.cart.addToCart(beverageId.get(), count.orElse(1));
         }
+
         return "redirect:" + next.orElse("/");
     }
 

@@ -11,7 +11,9 @@
         <div class="flex flex-row justify-center gap-5 flex-wrap">
             <div class="flex flex-row justify-end mb-3">
                 <div class="py-5">
-                    <a class="btn-primary" href="/logout"><i class="fa-solid fa-user-large-slash"></i> Log out</a>
+                    <form action="/logout">
+                        <button class="btn-primary" type="submit"><i class="fa-solid fa-user-large-slash"></i> Log out</button>
+                    </form>
                 </div>
             </div>
             <form action="/user" method="post" th:object="${user}">
