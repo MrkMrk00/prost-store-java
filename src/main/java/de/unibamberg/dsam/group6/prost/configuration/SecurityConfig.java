@@ -37,6 +37,7 @@ public class SecurityConfig {
         });
         http.headers(h -> {
             h.httpStrictTransportSecurity().disable();
+            h.frameOptions().disable();
         });
         http.logout(l -> l.logoutUrl("/logout"));
         http.csrf();

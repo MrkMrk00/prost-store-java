@@ -34,11 +34,6 @@
             </div>
         </div>
 
-        <div style="max-width: 280px;" class="admin-widget">
-            <h2 class="widget-title">Version</h2>
-            <p class="break-words" nl2br:text="${version}"></p>
-        </div>
-
         <div class="admin-widget">
             <div class="flex flex-col gap-3 text-center">
                 <a href="/admin/form?type=bottle" class="btn-primary">
@@ -51,7 +46,13 @@
                 </a>
             </div>
         </div>
-        <div class="admin-widget text-center">
+
+        <div style="max-width: 280px;" class="admin-widget">
+            <h2 class="widget-title">Version</h2>
+            <p class="break-words" nl2br:text="${version}"></p>
+        </div>
+
+        <div th:if="${!@environment.acceptsProfiles('prod')}" class="admin-widget text-center">
             <iframe height="500" width="800" src="/h2-console"></iframe>
             <span>
                 Url: <code>jdbc:h2:mem:prost</code>&emsp;
