@@ -19,19 +19,22 @@ public interface BottlesRepository extends JpaRepository<Bottle, Long> {
 
     @Override
     Page<Bottle> findAll(Pageable pageable);
+    
+    @Query("SELECT b FROM bottles b WHERE b.inStock > 0")
+    Page<Bottle> findAllAvailable(Pageable pageable);
 
-    @Query("select b from bottles b where b.volumePercent > 0.0")
+    @Query("SELECT b FROM bottles b WHERE b.volumePercent > 0.0")
     Page<Bottle> findAllAlcoholic(Pageable pageable);
 
-    @Query("select b from bottles b where b.volumePercent = 0.0")
+    @Query("SELECT b FROM bottles b WHERE b.volumePercent = 0.0")
     Page<Bottle> findAllNonAlcoholic(Pageable pageable);
 
-    @Query("select count(b) from bottles b where b.volumePercent > 0.0")
+    @Query("SELECT count(b) FROM bottles b WHERE b.volumePercent > 0.0")
     Long countAllAlcoholic();
 
-    @Query("select count(b) from bottles b where b.volumePercent <= 0.0")
+    @Query("SELECT count(b) FROM bottles b WHERE b.volumePercent <= 0.0")
     Long countAllNonAlcoholic();
 
-    @Query("select b from bottles b where b.volumePercent > 3 and b.volumePercent < 8")
+    @Query("SELECT b FROM bottles b WHERE b.volumePercent > 3 AND b.volumePercent < 8")
     List<Bottle> findAllBeerLike();
 }

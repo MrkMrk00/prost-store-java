@@ -30,7 +30,7 @@ public class SecurityConfig {
             req.anyRequest().permitAll();
         });
         http.formLogin(form -> {
-            form.loginPage("/login*").failureHandler((req, res, e) -> {
+            form.loginPage("/login").failureHandler((req, res, e) -> {
                 this.errors.addToast(Toast.error(e.getMessage()));
                 res.sendRedirect("/login");
             });
