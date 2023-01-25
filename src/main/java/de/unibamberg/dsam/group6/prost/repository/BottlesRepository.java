@@ -19,7 +19,7 @@ public interface BottlesRepository extends JpaRepository<Bottle, Long> {
 
     @Override
     Page<Bottle> findAll(Pageable pageable);
-    
+
     @Query("SELECT b FROM bottles b WHERE b.inStock > 0")
     Page<Bottle> findAllAvailable(Pageable pageable);
 

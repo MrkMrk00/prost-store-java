@@ -31,7 +31,7 @@ public class AdminActionsProvider {
             return Arrays.stream(this.instance.getClass().getMethods())
                     .filter(m ->
                             Modifier.isPublic(m.getModifiers()) && m.getName().startsWith("action__"))
-                    .map(m -> format("%s::%s", this.instanceName, m.getName().replace("action__", "")))
+                    .map(m -> m.getName().replace("action__", ""))
                     .toList();
         }
 

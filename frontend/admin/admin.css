@@ -1,11 +1,18 @@
+.admin-content-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
 .admin-widget-container {
     color: black;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     gap: 2em;
-    padding: 0.5em;
+    padding: 5em 1em;
 
     .admin-widget {
         @apply rounded-xl shadow-lg;

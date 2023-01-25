@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OrdersRepository extends JpaRepository<Order, Long> {
-    @EntityGraph(value = "order-usernames")
+    @EntityGraph(value = "order-beverages")
     List<Order> findAllByUser_username(String username);
 
     @EntityGraph(value = "order-beverages")

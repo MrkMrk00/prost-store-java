@@ -101,6 +101,16 @@
         }
     }
 
+    &-danger {
+        @apply btn;
+        background-color: var(--danger-color);
+        color: white;
+
+        &:hover {
+            background-color: var(--danger-color-dark);
+        }
+    }
+
     &-success {
         @apply btn;
         background-color: var(--success-color);

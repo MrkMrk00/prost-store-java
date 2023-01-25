@@ -4,12 +4,13 @@ import de.unibamberg.dsam.group6.prost.entity.Bottle;
 import de.unibamberg.dsam.group6.prost.entity.Crate;
 import de.unibamberg.dsam.group6.prost.repository.BottlesRepository;
 import de.unibamberg.dsam.group6.prost.repository.CratesRepository;
+import de.unibamberg.dsam.group6.prost.repository.OrdersRepository;
+import de.unibamberg.dsam.group6.prost.repository.UserRepository;
 import de.unibamberg.dsam.group6.prost.service.AdminActionsProvider;
 import de.unibamberg.dsam.group6.prost.service.UserErrorManager;
 import de.unibamberg.dsam.group6.prost.service.admin.VersionReader;
 import de.unibamberg.dsam.group6.prost.util.Toast;
 import de.unibamberg.dsam.group6.prost.util.exception.CallFailedException;
-import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import javax.validation.Valid;
@@ -18,7 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/admin")
@@ -28,21 +28,26 @@ public class AdminController {
     private final AdminActionsProvider actions;
     private final BottlesRepository bottlesRepository;
     private final CratesRepository cratesRepository;
+    private final OrdersRepository ordersRepository;
+    private final UserRepository userRepository;
     private final VersionReader version;
 
     @GetMapping("")
-    public ModelAndView adminIndex() {
-        return new ModelAndView(
-                "pages/admin",
-                Map.of(
-                        "actions",
-                        this.actions.getAnnotatedInstances(),
-                        "bottle",
-                        new Bottle(),
-                        "crate",
-                        new Crate(),
-                        "version",
-                        this.version.getVersion()));
+    public String adminIndex(
+            @RequestParam(name = "p") Optional<String> page, @RequestParam Optional<String> username, Model model) {
+        model.addAttribute("actions", this.actions.getAnnotatedInstances());
+        model.addAttribute("version", this.version.getVersion());
+
+        if (page.isPresent() && page.get().equals("orders")) {
+            model.addAttribute("all_users", this.userRepository.getAllUsernamesHavingOrders());
+            if (!username.orElse("").equals("")) {
+                model.addAttribute("orders", this.ordersRepository.findAllByUser_username(username.get()));
+            } else {
+                model.addAttribute("orders", this.ordersRepository.findAll());
+            }
+        }
+
+        return "pages/admin";
     }
 
     @GetMapping("/action")

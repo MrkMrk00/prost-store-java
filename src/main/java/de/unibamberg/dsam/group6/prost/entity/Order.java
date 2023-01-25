@@ -12,15 +12,16 @@ import org.hibernate.annotations.CreationTimestamp;
 @Entity(name = "orders")
 @NamedEntityGraph(
         name = "order-beverages",
-        attributeNodes = @NamedAttributeNode(value = "orderItems", subgraph = "orderItem.beverage"),
-        subgraphs =
-                @NamedSubgraph(
-                        name = "orderItem.beverage",
-                        attributeNodes = {@NamedAttributeNode("beverage")}))
-@NamedEntityGraph(
-        name = "order-usernames",
-        attributeNodes = @NamedAttributeNode(value = "user", subgraph = "user.username"),
-        subgraphs = @NamedSubgraph(name = "user.username", attributeNodes = @NamedAttributeNode("username")))
+        attributeNodes = {
+            @NamedAttributeNode(value = "orderItems", subgraph = "orderItem.beverage"),
+            @NamedAttributeNode(value = "user", subgraph = "user.username")
+        },
+        subgraphs = {
+            @NamedSubgraph(
+                    name = "orderItem.beverage",
+                    attributeNodes = {@NamedAttributeNode("beverage")}),
+            @NamedSubgraph(name = "user.username", attributeNodes = @NamedAttributeNode("username"))
+        })
 @Getter
 @Setter
 @NoArgsConstructor
