@@ -11,8 +11,6 @@ default:
 
 deploy_application:
   stage: deploy
-  after_script:
-    - rm -rf .secret_files
   only:
     - main
   script:
