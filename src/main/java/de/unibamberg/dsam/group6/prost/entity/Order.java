@@ -73,7 +73,7 @@ public class Order {
                 .forEach((key, value) -> items.addProperty(key.getId().toString(), value));
 
         final var obj = new JsonObject();
-        obj.addProperty("timeStamp", this.createdOn.getTime());
+        obj.addProperty("timestamp", this.createdOn.getTime());
         obj.addProperty("postalCode", deliveryAddress == null ? "00000" : deliveryAddress.getPostalCode());
         obj.add("orderItems", items);
 

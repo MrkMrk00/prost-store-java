@@ -40,7 +40,7 @@ public class SecurityConfig {
             h.frameOptions().disable();
         });
         http.logout(l -> l.logoutUrl("/logout"));
-        http.csrf();
+        http.csrf().ignoringAntMatchers("/h2-console/**");
 
         return http.build();
     }

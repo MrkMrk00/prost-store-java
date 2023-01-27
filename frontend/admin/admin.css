@@ -1,7 +1,8 @@
 .admin-content-container {
+    @apply sm:flex-row flex-col;
+
     min-height: 100vh;
     display: flex;
-    flex-direction: row;
     width: 100%;
 }
 
@@ -12,7 +13,7 @@
     justify-content: space-evenly;
     flex-wrap: wrap;
     gap: 2em;
-    padding: 5em 1em;
+    padding: 2em;
 
     .admin-widget {
         @apply rounded-xl shadow-lg;

@@ -7,13 +7,14 @@
 <body class="prost-bg">
 <div class="admin-content-container">
     <nav class="flex flex-col gap-3 p-5 bg-white h-100">
-        <div class="flex flex-col gap-3 text-center mb-3">
+        <div class="flex flex-row flex-wrap sm:flex-col gap-3 text-center mb-3">
             <strong>Admin links</strong>
             <hr>
             <a class="btn-danger" href="/admin">Home</a>
             <a class="btn-danger" href="/admin?p=orders">Orders</a>
+            <a th:if="${!@environment.acceptsProfiles('prod')}" class="btn-danger" href="/admin?p=h2-console">H2-Console</a>
         </div>
-        <div class="flex flex-col gap-3 text-center">
+        <div class="flex flex-row flex-wrap sm:flex-col gap-3 text-center">
             <strong>Store links</strong>
             <hr>
             <a class="btn-primary" href="/">Store home</a>
@@ -25,18 +26,15 @@
         </div>
     </nav>
     <div>
-        <nav class="w-[100vw] absolute bg-white p-5">
-            <a th:if="${!@environment.acceptsProfiles('prod')}" class="btn-primary" href="/admin?p=h2-console">H2-Console</a>
-        </nav>
         <div class="admin-widget-container">
             <div class="admin-widget" th:if="${param.getOrDefault('p', null) == null}">
                 <h2 class="widget-title">Actions</h2>
                 <hr class="mb-3">
                 <div class="flex flex-col" th:each="actionInstance : ${actions}" th:with="instance=${actionInstance.getInstanceName()}">
                     <h3 class="font-bold mb-3 underline" th:text="${instance}"></h3>
-                    <div th:each="method : ${actionInstance.getMethodNames()}" class="flex flex-row justify-between mb-3">
+                    <div th:each="method : ${actionInstance.getMethodNames()}" class="flex flex-row justify-between">
                         <h4 style="margin-right: 1em;" th:text="${method}"></h4>
-                        <div>
+                        <div class="mb-3">
                             <a class="btn-success" th:href="'/admin/action?a=' + ${instance} + '::' + ${method}">Call</a>
                             <a class="btn-success" th:href="'/admin/action?a=' + ${instance} + '::' + ${method} + '&await=1'">Await</a>
                         </div>
