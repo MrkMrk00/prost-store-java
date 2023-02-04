@@ -11,6 +11,6 @@ public class Invoice implements HttpFunction {
     @Override
     public void service(HttpRequest request, HttpResponse response) throws Exception {
         BufferedWriter writer = response.getWriter();
-        writer.write("Hello, World from Invoicing function!");
+        writer.write("Hello, World from Invoicing function");
     }
 }
