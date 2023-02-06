@@ -20,6 +20,7 @@ configurations {
 dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-core:2.11.2'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.2'
+    implementation 'com.google.cloud:google-cloud-storage:2.16.0'
     compileOnly 'com.google.cloud.functions:functions-framework-api:1.0.4'
     invoker 'com.google.cloud.functions.invoker:java-function-invoker:1.2.0'
     testImplementation 'com.google.cloud.functions:functions-framework-api:1.0.4'
