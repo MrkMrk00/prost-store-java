@@ -39,13 +39,6 @@ public class Invoice implements HttpFunction {
             e.printStackTrace();
         }
 
-
-        Map<String, String> data = new ObjectMapper().readValue(requestBody,new TypeReference<Map<String, String>>() {});
-
-
-        writer.write("Hello, World from Invoicing function! User: " + data.toString());
+        writer.write("Hello, World from Invoicing function!");
     }
-
-
-
 }
