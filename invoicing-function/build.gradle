@@ -4,7 +4,7 @@ plugins {
 
 def cloudFunctionClassName = 'de.unibamberg.dsam.group6.invoicingfunction.Invoice'
 
-group = 'de.unibamberg.dsam.group6'
+group = 'de.unibamberg.dsam.group6.invoicingfunction'
 version = '0.1'
 sourceCompatibility = '17'
 

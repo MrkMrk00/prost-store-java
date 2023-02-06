@@ -25,48 +25,16 @@ public class Invoice implements HttpFunction {
     @Override
     public void service(HttpRequest request, HttpResponse response) throws Exception {
         BufferedWriter writer = response.getWriter();
-
-        String requestBody = request.getReader().lines().collect(Collectors.joining());
-        String[] lines = requestBody.split("\n");
-
-        File file = new File("helloWorld.txt");
+        final var requestBody = request.getReader().lines().toList();
         try {
-
-
-            FileWriter fileWriter = new FileWriter(file);
-            fileWriter.write("Hello, World!");
-            for (String line : lines) {
-                fileWriter.write(line + System.lineSeparator());
-            }
-            fileWriter.close();
-
-
-            String path = System.getenv("GOOGLE_APPLICATION_CREDENTIALS");
-
-            GoogleCredentials googleCredentials;
-            if (path == null) {
-                throw new RuntimeException("Environment variable GOOGLE_APPLICATION_CREDENTIALS is not set");
-            }
-            try {
-                 googleCredentials = GoogleCredentials.fromStream(new FileInputStream(path));
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException("File not found at the specified path: " + path, e);
-            }
-
-            StorageOptions storageOptions = StorageOptions.newBuilder().setProjectId("maximal-radius-375114").setCredentials(googleCredentials).build();
+            StorageOptions storageOptions = StorageOptions.newBuilder().setProjectId("maximal-radius-375114")
+                    .setCredentials(GoogleCredentials.getApplicationDefault())
+                    .build();
             Storage storage = storageOptions.getService();
-
-
 
             BlobId blobId = BlobId.of("prost--invoice-pdf-bucket", "helloWorld.txt");
             BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("application/txt").build();
-            byte[] content = Files.readAllBytes(Paths.get("helloWorld.txt"));
             Blob blob = storage.create(blobInfo);
-            System.out.println(blob.getName());
-            System.out.println(blob);
-
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
