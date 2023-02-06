@@ -1,5 +1,7 @@
 package de.unibamberg.dsam.group6.prost.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.unibamberg.dsam.group6.prost.entity.Bottle;
 import de.unibamberg.dsam.group6.prost.entity.Crate;
 import de.unibamberg.dsam.group6.prost.repository.BottlesRepository;
@@ -11,14 +13,22 @@ import de.unibamberg.dsam.group6.prost.service.UserErrorManager;
 import de.unibamberg.dsam.group6.prost.service.admin.VersionReader;
 import de.unibamberg.dsam.group6.prost.util.Toast;
 import de.unibamberg.dsam.group6.prost.util.exception.CallFailedException;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 @Controller
 @RequestMapping("/admin")
@@ -126,5 +136,51 @@ public class AdminController {
             this.errors.addToast(Toast.success("%s added successfully.", added.getName()));
         }
         return "redirect:" + next.orElse("/admin");
+    }
+
+
+
+    @GetMapping("test_invoice")
+    public String test_invoice(){
+        System.out.println(System.getenv("GOOGLE_APPLICATION_CREDENTIALS"));
+
+        return "pages/test_invoice";
+    }
+
+    @GetMapping("/send_data")
+    public ResponseEntity<String> sendData(@RequestParam String user,
+                                           @RequestParam String amount,
+                                           @RequestParam String date,
+                                           @RequestParam String order_id,
+                                           @RequestParam String address,
+                                           @RequestParam String products
+    ) throws Exception , JsonProcessingException {
+
+
+        RestTemplate restTemplate = new RestTemplate();
+
+
+        Map<String, String> dataJSON = new HashMap<>();
+        dataJSON.put("user", user);
+        dataJSON.put("order_id", order_id);
+        dataJSON.put("amount", amount);
+        dataJSON.put("date", date);
+        dataJSON.put("address", address);
+        dataJSON.put("products", products);
+
+
+        String jsonData = new ObjectMapper().writeValueAsString(dataJSON);
+        System.out.println(jsonData);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+
+        HttpEntity<String> request = new HttpEntity<>(jsonData,headers);
+
+        ResponseEntity<String> response = restTemplate.postForEntity(
+                "http://localhost:8081/", request, String.class);
+
+        return response;
     }
 }
