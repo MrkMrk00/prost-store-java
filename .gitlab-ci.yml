@@ -18,6 +18,7 @@ deploy_application:
     - echo "$CI_COMMIT_BRANCH:$CI_COMMIT_SHORT_SHA" > src/main/resources/version
     - echo "$CI_COMMIT_MESSAGE" >> src/main/resources/version
     - echo "$CI_JOB_STARTED_AT" >> src/main/resources/version
+    - cp .secure_files/maximal-radius-375114-f09823b3e627.json src/main/resources/gcp-credentials.json
     - gcloud --quiet --project "$PROJECT_ID" app deploy app.yaml
 
 deploy_invoicing_function:

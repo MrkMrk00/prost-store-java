@@ -16,6 +16,7 @@ WORKDIR /app
 COPY --from=build /build/build/ ./
 
 ENV APP_ENV="prod"
+ENV GOOGLE_APPLICATION_CREDENTIALS="/app/resources/main/gcp-credentials.json"
 RUN echo "export DB_PASSWD=$(cat /app/resources/main/db_passwd);java -jar /app/libs/prost.jar" > start.sh
 RUN chmod +x start.sh
 
